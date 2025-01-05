@@ -1,0 +1,78 @@
+---
+---
+
+<div class="logo">
+    <div class="logo-container">
+        <span class="logo-text">Wilberth</span>
+        <span class="logo-text fade">.</span>
+        <span class="logo-text more-fade">com</span>
+    </div>
+</div>
+
+<style>
+    .logo {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        font-family: 'Montserrat', sans-serif;
+        margin: 1rem 0;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: -0.2rem;
+    }
+
+    .logo-text {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2d3436;
+        letter-spacing: -1px;
+        line-height: 1;
+        transition: all 0.3s ease;
+    }
+
+    .fade {
+        opacity: 0.5;
+        transform: translateX(-0.3rem);
+        font-size: 2.5rem;
+        position: relative;
+        bottom: 0rem;
+        animation: pulse 2s infinite;
+    }
+
+    .more-fade {
+        opacity: 0.2;
+        transform: translateX(-0.6rem);
+        font-size: 2rem;
+        position: relative;
+        bottom: -0.2rem;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        50% {
+            transform: translateX(0.2rem);
+            opacity: 0.8;
+        }
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .logo:hover .fade {
+        opacity: 0.8;
+        transform: translateX(0);
+    }
+
+    .logo:hover .more-fade {
+        opacity: 0.6;
+        transform: translateX(0);
+    }
+</style> 

@@ -2,47 +2,125 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Logo from '../components/Logo.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
+			<h1><span class="waving-hand">👋</span> Bienvenido a wilberth.com</h1>
 			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
+				¡Hola! Soy Wilberth, desarrollador web Full Stack y asesor en marketing digital.
 			</p>
 			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
+				Combino mis habilidades técnicas en desarrollo web con estrategias efectivas 
+				de marketing digital para ayudar a empresas y profesionales a construir una 
+				presencia online sólida y memorable.
 			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
+			<p>
+				En este sitio encontrarás:
+			</p>
 			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
+				<li>Proyectos de desarrollo web Full Stack</li>
+				<li>Casos de éxito en marketing digital</li>
+				<li>Servicios de desarrollo web y estrategia digital</li>
+				<li>Blog con artículos sobre programación y marketing online</li>
+				<li>Asesoría en presencia digital y redes sociales</li>
 			</ul>
+
+			<div class="features-grid">
+				<div class="feature-card">
+					<span class="icon">⚡</span>
+					<h3>Rendimiento Optimizado</h3>
+					<p>Páginas web ultrarrápidas con tiempos de carga optimizados para una mejor experiencia de usuario.</p>
+				</div>
+				<div class="feature-card">
+					<span class="icon">🔍</span>
+					<h3>SEO Avanzado</h3>
+					<p>Implementación de las mejores prácticas de SEO para maximizar la visibilidad en buscadores.</p>
+				</div>
+				<div class="feature-card">
+					<span class="icon">📱</span>
+					<h3>Diseño Responsivo</h3>
+					<p>Interfaces adaptables que funcionan perfectamente en todos los dispositivos y tamaños de pantalla.</p>
+				</div>
+				<div class="feature-card">
+					<span class="icon">🛡️</span>
+					<h3>Seguridad Robusta</h3>
+					<p>Implementación de protocolos de seguridad avanzados para proteger tu sitio y tus usuarios.</p>
+				</div>
+			</div>
+
+
+			<style>
+				.features-grid {
+					display: grid;
+					grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+					gap: 2rem;
+					margin: 3rem 0;
+				}
+
+				.feature-card {
+					background: #ffffff;
+					border-radius: 10px;
+					padding: 1.5rem;
+					box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+					transition: transform 0.3s ease;
+				}
+
+				.feature-card:hover {
+					transform: translateY(-5px);
+				}
+
+				.icon {
+					font-size: 2rem;
+					display: inline-block;
+					margin-right: 0.5rem;
+					vertical-align: middle;
+				}
+
+				.feature-card h3 {
+					display: inline-block;
+					margin: 0;
+					color: #333;
+					font-size: 1.25rem;
+					vertical-align: middle;
+				}
+
+				.feature-card p {
+					margin: 1rem 0 0 0;
+					color: #666;
+					font-size: 0.9rem;
+					line-height: 1.5;
+				}
+
+				.waving-hand {
+					display: inline-block;
+					animation: wave 10s infinite;
+					transform-origin: 70% 70%;
+				}
+
+				@keyframes wave {
+					0% { transform: rotate(0deg); }
+					10% { transform: rotate(14deg); }
+					20% { transform: rotate(-8deg); }
+					30% { transform: rotate(14deg); }
+					40% { transform: rotate(-4deg); }
+					50% { transform: rotate(10deg); }
+					60% { transform: rotate(0deg); }
+					100% { transform: rotate(0deg); }
+				}
+			</style>
+
 			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
+				[Aquí puedes agregar más información sobre ti, tus habilidades, 
+				o cualquier otro contenido relevante que quieras compartir]
 			</p>
 		</main>
 		<Footer />
