@@ -5,13 +5,13 @@ import { SITE_TITLE } from '../consts';
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<h1><a href="/">{SITE_TITLE}</a></h1>
 		<div class="internal-links">
 			<HeaderLink href="/">Inicio</HeaderLink>
 			<HeaderLink href="/about">Sobre mí</HeaderLink>
 			<HeaderLink href="/projects">Proyectos</HeaderLink>
 		</div>
-		<div class="social-links">
+<!-- 		<div class="social-links">
 			<a href="https://m.webtoo.ls/@astro" target="_blank">
 				<span class="sr-only">Follow Astro on Mastodon</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
@@ -39,45 +39,55 @@ import { SITE_TITLE } from '../consts';
 					></path></svg
 				>
 			</a>
-		</div>
+		</div> -->
 	</nav>
 </header>
 <style>
 	header {
 		margin: 0;
-		padding: 0 1em;
+		padding: 1em 4em;
 		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		position: sticky;
+		top: 0;
+		z-index: 1000;
 	}
 	nav {
+		max-width: 1200px;
+		margin: 0 auto;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 3em;
 	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
+	h1 {
+		margin: 0;
+		font-size: 1.5em;
+	}
+	h1 a {
+		color: #2d3748;
+		font-weight: 700;
 		text-decoration: none;
 	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
+	.internal-links {
 		display: flex;
+		gap: 2.5em;
+		margin: 0;
+	}
+	.social-links {
+		display: flex;
+		gap: 1em;
 	}
 	@media (max-width: 720px) {
+		header {
+			padding: 1em 2em;
+		}
+		nav {
+			gap: 1.5em;
+		}
+		.internal-links {
+			gap: 1.5em;
+		}
 		.social-links {
 			display: none;
 		}
