@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home3/apren173/wilberth.com/
+    - /bin/cp -R dist/* $DEPLOYPATH
