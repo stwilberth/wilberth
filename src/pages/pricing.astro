@@ -1,0 +1,87 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PricingWeb from '../components/PricingWeb.astro';
+import PricingEmail from '../components/PricingEmail.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <BaseHead title={`Precios - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+    </head>
+    <body>
+        <Header />
+        <main>
+            <section class="pricing-header">
+                <h1>Planes y Precios</h1>
+                <p>Ofrecemos soluciones adaptadas a tus necesidades, desde sitios web hasta correo empresarial.</p>
+            </section>
+
+            <section class="web-services">
+                <h2>Servicios Web</h2>
+                <p>Desarrollo web profesional con las últimas tecnologías y mejores prácticas.</p>
+                <PricingWeb />
+            </section>
+
+            <section class="email-services">
+                <h2>Servicios de Correo Empresarial</h2>
+                <p>Soluciones de correo electrónico profesional para tu empresa.</p>
+                <PricingEmail />
+            </section>
+        </main>
+        <Footer />
+
+        <style>
+            .pricing-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .pricing-header h1 {
+                font-size: 2.5rem;
+                color: var(--accent);
+                margin-bottom: 1rem;
+            }
+
+            .pricing-header p {
+                font-size: 1.2rem;
+                color: rgb(var(--gray));
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .web-services, .email-services {
+                margin: 4rem 0;
+            }
+
+            .web-services h2, .email-services h2 {
+                text-align: center;
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .web-services p, .email-services p {
+                text-align: center;
+                color: rgb(var(--gray));
+                margin-bottom: 2rem;
+            }
+
+            @media (max-width: 768px) {
+                .pricing-header h1 {
+                    font-size: 2rem;
+                }
+
+                .pricing-header p {
+                    font-size: 1rem;
+                }
+
+                .web-services h2, .email-services h2 {
+                    font-size: 1.5rem;
+                }
+            }
+        </style>
+    </body>
+</html>

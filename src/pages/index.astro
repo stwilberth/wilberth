@@ -3,6 +3,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Logo from '../components/Logo.astro';
+import PricingWeb from '../components/PricingWeb.astro';
+import PricingEmail from '../components/PricingEmail.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
@@ -27,11 +29,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				En este sitio encontrarás:
 			</p>
 			<ul>
-				<li>Proyectos de desarrollo web Full Stack</li>
-				<li>Casos de éxito en marketing digital</li>
+				<li>Proyectos de desarrollo web</li>
+				<li>Casos de éxito en SEO</li>
 				<li>Servicios de desarrollo web y estrategia digital</li>
 				<li>Blog con artículos sobre programación y marketing online</li>
-				<li>Asesoría en presencia digital y redes sociales</li>
 			</ul>
 
 			<div class="features-grid">
@@ -57,6 +58,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</div>
 			</div>
 
+			<PricingWeb />
+
+			<PricingEmail />
 
 			<style>
 				.features-grid {
@@ -117,11 +121,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					100% { transform: rotate(0deg); }
 				}
 			</style>
-
-			<p>
-				[Aquí puedes agregar más información sobre ti, tus habilidades, 
-				o cualquier otro contenido relevante que quieras compartir]
-			</p>
 		</main>
 		<Footer />
 	</body>
