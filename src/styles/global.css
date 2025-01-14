@@ -60,9 +60,12 @@ h6 {
 }
 h1 {
 	font-size: 2.052em;
+	text-align: center;
+	color: #459247;
 }
 h2 {
-	font-size: 2.441em;
+	font-size: 1.8em;
+	margin-top: 0.8em;
 }
 h3 {
 	font-size: 1.953em;

@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PricingWeb from '../components/PricingWeb.astro';
 import PricingEmail from '../components/PricingEmail.astro';
+import PricingSEO from '../components/PricingSEO.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
@@ -27,9 +28,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
             </section>
 
             <section class="email-services">
-                <h2>Servicios de Correo Empresarial</h2>
+                <h2>Servicios de Correo</h2>
                 <p>Soluciones de correo electrónico profesional para tu empresa.</p>
                 <PricingEmail />
+            </section>
+
+            <section class="seo-services">
+                <h2>Servicios de SEO</h2>
+                <p>Mejora tu visibilidad en los motores de búsqueda y atrae más tráfico orgánico.</p>
+                <PricingSEO />
             </section>
         </main>
         <Footer />

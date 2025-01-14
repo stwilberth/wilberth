@@ -5,7 +5,8 @@ import Footer from '../components/Footer.astro';
 import Logo from '../components/Logo.astro';
 import PricingWeb from '../components/PricingWeb.astro';
 import PricingEmail from '../components/PricingEmail.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_SUBTITLE} from '../consts';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 ---
 
 <!doctype html>
@@ -16,24 +17,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1><span class="waving-hand">👋</span> Bienvenido a wilberth.com</h1>
+			<h1><span class="waving-hand">👋</span>¡Hola! Soy Wilberth</h1>
+			<h2>
+				{SITE_SUBTITLE}
+			</h2>
 			<p>
-				¡Hola! Soy Wilberth, desarrollador web Full Stack y asesor en marketing digital.
+				{SITE_DESCRIPTION}
 			</p>
-			<p>
-				Combino mis habilidades técnicas en desarrollo web con estrategias efectivas 
-				de marketing digital para ayudar a empresas y profesionales a construir una 
-				presencia online sólida y memorable.
-			</p>
-			<p>
-				En este sitio encontrarás:
-			</p>
-			<ul>
-				<li>Proyectos de desarrollo web</li>
-				<li>Casos de éxito en SEO</li>
-				<li>Servicios de desarrollo web y estrategia digital</li>
-				<li>Blog con artículos sobre programación y marketing online</li>
-			</ul>
+			
+			<WhatsAppButton phoneNumber="50685008393" />
 
 			<div class="features-grid">
 				<div class="feature-card">
@@ -59,8 +51,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</div>
 
 			<PricingWeb />
-
-			<PricingEmail />
 
 			<style>
 				.features-grid {
