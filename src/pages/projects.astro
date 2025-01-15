@@ -27,7 +27,7 @@ const projects = (await getCollection('projects')).sort(
                     {
                         projects.map((project) => (
                             <article class="project-card">
-                                <a href={`/projects/${project.slug}/`}>
+                                {/*<a href={`/projects/${project.slug}/`}>*/}
                                     <img 
                                         width={720} 
                                         height={360} 
@@ -44,7 +44,7 @@ const projects = (await getCollection('projects')).sort(
                                             ))}
                                         </div>
                                     )}
-                                </a>
+                                {/*</a>*/}
                             </article>
                         ))
                     }
