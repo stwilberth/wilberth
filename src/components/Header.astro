@@ -1,11 +1,11 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+
 ---
 
 <header>
 	<nav>
-		<h1><a href="/">{SITE_TITLE}</a></h1>
+		<h1><a href="/">Wilberth.com</a></h1>
 		<button class="mobile-menu-button" aria-label="Menu">
 			<span class="hamburger"></span>
 		</button>
@@ -14,6 +14,7 @@ import { SITE_TITLE } from '../consts';
 			<HeaderLink href="/pricing">Precios</HeaderLink>
 			<HeaderLink href="/about">Sobre mí</HeaderLink>
 			<HeaderLink href="/projects">Proyectos</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
 		</div>
 	</nav>
 </header>

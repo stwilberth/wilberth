@@ -2,42 +2,45 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import PricingWeb from '../components/PricingWeb.astro';
-import PricingEmail from '../components/PricingEmail.astro';
-import PricingSEO from '../components/PricingSEO.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
 <!doctype html>
 <html lang="es">
     <head>
-        <BaseHead title={`Precios - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+        <BaseHead 
+            title={`Planes y Precios | ${SITE_TITLE}`}
+            subtitle='Servicios Profesionales'
+            description="Descubre nuestros servicios profesionales de desarrollo web, correo empresarial y optimización SEO. Soluciones adaptadas a tus necesidades." 
+        />
     </head>
     <body>
         <Header />
         <main>
             <section class="pricing-header">
-                <h1>Planes y Precios</h1>
-                <p>Ofrecemos soluciones adaptadas a tus necesidades, desde sitios web hasta correo empresarial.</p>
+                <h1>Nuestros Servicios</h1>
+                <p>Soluciones profesionales adaptadas a tus necesidades empresariales</p>
             </section>
 
-            <section class="web-services">
-                <h2>Servicios Web</h2>
-                <p>Desarrollo web profesional con las últimas tecnologías y mejores prácticas.</p>
-                <PricingWeb />
-            </section>
+            <div class="services-grid">
+                <section class="service-card">
+                    <h2>Desarrollo Web</h2>
+                    <p>Desarrollo web profesional con las últimas tecnologías y mejores prácticas.</p>
+                    <a href="/pricing-web" class="service-link">Ver planes web</a>
+                </section>
 
-            <section class="email-services">
-                <h2>Servicios de Correo</h2>
-                <p>Soluciones de correo electrónico profesional para tu empresa.</p>
-                <PricingEmail />
-            </section>
+                <section class="service-card">
+                    <h2>Correo Empresarial</h2>
+                    <p>Soluciones de correo electrónico profesional para tu empresa.</p>
+                    <a href="/pricing-email" class="service-link">Ver planes de correo</a>
+                </section>
 
-            <section class="seo-services">
-                <h2>Servicios de SEO</h2>
-                <p>Mejora tu visibilidad en los motores de búsqueda y atrae más tráfico orgánico.</p>
-                <PricingSEO />
-            </section>
+                <section class="service-card">
+                    <h2>Optimización SEO</h2>
+                    <p>Mejora tu visibilidad en los motores de búsqueda y atrae más tráfico orgánico.</p>
+                    <a href="/pricing-seo" class="service-link">Ver planes SEO</a>
+                </section>
+            </div>
         </main>
         <Footer />
 
@@ -60,20 +63,50 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
                 margin: 0 auto;
             }
 
-            .web-services, .email-services {
-                margin: 4rem 0;
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                padding: 2rem;
+                max-width: 1200px;
+                margin: 0 auto;
             }
 
-            .web-services h2, .email-services h2 {
+            .service-card {
+                background: var(--gray-light);
+                padding: 2rem;
+                border-radius: 8px;
                 text-align: center;
-                font-size: 2rem;
+                transition: transform 0.3s ease;
+            }
+
+            .service-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .service-card h2 {
+                color: var(--accent);
+                font-size: 1.8rem;
                 margin-bottom: 1rem;
             }
 
-            .web-services p, .email-services p {
-                text-align: center;
+            .service-card p {
                 color: rgb(var(--gray));
-                margin-bottom: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .service-link {
+                display: inline-block;
+                padding: 0.8rem 1.5rem;
+                background: var(--accent);
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                transition: background 0.3s ease;
+            }
+
+            .service-link:hover {
+                background: var(--accent-dark);
             }
 
             @media (max-width: 768px) {
@@ -85,7 +118,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
                     font-size: 1rem;
                 }
 
-                .web-services h2, .email-services h2 {
+                .service-card h2 {
                     font-size: 1.5rem;
                 }
             }

@@ -1,26 +1,63 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import Layout from '../layouts/AboutLayout.astro';
 ---
 
 <Layout
 	title="Sobre mí"
 	description="Wilberth es un desarrollador web Full Stack apasionado por crear soluciones digitales innovadoras."
 	pubDate={new Date('January 05 2025')}
-	heroImage="/blog-placeholder-about-600x270.png"
+	heroImage="/blog-placeholder-about.png"
 >
-	<p>
-		Soy Wilberth, un desarrollador web Full Stack apasionado por crear soluciones digitales innovadoras. Con más de 5 años de experiencia, me especializo en el desarrollo de aplicaciones web modernas y eficientes.
-	</p>
+	<div class="about-content">
+		<p class="intro">
+			Soy Wilberth, un desarrollador web Full Stack apasionado por crear soluciones digitales innovadoras. Con más de 5 años de experiencia, me especializo en el desarrollo de aplicaciones web modernas y eficientes.
+		</p>
 
-	<p>
-		Mi experiencia abarca tanto el desarrollo frontend como backend, utilizando tecnologías como Laravel, Vue.js, Astro, Node.js y MySQL. Me enfoco en crear experiencias de usuario excepcionales mientras mantengo un código limpio y mantenible.
-	</p>
+		<p>
+			Mi experiencia abarca tanto el desarrollo frontend como backend, utilizando tecnologías como Laravel, Vue.js, Astro, Node.js y MySQL. Me enfoco en crear experiencias de usuario excepcionales mientras mantengo un código limpio y mantenible.
+		</p>
 
-	<p>
-		Además de mi trabajo como desarrollador, me mantengo constantemente actualizado con las últimas tendencias y tecnologías del desarrollo web. Disfruto colaborando en equipos multidisciplinarios y enfrentando nuevos desafíos tecnológicos.
-	</p>
+		<p>
+			Además de mi trabajo como desarrollador, me mantengo constantemente actualizado con las últimas tendencias y tecnologías del desarrollo web. Disfruto colaborando en equipos multidisciplinarios y enfrentando nuevos desafíos tecnológicos.
+		</p>
 
-	<p>
-		Cuando no estoy programando, estoy viendo videos de programación o de tecnologías web 😄
-	</p>
+		<p>
+			Cuando no estoy programando, estoy viendo videos de programación o de tecnologías web 😄
+		</p>
+	</div>
+
+	<style>
+		.about-content {
+			font-size: 1.1rem;
+			line-height: 1.8;
+			background: rgba(255, 255, 255, 0.95);
+			padding: 2rem;
+			border-radius: 1rem;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
+
+		.intro {
+			font-size: 1.3rem;
+			color: var(--accent);
+			font-weight: 500;
+			margin-bottom: 2rem;
+			border-left: 4px solid var(--accent);
+			padding-left: 1rem;
+		}
+
+		p {
+			margin-bottom: 1.5rem;
+		}
+
+		@media (max-width: 768px) {
+			.about-content {
+				padding: 1.5rem;
+				font-size: 1rem;
+			}
+
+			.intro {
+				font-size: 1.2rem;
+			}
+		}
+	</style>
 </Layout>

@@ -1,0 +1,83 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PricingEmail from '../components/PricingEmail.astro';
+import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <BaseHead 
+            title={`Correo Empresarial | ${SITE_TITLE}`}
+            description="Servicios de correo electrónico empresarial profesional. Planes personalizados para empresas con soporte técnico incluido." 
+        />
+    </head>
+    <body>
+        <Header />
+        <main>
+            <section class="pricing-header">
+                <h1>Correo Empresarial</h1>
+                <p>Soluciones de correo profesional para tu empresa</p>
+            </section>
+
+            <section class="email-services">
+                <h2>Nuestros Planes de Correo</h2>
+                <p>Correo electrónico profesional con dominio personalizado y todas las herramientas que necesitas.</p>
+                <PricingEmail />
+            </section>
+        </main>
+        <Footer />
+
+        <style>
+            .pricing-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .pricing-header h1 {
+                font-size: 2.5rem;
+                color: var(--accent);
+                margin-bottom: 1rem;
+            }
+
+            .pricing-header p {
+                font-size: 1.2rem;
+                color: rgb(var(--gray));
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .email-services {
+                margin: 4rem 0;
+            }
+
+            .email-services h2 {
+                text-align: center;
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .email-services p {
+                text-align: center;
+                color: rgb(var(--gray));
+                margin-bottom: 2rem;
+            }
+
+            @media (max-width: 768px) {
+                .pricing-header h1 {
+                    font-size: 2rem;
+                }
+
+                .pricing-header p {
+                    font-size: 1rem;
+                }
+
+                .email-services h2 {
+                    font-size: 1.5rem;
+                }
+            }
+        </style>
+    </body>
+</html>

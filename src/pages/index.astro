@@ -5,27 +5,23 @@ import Footer from '../components/Footer.astro';
 import Logo from '../components/Logo.astro';
 import PricingWeb from '../components/PricingWeb.astro';
 import PricingEmail from '../components/PricingEmail.astro';
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_SUBTITLE} from '../consts';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION, SITE_PHONE_NUMBER } from '../consts';
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={SITE_TITLE} subtitle={SITE_SUBTITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1><span class="waving-hand">👋</span>¡Hola! Soy Wilberth</h1>
-			<h2>
-				{SITE_SUBTITLE}
-			</h2>
-			<p>
-				{SITE_DESCRIPTION}
-			</p>
+			<h1>{SITE_TITLE}</h1>
+			<h2>{SITE_SUBTITLE}</h2>
+			<p>{SITE_DESCRIPTION}</p>
 			
-			<WhatsAppButton phoneNumber="50685008393" />
+			<WhatsAppButton phoneNumber={SITE_PHONE_NUMBER} text="¡Contáctanos!" />
 
 			<div class="features-grid">
 				<div class="feature-card">
