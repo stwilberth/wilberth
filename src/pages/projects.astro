@@ -4,112 +4,175 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
-import FormattedDate from '../components/FormattedDate.astro';
 
-const projects = (await getCollection('projects')).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+const projects = await getCollection('projects');
+const sortedProjects = projects.sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const works = await getCollection('works');
+console.log('Works found:', works.length);
+const sortedWorks = works.sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+console.log('Sorted works:', sortedWorks.map(w => w.data.title));
 ---
 
 <!doctype html>
 <html lang="es">
-    <head>
-        <BaseHead title={`Proyectos - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
-    </head>
-    <body>
-        <Header />
-        <main>
-            <section>
-                <h1>Proyectos Realizados</h1>
-                <p>Aquí encontrarás algunos de los proyectos más destacados en los que he trabajado.</p>
-                
-                <div class="projects-grid">
-                    {
-                        projects.map((project) => (
-                            <article class="project-card">
-                                {/*<a href={`/projects/${project.slug}/`}>*/}
-                                    <img 
-                                        width={720} 
-                                        height={360} 
-                                        src={project.data.heroImage} 
-                                        alt={`Captura de pantalla de ${project.data.title}`} 
-                                    />
-                                    <h2 class="title">{project.data.title}</h2>
-                                    <p class="description">{project.data.description}</p>
-                                    
-                                    {project.data.technologies && (
-                                        <div class="technologies">
-                                            {project.data.technologies.map((tech) => (
-                                                <span class="tech-tag">{tech}</span>
-                                            ))}
-                                        </div>
-                                    )}
-                                {/*</a>*/}
-                            </article>
-                        ))
-                    }
-                </div>
-            </section>
-        </main>
-        <Footer />
+	<head>
+		<BaseHead title={SITE_TITLE} subtitle="Proyectos" description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 100%;
+				max-width: 960px;
+				margin: 0 auto;
+				padding: 1rem;
+			}
+			.intro-text {
+				text-align: center;
+				color: #6b7280;
+				margin: 2rem 0;
+				font-size: 1.1rem;
+			}
+			.projects-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 2rem;
+				padding: 0;
+				margin: 2rem 0;
+			}
+			.project-card {
+				border: 1px solid #e5e7eb;
+				border-radius: 0.5rem;
+				overflow: hidden;
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			.project-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+			}
+			.project-card a {
+				text-decoration: none;
+				color: inherit;
+			}
+			.project-card img {
+				width: 100%;
+				height: 200px;
+				object-fit: cover;
+			}
+			.project-content {
+				padding: 1.5rem;
+			}
+			.project-title {
+				margin: 0;
+				font-size: 1.25rem;
+				color: #111827;
+				margin-bottom: 0.5rem;
+			}
+			.project-description {
+				margin: 0;
+				color: #6b7280;
+				font-size: 0.875rem;
+				line-height: 1.5;
+				margin-bottom: 1rem;
+			}
+			.project-tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+			}
+			.tag {
+				background-color: #f3f4f6;
+				color: #374151;
+				padding: 0.25rem 0.75rem;
+				border-radius: 9999px;
+				font-size: 0.75rem;
+				font-weight: 500;
+			}
+			.section-title {
+				font-size: 1.75rem;
+				color: #111827;
+				margin: 2rem 0 1rem;
+			}
+			.section-description {
+				color: #6b7280;
+				margin-bottom: 1.5rem;
+				font-size: 1rem;
+			}
+			section {
+				margin: 3rem 0;
+			}
+			section:first-of-type {
+				margin-top: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<p class="intro-text">Una selección de mis trabajos más recientes en desarrollo web y software.</p>
 
-        <style>
-            .projects-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 2rem;
-                padding: 2rem 0;
-            }
+			<section>
+				<h2 class="section-title">Proyectos Personales</h2>
+				<div class="projects-grid">
+					{
+						sortedProjects.map((project) => (
+							<article class="project-card">
+								<a href={project.data.url} target="_blank" rel="noopener">
+									<img width={720} height={360} src={project.data.heroImage} alt="" />
+									<div class="project-content">
+										<h3 class="project-title">{project.data.title}</h3>
+										<p class="project-description">{project.data.description}</p>
+										{project.data.tags && (
+											<div class="project-tags">
+												{project.data.tags.map((tag) => (
+													<span class="tag">{tag}</span>
+												))}
+											</div>
+										)}
+									</div>
+								</a>
+							</article>
+						))
+					}
+				</div>
 
-            .project-card {
-                border-radius: 8px;
-                background: white;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                transition: transform 0.3s ease;
-                overflow: hidden;
-            }
-
-            .project-card:hover {
-                transform: translateY(-5px);
-            }
-
-            .project-card img {
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-            }
-
-            .project-card a {
-                text-decoration: none;
-                color: inherit;
-            }
-
-            .project-card .title {
-                margin: 1rem;
-                font-size: 1.5rem;
-                color: var(--accent);
-            }
-
-            .project-card .description {
-                margin: 0 1rem 1rem;
-                font-size: 0.9rem;
-                color: #666;
-            }
-
-            .technologies {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-                margin: 1rem;
-            }
-
-            .tech-tag {
-                background: var(--accent);
-                color: white;
-                padding: 0.2rem 0.6rem;
-                border-radius: 15px;
-                font-size: 0.8rem;
-            }
-        </style>
-    </body>
-</html> 
+				<h2 class="section-title">Colaboraciones</h2>
+				<p class="section-description">Proyectos en los que he trabajado como colaborador.</p>
+				<div class="projects-grid">
+					{
+						sortedWorks.map((work) => (
+							<article class="project-card">
+								<a href={work.data.url} target="_blank" rel="noopener">
+									{work.data.heroImage && (
+										<img 
+											width={720} 
+											height={360} 
+											src={work.data.heroImage} 
+											alt={`Imagen de ${work.data.title}`} 
+										/>
+									)}
+									<div class="project-content">
+										<h3 class="project-title">{work.data.title}</h3>
+										<p class="project-description">
+											{work.data.description}
+										</p>
+										{work.data.tags && work.data.tags.length > 0 && (
+											<div class="project-tags">
+												{work.data.tags.map((tag) => (
+													<span class="tag">{tag}</span>
+												))}
+											</div>
+										)}
+									</div>
+								</a>
+							</article>
+						))
+					}
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -29,4 +29,16 @@ const projects = defineCollection({
 	}),
 });
 
-export const collections = { blog, projects };
+const works = defineCollection({
+	type: 'content',
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		pubDate: z.coerce.date(),
+		heroImage: z.string(),
+		tags: z.array(z.string()),
+		url: z.string(),
+	}),
+});
+
+export const collections = { blog, projects, works };
