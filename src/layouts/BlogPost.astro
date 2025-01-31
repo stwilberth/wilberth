@@ -17,90 +17,84 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 		<style>
 			main {
 				width: 100%;
-				max-width: 100%;
-				margin: 0;
-				position: relative;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 2rem 1rem;
 			}
 			.hero-section {
-				position: relative;
-				width: 100%;
-				min-height: 500px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 4rem 0;
 				margin-bottom: 2rem;
-				overflow: hidden;
 			}
 			.hero-content {
-				position: relative;
-				z-index: 2;
-				width: 90%;
 				max-width: 800px;
 				margin: 0 auto;
-				color: white;
-				text-align: center;
-				padding: 3rem;
-				background: rgba(0, 0, 0, 0.2);
-				border-radius: 1rem;
-				backdrop-filter: blur(10px);
-				border: 1px solid rgba(255, 255, 255, 0.1);
-				animation: fadeIn 1s ease-out;
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-				background: white;
-				border-radius: 1rem;
-				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 			}
 			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
+				margin-bottom: 2rem;
 			}
 			.title h1 {
-				margin: 0 0 0.5em 0;
-				color: white;
-				font-size: 3rem;
+				margin: 0 0 1rem 0;
+				color: #111827;
+				font-size: 2rem;
 				font-weight: 700;
-				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-				letter-spacing: -0.5px;
+				line-height: 1.2;
 			}
 			.date {
-				margin-bottom: 0.5em;
-				color: rgba(255, 255, 255, 0.9);
+				color: #6b7280;
+				font-size: 0.875rem;
 			}
 			.last-updated-on {
 				font-style: italic;
-				color: rgba(255, 255, 255, 0.8);
+				color: #6b7280;
 			}
-
-			@keyframes fadeIn {
-				from {
-					opacity: 0;
-					transform: translateY(20px);
-				}
-				to {
-					opacity: 1;
-					transform: translateY(0);
-				}
+			.prose {
+				max-width: 800px;
+				margin: 0 auto;
+				color: #374151;
+				line-height: 1.6;
+				font-size: 0.95rem;
 			}
-
+			.prose :global(h2) {
+				color: #111827;
+				font-size: 1.25rem;
+				margin: 2rem 0 1rem;
+				font-weight: 600;
+			}
+			.prose :global(h3) {
+				color: #111827;
+				font-size: 1.1rem;
+				margin: 1.5rem 0 0.75rem;
+				font-weight: 600;
+			}
+			.prose :global(p) {
+				margin: 1.5rem 0;
+			}
+			.prose :global(img) {
+				max-width: 100%;
+				height: auto;
+				border-radius: 0.5rem;
+			}
+			.prose :global(pre) {
+				background: #f3f4f6;
+				padding: 1rem;
+				border-radius: 0.5rem;
+				overflow-x: auto;
+			}
+			.prose :global(code) {
+				font-family: monospace;
+			}
+			.prose :global(a) {
+				color: #22c55e;
+				text-decoration: none;
+			}
+			.prose :global(a:hover) {
+				text-decoration: underline;
+			}
 			@media (max-width: 768px) {
-				.hero-section {
-					min-height: 400px;
-					padding: 2rem 0;
-				}
 				.title h1 {
 					font-size: 2rem;
 				}
-				.hero-content {
-					padding: 1.5rem;
+				main {
+					padding: 1rem;
 				}
 			}
 		</style>
@@ -109,25 +103,25 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 	<body>
 		<Header />
 		<main>
-			<div class="hero-section">
-				<BackgroundPattern class="background-hero" />
-				<div class="hero-content">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
+			<article>
+				<div class="hero-section">
+					<div class="hero-content">
+						<div class="title">
+							<h1>{title}</h1>
+							<div class="date">
+								<FormattedDate date={pubDate} />
+								{
+									updatedDate && (
+										<div class="last-updated-on">
+											Última actualización: <FormattedDate date={updatedDate} />
+										</div>
+									)
+								}
+							</div>
 						</div>
-						<h1>{title}</h1>
 					</div>
 				</div>
-			</div>
-			<article>
+
 				<div class="prose">
 					<slot />
 				</div>
