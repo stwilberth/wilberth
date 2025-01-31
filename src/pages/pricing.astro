@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
@@ -10,7 +10,7 @@ import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
     <head>
         <BaseHead 
             title={`Planes y Precios | ${SITE_TITLE}`}
-            subtitle='Servicios Profesionales'
+            subtitle="Servicios Profesionales"
             description="Descubre nuestros servicios profesionales de desarrollo web, correo empresarial y optimización SEO. Soluciones adaptadas a tus necesidades." 
         />
     </head>
@@ -23,27 +23,24 @@ import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
             </section>
 
             <div class="services-grid">
-                <section class="service-card">
-                    <h2>Desarrollo Web</h2>
-                    <p>Desarrollo web profesional con las últimas tecnologías y mejores prácticas.</p>
-                    <a href="/pricing-web" class="service-link">Ver planes web</a>
-                </section>
-
-                <section class="service-card">
-                    <h2>Correo Empresarial</h2>
-                    <p>Soluciones de correo electrónico profesional para tu empresa.</p>
-                    <a href="/pricing-email" class="service-link">Ver planes de correo</a>
-                </section>
-
-                <div class="service-card">
-                    <h2>Optimización SEO</h2>
-                    <p>Mejora la visibilidad de tu sitio web en los motores de búsqueda con nuestros servicios de optimización SEO profesional.</p>
-                    <a href="/contact" class="service-link">Más Información</a>
-                </div>
-
-                <div class="service-card">
-
-                </div>
+                {[
+                    { title: "Desarrollo Web", desc: "Desarrollo web profesional con las últimas tecnologías y mejores prácticas.", link: "/pricing-web", btn: "Ver planes web" },
+                    { title: "Correo Empresarial", desc: "Soluciones de correo electrónico profesional para tu empresa.", link: "/pricing-email", btn: "Ver planes de correo" },
+                    { title: "Optimización SEO", desc: "Mejora la visibilidad de tu sitio web en los motores de búsqueda.", link: "/pricing-seo", btn: "Ver planes SEO" },
+                    { title: "Mantenimiento Web", desc: "Actualización, seguridad y soporte técnico.", link: "/contact", btn: "Información" },
+                    { title: "Hosting y Dominio", desc: "Registro de dominios y planes de hosting confiables.", link: "/contact", btn: "Información" },
+                    { title: "Desarrollo de Apps Móviles", desc: "Creación de aplicaciones para iOS y Android.", link: "/contact", btn: "Información" },
+                    { title: "Diseño Gráfico y Branding", desc: "Logos, identidad visual y material publicitario.", link: "/contact", btn: "Información" },
+                    { title: "Marketing Digital y Publicidad", desc: "Gestión de campañas en Google Ads y redes sociales.", link: "/contact", btn: "Información" },
+                    { title: "Analítica y Optimización", desc: "Google Analytics y mejora de conversiones.", link: "/contact", btn: "Información" },
+                    { title: "Automatización y Chatbots", desc: "Integración de chatbots y flujos de trabajo automatizados con IA.", link: "/contact", btn: "Información" }
+                ].map(service => (
+                    <section class="service-card">
+                        <h2>{service.title}</h2>
+                        <p>{service.desc}</p>
+                        <a href={service.link} class="service-link" aria-label={service.title}>{service.btn}</a>
+                    </section>
+                ))}
             </div>
         </main>
         <Footer />
@@ -51,6 +48,7 @@ import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
         <style>
             .pricing-header {
                 text-align: center;
+                margin-bottom: 2rem;
             }
 
             .pricing-header h1 {
@@ -67,7 +65,7 @@ import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
 
             .services-grid {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                 gap: 2rem;
                 margin: 2rem auto;
                 max-width: 1200px;
@@ -78,8 +76,12 @@ import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
                 padding: 2rem;
                 border-radius: 8px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                display: flex;
-                flex-direction: column;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .service-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
             }
 
             .service-card h2 {
