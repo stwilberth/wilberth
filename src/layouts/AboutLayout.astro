@@ -3,12 +3,12 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const { title, description } = Astro.props;
+const { title, subtitle, description } = Astro.props;
 ---
 
 <html lang="es">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} subtitle={subtitle} description={description} />
 	</head>
 
 	<body>
@@ -16,6 +16,7 @@ const { title, description } = Astro.props;
 		<main>
 			<div class="header">
 				<h1>{title}</h1>
+				{subtitle && <p class="subtitle">{subtitle}</p>}
 				<p class="description">{description}</p>
 			</div>
 			<slot />
