@@ -35,11 +35,15 @@ import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
                     <a href="/pricing-email" class="service-link">Ver planes de correo</a>
                 </section>
 
-                <section class="service-card">
+                <div class="service-card">
                     <h2>Optimización SEO</h2>
-                    <p>Mejora tu visibilidad en los motores de búsqueda y atrae más tráfico orgánico.</p>
-                    <a href="/pricing-seo" class="service-link">Ver planes SEO</a>
-                </section>
+                    <p>Mejora la visibilidad de tu sitio web en los motores de búsqueda con nuestros servicios de optimización SEO profesional.</p>
+                    <a href="/contact" class="service-link">Más Información</a>
+                </div>
+
+                <div class="service-card">
+
+                </div>
             </div>
         </main>
         <Footer />
@@ -47,13 +51,11 @@ import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
         <style>
             .pricing-header {
                 text-align: center;
-                margin-bottom: 3rem;
             }
 
             .pricing-header h1 {
                 font-size: 2.5rem;
                 color: var(--accent);
-                margin-bottom: 1rem;
             }
 
             .pricing-header p {
@@ -65,34 +67,28 @@ import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
 
             .services-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: 2rem;
-                padding: 2rem;
+                margin: 2rem auto;
                 max-width: 1200px;
-                margin: 0 auto;
             }
 
             .service-card {
-                background: var(--gray-light);
+                background: white;
                 padding: 2rem;
                 border-radius: 8px;
-                text-align: center;
-                transition: transform 0.3s ease;
-            }
-
-            .service-card:hover {
-                transform: translateY(-5px);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                display: flex;
+                flex-direction: column;
             }
 
             .service-card h2 {
                 color: var(--accent);
                 font-size: 1.8rem;
-                margin-bottom: 1rem;
             }
 
             .service-card p {
                 color: rgb(var(--gray));
-                margin-bottom: 1.5rem;
             }
 
             .service-link {
@@ -110,16 +106,8 @@ import { SITE_TITLE, SITE_SUBTITLE, SITE_DESCRIPTION } from '../consts';
             }
 
             @media (max-width: 768px) {
-                .pricing-header h1 {
-                    font-size: 2rem;
-                }
-
-                .pricing-header p {
-                    font-size: 1rem;
-                }
-
-                .service-card h2 {
-                    font-size: 1.5rem;
+                .services-grid {
+                    grid-template-columns: 1fr;
                 }
             }
         </style>

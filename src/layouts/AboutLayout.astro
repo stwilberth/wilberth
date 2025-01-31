@@ -2,7 +2,6 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import BackgroundPattern from '../components/BackgroundPattern.astro';
 
 const { title, description } = Astro.props;
 ---
@@ -10,105 +9,16 @@ const { title, description } = Astro.props;
 <html lang="es">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: 100%;
-				max-width: 100%;
-				margin: 0;
-				position: relative;
-			}
-			.hero-section {
-				position: relative;
-				width: 100%;
-				min-height: 500px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 4rem 0;
-				margin-bottom: 2rem;
-				overflow: hidden;
-			}
-			.hero-content {
-				position: relative;
-				z-index: 2;
-				width: 90%;
-				max-width: 800px;
-				margin: 0 auto;
-				color: white;
-				text-align: center;
-				padding: 3rem;
-				background: rgba(0, 0, 0, 0.2);
-				border-radius: 1rem;
-				backdrop-filter: blur(10px);
-				border: 1px solid rgba(255, 255, 255, 0.1);
-				animation: fadeIn 1s ease-out;
-			}
-			.content {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-				background: white;
-				border-radius: 1rem;
-				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			}
-			.title {
-				margin-bottom: 1em;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0;
-				color: white;
-				font-size: 3rem;
-				font-weight: 700;
-				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-				letter-spacing: -0.5px;
-			}
-
-			@keyframes fadeIn {
-				from {
-					opacity: 0;
-					transform: translateY(20px);
-				}
-				to {
-					opacity: 1;
-					transform: translateY(0);
-				}
-			}
-
-			@media (max-width: 768px) {
-				.hero-section {
-					min-height: 400px;
-					padding: 2rem 0;
-				}
-				.title h1 {
-					font-size: 2rem;
-				}
-				.hero-content {
-					padding: 1.5rem;
-				}
-			}
-		</style>
 	</head>
 
 	<body>
 		<Header />
 		<main>
-			<div class="hero-section">
-				<BackgroundPattern class="background-hero" />
-				<div class="hero-content">
-					<div class="title">
-						<h1>{title}</h1>
-					</div>
-				</div>
+			<div class="header">
+				<h1>{title}</h1>
+				<p class="description">{description}</p>
 			</div>
-			<article>
-				<div class="content">
-					<slot />
-				</div>
-			</article>
+			<slot />
 		</main>
 		<Footer />
 	</body>

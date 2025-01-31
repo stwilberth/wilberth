@@ -15,12 +15,6 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 	<head>
 		<BaseHead title={title} description={description} subtitle='Artículos'  />
 		<style>
-			main {
-				width: 100%;
-				max-width: 1200px;
-				margin: 0 auto;
-				padding: 2rem 1rem;
-			}
 			.hero-section {
 				margin-bottom: 2rem;
 			}
@@ -28,19 +22,9 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 				max-width: 800px;
 				margin: 0 auto;
 			}
-			.title {
-				margin-bottom: 2rem;
-			}
-			.title h1 {
-				margin: 0 0 1rem 0;
-				color: #111827;
-				font-size: 2rem;
-				font-weight: 700;
-				line-height: 1.2;
-			}
 			.date {
 				color: #6b7280;
-				font-size: 0.875rem;
+				font-size: 0.9rem;
 			}
 			.last-updated-on {
 				font-style: italic;
@@ -50,18 +34,18 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 				max-width: 800px;
 				margin: 0 auto;
 				color: #374151;
-				line-height: 1.6;
-				font-size: 0.95rem;
+				line-height: 1.7;
+				font-size: 1rem;
 			}
 			.prose :global(h2) {
 				color: #111827;
-				font-size: 1.25rem;
+				font-size: 1.35rem;
 				margin: 2rem 0 1rem;
 				font-weight: 600;
 			}
 			.prose :global(h3) {
 				color: #111827;
-				font-size: 1.1rem;
+				font-size: 1.2rem;
 				margin: 1.5rem 0 0.75rem;
 				font-weight: 600;
 			}
@@ -88,14 +72,6 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 			}
 			.prose :global(a:hover) {
 				text-decoration: underline;
-			}
-			@media (max-width: 768px) {
-				.title h1 {
-					font-size: 2rem;
-				}
-				main {
-					padding: 1rem;
-				}
 			}
 		</style>
 	</head>

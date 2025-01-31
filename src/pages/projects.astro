@@ -23,12 +23,6 @@ console.log('Sorted works:', sortedWorks.map(w => w.data.title));
 	<head>
 		<BaseHead title={SITE_TITLE} subtitle="Proyectos" description={SITE_DESCRIPTION} />
 		<style>
-			main {
-				width: 100%;
-				max-width: 1200px;
-				margin: 0 auto;
-				padding: 2rem 1rem;
-			}
 			.intro-text {
 				text-align: center;
 				color: #6b7280;
@@ -106,15 +100,18 @@ console.log('Sorted works:', sortedWorks.map(w => w.data.title));
 			section:first-of-type {
 				margin-top: 1rem;
 			}
+			.intro-text, .section-title, .section-description, .projects-grid {
+				padding: 0 1rem;
+			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<p class="intro-text">Una selección de mis trabajos más recientes en desarrollo web y software.</p>
+			<h1>Proyectos</h1>
+			<p>Explora mi portafolio de proyectos donde combino creatividad y tecnología para crear soluciones web innovadoras. Cada proyecto refleja mi pasión por el desarrollo y mi compromiso con la excelencia técnica.</p>
 
 			<section>
-				<h2 class="section-title">Proyectos Personales</h2>
 				<div class="projects-grid">
 					{
 						sortedProjects.map((project) => (
@@ -138,8 +135,8 @@ console.log('Sorted works:', sortedWorks.map(w => w.data.title));
 					}
 				</div>
 
-				<h2 class="section-title">Colaboraciones</h2>
-				<p class="section-description">Proyectos en los que he trabajado como colaborador.</p>
+				<h2>Experiencia Profesional</h2>
+				<p>Descubre los proyectos empresariales donde he aportado mi experiencia, colaborando en equipos multidisciplinarios para desarrollar soluciones tecnológicas de alto impacto.</p>
 				<div class="projects-grid">
 					{
 						sortedWorks.map((work) => (

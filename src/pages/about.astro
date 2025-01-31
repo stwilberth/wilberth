@@ -4,59 +4,84 @@ import Layout from '../layouts/AboutLayout.astro';
 
 <Layout
 	title="Sobre mí"
-	description="Wilberth es un desarrollador web Full Stack apasionado por crear soluciones digitales innovadoras."
-	pubDate={new Date('January 05 2025')}
-	heroImage="/blog-placeholder-about.png"
+	description="Desarrollador web Full Stack"
 >
 	<div class="about-content">
-		<p class="intro">
-			Soy Wilberth, un desarrollador web Full Stack apasionado por crear soluciones digitales innovadoras. Con más de 5 años de experiencia, me especializo en el desarrollo de aplicaciones web modernas y eficientes.
+		<p>
+			Soy Wilberth, un desarrollador web Full Stack con más de 5 años de experiencia. Me especializo en el desarrollo de aplicaciones web modernas y eficientes.
+		</p>
+
+		<h2>Stack Tecnológico</h2>
+		<div class="tech-grid">
+			<div class="tech-card">
+				<h3>Frontend</h3>
+				<ul>
+					<li>Vue.js</li>
+					<li>React</li>
+					<li>Astro</li>
+					<li>HTML5/CSS3</li>
+				</ul>
+			</div>
+			<div class="tech-card">
+				<h3>Backend</h3>
+				<ul>
+					<li>Laravel</li>
+					<li>Node.js</li>
+					<li>PHP</li>
+					<li>MySQL</li>
+				</ul>
+			</div>
+			<div class="tech-card">
+				<h3>Herramientas</h3>
+				<ul>
+					<li>Git</li>
+					<li>Docker</li>
+					<li>VS Code</li>
+					<li>Figma</li>
+				</ul>
+			</div>
+		</div>
+
+		<h2>Experiencia Profesional</h2>
+		<p>
+			Mi experiencia abarca tanto el desarrollo frontend como backend. Me enfoco en crear experiencias de usuario excepcionales mientras mantengo un código limpio y mantenible.
 		</p>
 
 		<p>
-			Mi experiencia abarca tanto el desarrollo frontend como backend, utilizando tecnologías como Laravel, Vue.js, Astro, Node.js y MySQL. Me enfoco en crear experiencias de usuario excepcionales mientras mantengo un código limpio y mantenible.
-		</p>
-
-		<p>
-			Además de mi trabajo como desarrollador, me mantengo constantemente actualizado con las últimas tendencias y tecnologías del desarrollo web. Disfruto colaborando en equipos multidisciplinarios y enfrentando nuevos desafíos tecnológicos.
-		</p>
-
-		<p>
-			Cuando no estoy programando, estoy viendo videos de programación o de tecnologías web 😄
+			Me mantengo constantemente actualizado con las últimas tendencias y tecnologías del desarrollo web. Disfruto colaborando en equipos multidisciplinarios y enfrentando nuevos desafíos tecnológicos.
 		</p>
 	</div>
 
 	<style>
-		.about-content {
-			font-size: 1.1rem;
-			line-height: 1.8;
-			background: rgba(255, 255, 255, 0.95);
-			padding: 2rem;
-			border-radius: 1rem;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		.tech-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 2rem;
+			margin: 2rem 0;
 		}
-
-		.intro {
-			font-size: 1.3rem;
+		.tech-card {
+			background: #ffffff;
+			border-radius: 0.5rem;
+			padding: 1.5rem;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+		.tech-card h3 {
+			margin: 0 0 1rem 0;
 			color: var(--accent);
-			font-weight: 500;
-			margin-bottom: 2rem;
-			border-left: 4px solid var(--accent);
-			padding-left: 1rem;
 		}
-
-		p {
-			margin-bottom: 1.5rem;
+		.tech-card ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
 		}
-
+		.tech-card li {
+			margin: 0.5rem 0;
+			color: #4a5568;
+		}
 		@media (max-width: 768px) {
-			.about-content {
-				padding: 1.5rem;
-				font-size: 1rem;
-			}
-
-			.intro {
-				font-size: 1.2rem;
+			.tech-grid {
+				grid-template-columns: 1fr;
+				gap: 1rem;
 			}
 		}
 	</style>
