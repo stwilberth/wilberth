@@ -1,0 +1,244 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <BaseHead 
+            title={`Paquete Esencial | ${SITE_TITLE}`}
+            subtitle="Solución web básica para pequeños negocios"
+            description="Nuestro paquete Esencial incluye todo lo que necesitas para establecer presencia en línea: dominio, hosting, sitio web básico y configuración SEO por solo $700." 
+        />
+    </head>
+    <body>
+        <Header />
+        <main>
+            <section class="package-header">
+                <h1>Paquete Esencial</h1>
+                <div class="price">$700</div>
+                <p class="subtitle">Solución completa para pequeños negocios y profesionales</p>
+            </section>
+
+            <section class="package-details">
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <h2><span class="icon">🌐</span> Dominio</h2>
+                        <ul>
+                            <li>Registro de dominio .com por 1 año</li>
+                            <li>Gestión DNS incluida</li>
+                            <li>Protección de privacidad WHOIS</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card">
+                        <h2><span class="icon">☁️</span> Hosting</h2>
+                        <ul>
+                            <li>10GB de almacenamiento SSD</li>
+                            <li>100GB de ancho de banda mensual</li>
+                            <li>1 base de datos MySQL</li>
+                            <li>Certificado SSL gratuito</li>
+                            <li>Panel de control cPanel</li>
+                            <li>Soporte técnico por correo</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card">
+                        <h2><span class="icon">💻</span> Sitio Web</h2>
+                        <ul>
+                            <li>Sitio web informativo de hasta 5 páginas</li>
+                            <li>Diseño responsive (móvil y escritorio)</li>
+                            <li>Formulario de contacto</li>
+                            <li>Integración con redes sociales</li>
+                            <li>Optimización de velocidad</li>
+                            <li>1 revisión de diseño incluida</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card">
+                        <h2><span class="icon">🔍</span> SEO Básico</h2>
+                        <ul>
+                            <li>Investigación de palabras clave</li>
+                            <li>Optimización de metadatos</li>
+                            <li>Configuración de Google Search Console</li>
+                            <li>Configuración de Google Analytics</li>
+                            <li>Sitemap XML</li>
+                            <li>Optimización básica de velocidad</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cta-container">
+                    <h3>¿Listo para impulsar tu presencia en línea?</h3>
+                    <a href="/contact" class="cta-button">Solicitar Paquete Esencial</a>
+                </div>
+            </section>
+
+            <section class="faq-section">
+                <h2>Preguntas Frecuentes</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>¿Qué incluye exactamente el paquete?</h3>
+                        <p>El Paquete Esencial incluye registro de dominio por 1 año, hosting con 10GB de almacenamiento, creación de un sitio web básico de hasta 5 páginas y configuración básica de SEO, todo por un pago único de $700.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>¿Cuánto tiempo toma desarrollar el sitio?</h3>
+                        <p>El tiempo de desarrollo para un sitio web básico es de aproximadamente 2 semanas, desde la aprobación del diseño hasta la publicación.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>¿Qué sucede después del primer año?</h3>
+                        <p>Después del primer año, solo necesitarás renovar el dominio y hosting (aproximadamente $130/año). El sitio web y la configuración SEO son tuyos permanentemente.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>¿Puedo actualizar a un paquete superior después?</h3>
+                        <p>Sí, ofrecemos opciones de actualización si tu negocio crece y necesitas funcionalidades adicionales.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <Footer />
+
+        <style>
+            .package-header {
+                text-align: center;
+                margin-bottom: 3rem;
+                padding: 2rem 1rem;
+                background: linear-gradient(to right, rgba(var(--accent-light), 0.1), rgba(var(--accent-dark), 0.1));
+                border-radius: 8px;
+            }
+
+            .package-header h1 {
+                font-size: 2.5rem;
+                color: var(--accent);
+                margin-bottom: 0.5rem;
+            }
+
+            .price {
+                font-size: 3.5rem;
+                font-weight: bold;
+                color: var(--accent);
+                margin: 1rem 0;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+                color: rgb(var(--gray));
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .details-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin: 2rem auto;
+            }
+
+            .detail-card {
+                background: white;
+                padding: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .detail-card h2 {
+                color: var(--accent);
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+
+            .icon {
+                margin-right: 0.5rem;
+                font-size: 1.5rem;
+            }
+
+            .detail-card ul {
+                padding-left: 1.5rem;
+            }
+
+            .detail-card li {
+                margin-bottom: 0.5rem;
+                color: rgb(var(--gray-dark));
+            }
+
+            .cta-container {
+                text-align: center;
+                margin: 3rem auto;
+                padding: 2rem;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                max-width: 800px;
+            }
+
+            .cta-container h3 {
+                font-size: 1.8rem;
+                color: var(--accent);
+                margin-bottom: 1.5rem;
+            }
+
+            .cta-button {
+                display: inline-flex;
+                padding: 1rem 2rem;
+                background: var(--accent);
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                transition: background 0.3s ease;
+            }
+
+            .cta-button:hover {
+                background: var(--accent-dark);
+            }
+
+            .faq-section {
+                margin: 4rem auto;
+                max-width: 1200px;
+            }
+
+            .faq-section h2 {
+                text-align: center;
+                font-size: 2rem;
+                color: var(--accent);
+                margin-bottom: 2rem;
+            }
+
+            .faq-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .faq-item {
+                background: white;
+                padding: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .faq-item h3 {
+                color: var(--accent);
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .faq-item p {
+                color: rgb(var(--gray));
+            }
+
+            @media (max-width: 768px) {
+                .details-grid,
+                .faq-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </body>
+</html>

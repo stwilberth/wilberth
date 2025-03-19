@@ -9,34 +9,39 @@ import { SITE_TITLE } from '../consts';
 <html lang="es">
     <head>
         <BaseHead 
-            title={`Planes y Precios | ${SITE_TITLE}`}
-            subtitle="Servicios Profesionales"
-            description="Descubre nuestros servicios profesionales de desarrollo web, correo empresarial y optimización SEO. Soluciones adaptadas a tus necesidades." 
+            title={`Paquetes Todo-en-Uno | ${SITE_TITLE}`}
+            subtitle="Dominio, Hosting, Sitio Web y SEO"
+            description="Descubre nuestros paquetes completos que incluyen dominio, hosting, creación de sitio web y servicios de SEO. Soluciones simplificadas para tu negocio." 
         />
     </head>
     <body>
         <Header />
         <main>
             <section class="pricing-header">
-                <h1>Nuestros Servicios</h1>
-                <p>Soluciones profesionales adaptadas a tus necesidades empresariales</p>
+                <h1>Paquetes Todo-en-Uno</h1>
+                <p>Dominio, hosting, creación de sitio web y SEO en un solo pago</p>
             </section>
 
             <div class="services-grid">
                 {[
-                    { title: "Desarrollo Web", desc: "Desarrollo web profesional con las últimas tecnologías y mejores prácticas.", link: "/pricing-web", btn: "Ver planes web" },
-                    { title: "Correo Empresarial", desc: "Soluciones de correo electrónico profesional para tu empresa.", link: "/pricing-email", btn: "Ver planes de correo" },
-                    { title: "Optimización SEO", desc: "Mejora la visibilidad de tu sitio web en los motores de búsqueda.", link: "/pricing-seo", btn: "Ver planes SEO" },
-                    { title: "Mantenimiento Web", desc: "Actualización, seguridad y soporte técnico.", link: "/contact", btn: "Información" },
-                    { title: "Hosting y Dominio", desc: "Registro de dominios y planes de hosting confiables.", link: "/contact", btn: "Información" },
-                    { title: "Desarrollo de Apps Móviles", desc: "Creación de aplicaciones para iOS y Android.", link: "/contact", btn: "Información" },
-                    { title: "Diseño Gráfico y Branding", desc: "Logos, identidad visual y material publicitario.", link: "/contact", btn: "Información" },
-                    { title: "Marketing Digital y Publicidad", desc: "Gestión de campañas en Google Ads y redes sociales.", link: "/contact", btn: "Información" },
-                    { title: "Analítica y Optimización", desc: "Google Analytics y mejora de conversiones.", link: "/contact", btn: "Información" },
-                    { title: "Automatización y Chatbots", desc: "Integración de chatbots y flujos de trabajo automatizados con IA.", link: "/contact", btn: "Información" }
+                    {
+                        title: "Paquete Esencial",
+                        price: "$700",
+                        desc: "Incluye registro de dominio por 1 año, hosting con 10GB de almacenamiento, 100GB de ancho de banda, 1 base de datos y SSL incluido, creación de un sitio web básico informativo con hasta 5 páginas, y configuración básica de SEO.",
+                        link: "/paquete-esencial",
+                        btn: "Ver Esencial"
+                    },
+                    {
+                        title: "Paquete Premium",
+                        price: "$1,800",
+                        desc: "Incluye registro de dominio por 1 año, hosting con 50GB de almacenamiento, 200GB de ancho de banda, múltiples bases de datos y SSL incluido, creación de un sitio web avanzado (e-commerce o hasta 20 páginas), y campaña completa de SEO por 1 año.",
+                        link: "/paquete-premium",
+                        btn: "Ver Premium"
+                    }
                 ].map(service => (
                     <section class="service-card">
                         <h2>{service.title}</h2>
+                        <div class="price">{service.price}</div>
                         <p>{service.desc}</p>
                         <a href={service.link} class="service-link" aria-label={service.title}>{service.btn}</a>
                     </section>
@@ -77,6 +82,9 @@ import { SITE_TITLE } from '../consts';
                 border-radius: 8px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                min-height: 250px;
             }
 
             .service-card:hover {
@@ -87,6 +95,14 @@ import { SITE_TITLE } from '../consts';
             .service-card h2 {
                 color: var(--accent);
                 font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .price {
+                font-size: 2.2rem;
+                font-weight: bold;
+                color: var(--accent);
+                margin: 0.5rem 0 1rem;
             }
 
             .service-card p {
@@ -94,13 +110,16 @@ import { SITE_TITLE } from '../consts';
             }
 
             .service-link {
-                display: inline-block;
+                display: inline-flex;
                 padding: 0.8rem 1.5rem;
                 background: var(--accent);
                 color: white;
                 text-decoration: none;
                 border-radius: 4px;
                 transition: background 0.3s ease;
+                margin-top: auto;
+                align-self: center;
+                width: fit-content;
             }
 
             .service-link:hover {

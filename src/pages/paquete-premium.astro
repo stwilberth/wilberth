@@ -1,0 +1,345 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <BaseHead 
+            title={`Paquete Premium | ${SITE_TITLE}`}
+            subtitle="Solución web avanzada para negocios en crecimiento"
+            description="Nuestro paquete Premium incluye todo lo que necesitas para destacar en línea: dominio, hosting avanzado, sitio web profesional y campaña completa de SEO por solo $1,800." 
+        />
+    </head>
+    <body>
+        <Header />
+        <main>
+            <section class="package-header">
+                <h1>Paquete Premium</h1>
+                <div class="price">$1,800</div>
+                <p class="subtitle">Solución avanzada para negocios en crecimiento y e-commerce</p>
+            </section>
+
+            <section class="package-details">
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <h2><span class="icon">🌐</span> Dominio</h2>
+                        <ul>
+                            <li>Registro de dominio .com por 1 año</li>
+                            <li>Gestión DNS avanzada</li>
+                            <li>Protección de privacidad WHOIS</li>
+                            <li>Soporte para configuración de subdominios</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card">
+                        <h2><span class="icon">☁️</span> Hosting Profesional</h2>
+                        <ul>
+                            <li>50GB de almacenamiento SSD</li>
+                            <li>200GB de ancho de banda mensual</li>
+                            <li>Múltiples bases de datos MySQL</li>
+                            <li>Certificado SSL gratuito</li>
+                            <li>Panel de control cPanel avanzado</li>
+                            <li>Soporte técnico prioritario</li>
+                            <li>Copias de seguridad automáticas</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card">
+                        <h2><span class="icon">💻</span> Sitio Web Avanzado</h2>
+                        <ul>
+                            <li>Sitio web avanzado (hasta 20 páginas o e-commerce)</li>
+                            <li>Diseño responsive premium</li>
+                            <li>Formularios avanzados y automatizaciones</li>
+                            <li>Integración con redes sociales y plataformas de pago</li>
+                            <li>Optimización avanzada de velocidad</li>
+                            <li>3 revisiones de diseño incluidas</li>
+                            <li>Capacitación para administrar el sitio</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card">
+                        <h2><span class="icon">🔍</span> Campaña SEO Completa</h2>
+                        <ul>
+                            <li>Investigación exhaustiva de palabras clave</li>
+                            <li>Optimización avanzada en página</li>
+                            <li>Optimización fuera de página</li>
+                            <li>Construcción de enlaces de calidad</li>
+                            <li>Configuración de Google Search Console y Analytics</li>
+                            <li>Informes mensuales de rendimiento</li>
+                            <li>Mantenimiento SEO por 1 año completo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cta-container">
+                    <h3>¿Listo para llevar tu negocio al siguiente nivel?</h3>
+                    <a href="/contact" class="cta-button">Solicitar Paquete Premium</a>
+                </div>
+            </section>
+
+            <section class="faq-section">
+                <h2>Preguntas Frecuentes</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>¿Qué incluye exactamente el paquete?</h3>
+                        <p>El Paquete Premium incluye registro de dominio por 1 año, hosting profesional con 50GB de almacenamiento, creación de un sitio web avanzado (e-commerce o hasta 20 páginas) y una campaña completa de SEO por 1 año, todo por un pago único de $1,800.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>¿Cuánto tiempo toma desarrollar el sitio?</h3>
+                        <p>El tiempo de desarrollo para un sitio web avanzado es de aproximadamente 4-6 semanas, dependiendo de la complejidad y las funcionalidades requeridas.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>¿Qué sucede después del primer año?</h3>
+                        <p>Después del primer año, necesitarás renovar el dominio, hosting y servicios de SEO (aproximadamente $380/año). El sitio web desarrollado es tuyo permanentemente.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>¿Incluye soporte técnico?</h3>
+                        <p>Sí, el paquete Premium incluye soporte técnico prioritario durante todo el año, con tiempo de respuesta garantizado en menos de 24 horas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="comparison-section">
+                <h2>¿Por qué elegir el Paquete Premium?</h2>
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Característica</th>
+                                <th>Paquete Esencial</th>
+                                <th>Paquete Premium</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Almacenamiento</td>
+                                <td>10GB</td>
+                                <td><strong>50GB</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Ancho de banda</td>
+                                <td>100GB</td>
+                                <td><strong>200GB</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Páginas web</td>
+                                <td>Hasta 5</td>
+                                <td><strong>Hasta 20</strong></td>
+                            </tr>
+                            <tr>
+                                <td>E-commerce</td>
+                                <td>No incluido</td>
+                                <td><strong>Incluido</strong></td>
+                            </tr>
+                            <tr>
+                                <td>SEO</td>
+                                <td>Configuración básica</td>
+                                <td><strong>Campaña completa (1 año)</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Revisiones de diseño</td>
+                                <td>1</td>
+                                <td><strong>3</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+        <Footer />
+
+        <style>
+            .package-header {
+                text-align: center;
+                margin-bottom: 3rem;
+                padding: 2rem 1rem;
+                background: linear-gradient(to right, rgba(var(--accent-light), 0.1), rgba(var(--accent-dark), 0.1));
+                border-radius: 8px;
+            }
+
+            .package-header h1 {
+                font-size: 2.5rem;
+                color: var(--accent);
+                margin-bottom: 0.5rem;
+            }
+
+            .price {
+                font-size: 3.5rem;
+                font-weight: bold;
+                color: var(--accent);
+                margin: 1rem 0;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+                color: rgb(var(--gray));
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .details-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin: 2rem auto;
+            }
+
+            .detail-card {
+                background: white;
+                padding: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .detail-card h2 {
+                color: var(--accent);
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+
+            .icon {
+                margin-right: 0.5rem;
+                font-size: 1.5rem;
+            }
+
+            .detail-card ul {
+                padding-left: 1.5rem;
+            }
+
+            .detail-card li {
+                margin-bottom: 0.5rem;
+                color: rgb(var(--gray-dark));
+            }
+
+            .cta-container {
+                text-align: center;
+                margin: 3rem auto;
+                padding: 2rem;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                max-width: 800px;
+            }
+
+            .cta-container h3 {
+                font-size: 1.8rem;
+                color: var(--accent);
+                margin-bottom: 1.5rem;
+            }
+
+            .cta-button {
+                display: inline-flex;
+                padding: 1rem 2rem;
+                background: var(--accent);
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                transition: background 0.3s ease;
+            }
+
+            .cta-button:hover {
+                background: var(--accent-dark);
+            }
+
+            .faq-section {
+                margin: 4rem auto;
+                max-width: 1200px;
+            }
+
+            .faq-section h2 {
+                text-align: center;
+                font-size: 2rem;
+                color: var(--accent);
+                margin-bottom: 2rem;
+            }
+
+            .faq-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .faq-item {
+                background: white;
+                padding: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .faq-item h3 {
+                color: var(--accent);
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .faq-item p {
+                color: rgb(var(--gray));
+            }
+
+            .comparison-section {
+                margin: 4rem auto;
+                max-width: 1200px;
+            }
+
+            .comparison-section h2 {
+                text-align: center;
+                font-size: 2rem;
+                color: var(--accent);
+                margin-bottom: 2rem;
+            }
+
+            .comparison-table {
+                overflow-x: auto;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 0 auto;
+                background: white;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            th, td {
+                padding: 1rem;
+                text-align: left;
+                border-bottom: 1px solid rgba(var(--gray-light), 0.3);
+            }
+
+            th {
+                background-color: rgba(var(--accent-light), 0.1);
+                color: var(--accent);
+                font-weight: bold;
+            }
+
+            tr:last-child td {
+                border-bottom: none;
+            }
+
+            tbody tr:hover {
+                background-color: rgba(var(--accent-light), 0.05);
+            }
+
+            @media (max-width: 768px) {
+                .details-grid,
+                .faq-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                th, td {
+                    padding: 0.8rem;
+                }
+            }
+        </style>
+    </body>
+</html>
