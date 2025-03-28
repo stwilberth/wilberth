@@ -9,40 +9,66 @@ import { SITE_TITLE } from '../consts';
 <html lang="es">
     <head>
         <BaseHead 
-            title={`Paquetes Todo-en-Uno | ${SITE_TITLE}`}
-            subtitle="Dominio, Hosting, Sitio Web y SEO"
-            description="Descubre nuestros paquetes completos que incluyen dominio, hosting, creación de sitio web y servicios de SEO. Soluciones simplificadas para tu negocio." 
+            title={`Planes de Suscripción | ${SITE_TITLE}`}
+            subtitle="Sitio Web, Hosting, Mantenimiento y SEO"
+            description="Descubre nuestros planes de suscripción mensual que incluyen sitio web, hosting, mantenimiento y servicios de SEO. Sin costos iniciales elevados, solo una pequeña cuota mensual." 
         />
     </head>
     <body>
         <Header />
         <main>
             <section class="pricing-header">
-                <h1>Paquetes Todo-en-Uno</h1>
-                <p>Dominio, hosting, creación de sitio web y SEO en un solo pago</p>
+                <h1>Planes de Suscripción Mensual</h1>
+                <p>Sitio web, hosting, mantenimiento y SEO con un pago mensual accesible</p>
             </section>
 
             <div class="services-grid">
                 {[
                     {
-                        title: "Paquete Esencial",
-                        price: "$700",
-                        desc: "Incluye registro de dominio por 1 año, hosting con 10GB de almacenamiento, 100GB de ancho de banda, 1 base de datos y SSL incluido, creación de un sitio web básico informativo con hasta 5 páginas, y configuración básica de SEO.",
-                        link: "/paquete-esencial",
-                        btn: "Ver Esencial"
+                        title: "Plan Básico",
+                        price: "$30",
+                        period: "/mes",
+                        desc: "Incluye sitio web estático o dinámico según necesidades, correo electrónico, hospedaje, mantenimiento mensual y SEO básico. Solo pagas una pequeña cuota mensual más el costo del dominio.",
+                        features: [
+                            "Sitio web estático o dinámico",
+                            "Correo electrónico profesional",
+                            "Hospedaje incluido",
+                            "Mantenimiento mensual",
+                            "SEO básico",
+                            "Sin costos iniciales elevados"
+                        ],
+                        link: "https://wa.me/50685008393",
+                        btn: "Contactar"
                     },
                     {
-                        title: "Paquete Premium",
-                        price: "$1,800",
-                        desc: "Incluye registro de dominio por 1 año, hosting con 50GB de almacenamiento, 200GB de ancho de banda, múltiples bases de datos y SSL incluido, creación de un sitio web avanzado (e-commerce o hasta 20 páginas), y campaña completa de SEO por 1 año.",
-                        link: "/paquete-premium",
-                        btn: "Ver Premium"
+                        title: "Plan Aplicación Web",
+                        price: "$70",
+                        period: "/mes",
+                        desc: "Desarrollo y mantenimiento de aplicaciones web completas con funcionalidades avanzadas. Incluye hospedaje, correo electrónico, mantenimiento y actualizaciones mensuales.",
+                        features: [
+                            "Aplicación web personalizada",
+                            "Funcionalidades avanzadas",
+                            "Correo electrónico profesional",
+                            "Hospedaje de alta capacidad",
+                            "Mantenimiento y actualizaciones",
+                            "SEO avanzado"
+                        ],
+                        link: "https://wa.me/50685008393",
+                        btn: "Contactar"
                     }
                 ].map(service => (
                     <section class="service-card">
                         <h2>{service.title}</h2>
-                        <div class="price">{service.price}</div>
+                        <div class="price-container">
+                            <span class="price">{service.price}</span>
+                            <span class="period">{service.period}</span>
+                        </div>
                         <p>{service.desc}</p>
+                        <ul class="feature-list">
+                            {service.features.map(feature => (
+                                <li><span class="feature-check">✓</span> {feature}</li>
+                            ))}
+                        </ul>
                         <a href={service.link} class="service-link" aria-label={service.title}>{service.btn}</a>
                     </section>
                 ))}
@@ -98,11 +124,43 @@ import { SITE_TITLE } from '../consts';
                 margin-bottom: 0.5rem;
             }
 
+            .price-container {
+                display: flex;
+                align-items: baseline;
+                justify-content: center;
+                margin: 0.5rem 0 1rem;
+            }
+
             .price {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
                 font-weight: bold;
                 color: var(--accent);
-                margin: 0.5rem 0 1rem;
+            }
+
+            .period {
+                font-size: 1.2rem;
+                color: rgb(var(--gray));
+                margin-left: 0.2rem;
+            }
+
+            .feature-list {
+                list-style: none;
+                padding: 0;
+                margin: 1rem 0;
+                text-align: left;
+            }
+
+            .feature-list li {
+                margin-bottom: 0.5rem;
+                color: rgb(var(--gray));
+                display: flex;
+                align-items: flex-start;
+            }
+
+            .feature-check {
+                color: var(--accent);
+                font-weight: bold;
+                margin-right: 0.5rem;
             }
 
             .service-card p {

@@ -6,5 +6,3 @@ heroImage: '/images/projects/puertojimenez.info.png'
 tags: ['Diseño Web', 'Diseño Gráfico']
 url: 'https://puertojimenez.info'
 ---
-
-Diseñé Puerto Jiménez Info, una web informativa y accesible sobre este vibrante destino en Costa Rica. Con un diseño claro y atractivo, ofrece detalles sobre turismo, servicios locales y actividades, siendo una guía ideal para visitantes.
