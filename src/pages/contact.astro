@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_PHONE_NUMBER } from '../consts';
+import { SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
@@ -45,6 +45,7 @@ import { SITE_TITLE, SITE_PHONE_NUMBER } from '../consts';
             cursor: pointer;
             transition: background-color 0.3s ease;
             font-size: 0.8rem;
+            text-decoration: none;
             font-weight: bold;
         }
         .service-link:hover {
@@ -64,28 +65,10 @@ import { SITE_TITLE, SITE_PHONE_NUMBER } from '../consts';
                 </svg>
                 Enviar Mensaje
             </a>
-            <div id="calendar-container" style="margin: 2rem auto; text-align: center;"></div>
+            <div style="margin: 2rem auto; text-align: center;">
+                <a href="https://calendar.app.google/8rZxHbw2iJh5rP7a6" class="service-link">Programar Cita</a>
+            </div>
         </div>
-
-        <!-- Google Calendar Appointment Scheduling begin -->
-<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
-<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-<script>
-(function() {
-  window.addEventListener('load', function() {
-    var calendarContainer = document.getElementById('calendar-container');
-    if (calendarContainer) {
-      calendar.schedulingButton.load({
-        url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3OO80MGkWtfKR52x31jEVfLLe6IqYsGdk3Wyt9ZxFMr6HNIB3Y8V98jUNuAcBamfQqOM6QhsDm?gv=true',
-        color: '#039BE5',
-        label: 'Programar una cita',
-        target: calendarContainer,
-      });
-    }
-  });
-})();
-</script>
-<!-- end Google Calendar Appointment Scheduling -->
     </main>
     <Footer />
 </body>
