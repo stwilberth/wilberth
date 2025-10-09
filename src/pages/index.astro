@@ -1,5 +1,9 @@
 ---
+import { getProducts, getServices, createTables } from '../lib/db';
 
+await createTables();
+const products = await getProducts();
+const services = await getServices();
 ---
 
 <html lang="en">
@@ -8,9 +12,39 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Tienda en Línea</title>
+		<style>
+			body { font-family: Arial, sans-serif; margin: 20px; }
+			.section { margin-bottom: 40px; }
+			.item { border: 1px solid #ddd; padding: 10px; margin: 10px; display: inline-block; width: 200px; }
+			.item img { max-width: 100%; height: auto; }
+		</style>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<h1>Tienda en Línea</h1>
+
+		<div class="section">
+			<h2>Productos</h2>
+			{products.map(product => (
+				<div class="item">
+					<img src={product.image_url} alt={product.name} />
+					<h3>{product.name}</h3>
+					<p>{product.description}</p>
+					<p>Precio: ${product.price}</p>
+				</div>
+			))}
+		</div>
+
+		<div class="section">
+			<h2>Servicios</h2>
+			{services.map(service => (
+				<div class="item">
+					<img src={service.image_url} alt={service.name} />
+					<h3>{service.name}</h3>
+					<p>{service.description}</p>
+					<p>Precio: ${service.price}</p>
+				</div>
+			))}
+		</div>
 	</body>
 </html>
