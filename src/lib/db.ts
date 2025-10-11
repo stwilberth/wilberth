@@ -2,12 +2,12 @@ import { createClient } from '@libsql/client';
 
 const readClient = createClient({
   url: 'libsql://wilberth-stwilberth.aws-us-east-1.turso.io',
-  authToken: import.meta.env.TURSO_READ_ONLY,
+  authToken: import.meta.env?.TURSO_READ_ONLY || process.env.TURSO_READ_ONLY,
 });
 
 const writeClient = createClient({
   url: 'libsql://wilberth-stwilberth.aws-us-east-1.turso.io',
-  authToken: import.meta.env.TURSO_READ_WRITE,
+  authToken: import.meta.env?.TURSO_READ_WRITE || process.env.TURSO_READ_WRITE,
 });
 
 export interface Product {
@@ -16,7 +16,7 @@ export interface Product {
   price: number;
   description: string;
   image_url: string;
-  category: 'Reloj' | 'Auto usado' | 'Hogar';
+  category: 'Reloj' | 'Auto usado' | 'Hogar' | 'Artículos de pesca';
 }
 
 export interface Service {
@@ -45,7 +45,7 @@ export async function createTables() {
       price REAL NOT NULL,
       description TEXT,
       image_url TEXT,
-      category TEXT CHECK(category IN ('Reloj', 'Auto usado', 'Hogar')) NOT NULL
+      category TEXT CHECK(category IN ('Reloj', 'Auto usado', 'Hogar', 'Artículos de pesca')) NOT NULL
     )
   `);
 
@@ -58,6 +58,18 @@ export async function createTables() {
       image_url TEXT
     )
   `);
+}
+
+export async function addService(
+  name: string,
+  description: string,
+  price: number,
+  image_url: string
+) {
+  await writeClient.execute({
+    sql: 'INSERT INTO services (name, description, price, image_url) VALUES (?, ?, ?, ?)',
+    args: [name, description, price, image_url],
+  });
 }
 
 export default readClient;

@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS products (
   price REAL NOT NULL,
   description TEXT,
   image_url TEXT,
-  category TEXT CHECK(category IN ('Reloj', 'Auto usado', 'Hogar')) NOT NULL
+  category TEXT CHECK(category IN ('Reloj', 'Auto usado', 'Hogar', 'Artículos de pesca')) NOT NULL
 );
 ```
 
@@ -83,10 +83,8 @@ CREATE TABLE IF NOT EXISTS products (
 - `description`: Descripción opcional
 - `image_url`: URL de la imagen
 - `category`: Categoría del producto (ENUM con validación CHECK)
-  - Valores permitidos: `'Reloj'`, `'Auto usado'`, `'Hogar'`
+  - Valores permitidos: `'Reloj'`, `'Auto usado'`, `'Hogar'`, `'Artículos de pesca'`
   - Campo obligatorio (NOT NULL)
-  
-**Nota:** Actualmente solo están implementadas 3 de las 4 categorías planeadas. La categoría de "Artículos de Pesca Deportiva" se agregará en una futura actualización.
 
 #### 2. `services`
 Tabla para almacenar servicios que Wilberth ofrece.
@@ -822,7 +820,7 @@ export interface Product {
   price?: number;
   currency: string;
   is_price_negotiable: boolean;
-  category: 'Reloj' | 'Auto usado' | 'Hogar'; // ENUM field with CHECK constraint
+  category: 'Reloj' | 'Auto usado' | 'Hogar' | 'Artículos de pesca'; // ENUM field with CHECK constraint
   specifications?: string; // JSON string
   status: 'available' | 'sold' | 'reserved' | 'discontinued';
   is_featured: boolean;

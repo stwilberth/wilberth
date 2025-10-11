@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS products (
   price REAL NOT NULL,
   description TEXT,
   image_url TEXT,
-  category TEXT CHECK(category IN ('Reloj', 'Auto usado', 'Hogar')) NOT NULL
+  category TEXT CHECK(category IN ('Reloj', 'Auto usado', 'Hogar', 'Artículos de pesca')) NOT NULL
 );
 ```
 
@@ -32,8 +32,9 @@ CREATE TABLE IF NOT EXISTS products (
   - `'Reloj'`: Para productos de relojes
   - `'Auto usado'`: Para vehículos usados
   - `'Hogar'`: Para artículos del hogar
+  - `'Artículos de pesca'`: Para artículos de pesca deportiva
 
-**Restricción CHECK:** El campo `category` tiene una restricción que solo permite estos 3 valores específicos. Cualquier intento de insertar un valor diferente resultará en un error.
+**Restricción CHECK:** El campo `category` tiene una restricción que solo permite estos 4 valores específicos. Cualquier intento de insertar un valor diferente resultará en un error.
 
 **Ejemplo de uso:**
 ```sql
@@ -123,7 +124,7 @@ export async function createTables() {
       price REAL NOT NULL,
       description TEXT,
       image_url TEXT,
-      category TEXT CHECK(category IN ('Reloj', 'Auto usado', 'Hogar')) NOT NULL
+      category TEXT CHECK(category IN ('Reloj', 'Auto usado', 'Hogar', 'Artículos de pesca')) NOT NULL
     )
   `);
 
