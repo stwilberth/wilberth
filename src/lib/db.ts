@@ -16,6 +16,7 @@ export interface Product {
   price: number;
   description: string;
   image_url: string;
+  category: 'Reloj' | 'Auto usado' | 'Hogar';
 }
 
 export interface Service {
@@ -43,7 +44,8 @@ export async function createTables() {
       name TEXT NOT NULL,
       price REAL NOT NULL,
       description TEXT,
-      image_url TEXT
+      image_url TEXT,
+      category TEXT CHECK(category IN ('Reloj', 'Auto usado', 'Hogar')) NOT NULL
     )
   `);
 
