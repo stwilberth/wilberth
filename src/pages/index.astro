@@ -1,9 +1,9 @@
 ---
-import { getProducts, getServices, createTables } from '../lib/db';
+import { getProducts, createTables } from '../lib/db';
+import { services } from '../data/services';
 import Header from '../components/Header.astro';
 await createTables();
 const products = await getProducts();
-const services = await getServices();
 
 // Información del vendedor
 const seller = {

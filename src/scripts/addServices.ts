@@ -13,23 +13,30 @@ async function main() {
   // Add Express service
   await writeClient.execute({
     sql: 'INSERT INTO services (name, description, price, image_url) VALUES (?, ?, ?, ?)',
-    args: ['Express', 'Servicio de mandados en Puerto Jiménez', 0, '/images/express-placeholder.jpg'],
+    args: ['Express', 'Servicio de mandados en Puerto Jiménez', 0, '/src/assets/express-placeholder.jpg'],
   });
   console.log('✓ Servicio Express agregado');
 
   // Add Desarrollo de Aplicaciones Web service
   await writeClient.execute({
     sql: 'INSERT INTO services (name, description, price, image_url) VALUES (?, ?, ?, ?)',
-    args: ['Desarrollo de Aplicaciones Web', 'Desarrollo de aplicaciones web personalizadas', 0, '/images/dev-web-placeholder.jpg'],
+    args: ['Desarrollo de Aplicaciones Web', 'Desarrollo de aplicaciones web personalizadas', 0, '/src/assets/desarrollo-web-placeholder.jpg'],
   });
   console.log('✓ Servicio Desarrollo de Aplicaciones Web agregado');
 
   // Add Cortiz service
   await writeClient.execute({
     sql: 'INSERT INTO services (name, description, price, image_url) VALUES (?, ?, ?, ?)',
-    args: ['Cortiz', 'Sistema de cotizaciones inteligente con IA', 0, '/images/cortiz-placeholder.jpg'],
+    args: ['Cortiz', 'Sistema de cotizaciones inteligente con IA', 0, '/src/assets/cortiz-placeholder.jpg'],
   });
   console.log('✓ Servicio Cortiz agregado');
+
+  // Add Páginas web service
+  await writeClient.execute({
+    sql: 'INSERT INTO services (name, description, price, image_url) VALUES (?, ?, ?, ?)',
+    args: ['Páginas web', 'Creación de páginas web modernas y responsivas', 0, '/src/assets/paginas-web-placeholder.jpg'],
+  });
+  console.log('✓ Servicio Páginas web agregado');
 
   writeClient.close();
 
