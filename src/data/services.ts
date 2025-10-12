@@ -29,7 +29,7 @@ export const services: Service[] = [
     slug: 'cortiz'
   },
   {
-    name: 'Páginas web',
+    name: 'Creación de Páginas Web',
     description: 'Creación de páginas web modernas y responsivas',
     price: 0,
     image_url: '/src/assets/paginas-web.svg',
