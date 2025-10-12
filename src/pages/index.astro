@@ -1,6 +1,6 @@
 ---
 import { getProducts, getServices, createTables } from '../lib/db';
-
+import Header from '../components/Header.astro';
 await createTables();
 const products = await getProducts();
 const services = await getServices();
@@ -11,6 +11,7 @@ const seller = {
 	email: 'info@wilberth.com',
 	whatsapp: '+506 85008393'
 };
+const title = 'Wilberth - Productos y Servicios de Calidad';
 ---
 
 <html lang="es">
@@ -19,7 +20,7 @@ const seller = {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Wilberth - Productos y Servicios de Calidad</title>
+		<title>{title}</title>
 		<style>
 			@tailwind base;
 			@tailwind components;
@@ -27,12 +28,14 @@ const seller = {
 		</style>
 	</head>
 	<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900 font-sans antialiased">
+		<Header seller={seller}/>
 		<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
 			<!-- Hero Section -->
 			<section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 mb-12">
 				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-					<h2 class="text-4xl md:text-5xl font-bold mb-4">Bienvenido a mi tienda</h2>
-					<p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Encuentra productos de calidad y servicios profesionales. ¡Contáctame para más información!</p>
+					<h2 class="text-4xl md:text-5xl font-bold mb-4">Bienvenido a mi Página</h2>
+					<p class="text-xl text-blue-100 mb-4 max-w-2xl mx-auto">Encuentra productos de calidad y servicios profesionales.</p>
+					<p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">¡Contáctame para más información!</p>
 					<div class="flex flex-col sm:flex-row gap-4 justify-center">
 						<a href="#productos" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg inline-block">
 							Ver Productos

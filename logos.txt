@@ -1,0 +1,87 @@
+<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="900" fill="#f8f9fa"/>
+  
+  <!-- Título Principal -->
+  <text x="600" y="50" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#1a1a1a" text-anchor="middle">LOGO WILBERTH.COM - VERSIÓN PROFESIONAL</text>
+  
+  <!-- Versión Principal (Horizontal) -->
+  <g id="main-version">
+    <rect x="50" y="80" width="500" height="250" fill="white" rx="12" stroke="#e0e0e0" stroke-width="2"/>
+    <text x="300" y="110" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#666" text-anchor="middle">VERSIÓN PRINCIPAL</text>
+    
+    <!-- Logo con círculo -->
+    <circle cx="180" cy="210" r="55" fill="none" stroke="#0066cc" stroke-width="4"/>
+    <path d="M 143 194 L 157 238 L 180 211 L 203 238 L 217 194 L 206 194 L 195 227 L 180 206 L 165 227 L 154 194 Z" 
+          fill="#0066cc" stroke="none"/>
+    
+    <text x="350" y="210" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#0066cc" text-anchor="start">WILBERTH</text>
+    <text x="350" y="240" font-family="Arial, sans-serif" font-size="20" font-weight="400" fill="#0066cc" text-anchor="start">.com</text>
+  </g>
+  
+  <!-- Versión Vertical -->
+  <g id="vertical-version">
+    <rect x="600" y="80" width="250" height="400" fill="white" rx="12" stroke="#e0e0e0" stroke-width="2"/>
+    <text x="725" y="110" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#666" text-anchor="middle">VERSIÓN VERTICAL</text>
+    
+    <circle cx="725" cy="220" r="55" fill="none" stroke="#0066cc" stroke-width="4"/>
+    <path d="M 688 204 L 702 248 L 725 221 L 748 248 L 762 204 L 751 204 L 740 237 L 725 216 L 710 237 L 699 204 Z" 
+          fill="#0066cc" stroke="none"/>
+    
+    <text x="725" y="330" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#0066cc" text-anchor="middle">WILBERTH</text>
+    <text x="725" y="365" font-family="Arial, sans-serif" font-size="18" font-weight="400" fill="#0066cc" text-anchor="middle">.com</text>
+  </g>
+  
+  <!-- Solo Ícono -->
+  <g id="icon-only">
+    <rect x="900" y="80" width="250" height="250" fill="white" rx="12" stroke="#e0e0e0" stroke-width="2"/>
+    <text x="1025" y="110" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#666" text-anchor="middle">SOLO ÍCONO</text>
+    
+    <circle cx="1025" cy="205" r="55" fill="none" stroke="#0066cc" stroke-width="4"/>
+    <path d="M 988 189 L 1002 233 L 1025 206 L 1048 233 L 1062 189 L 1051 189 L 1040 222 L 1025 201 L 1010 222 L 999 189 Z" 
+          fill="#0066cc" stroke="none"/>
+  </g>
+  
+  <!-- Versión sobre fondo oscuro -->
+  <g id="dark-version">
+    <rect x="50" y="520" width="500" height="250" fill="#1a1a1a" rx="12"/>
+    <text x="300" y="550" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#999" text-anchor="middle">VERSIÓN FONDO OSCURO</text>
+    
+    <circle cx="180" cy="650" r="55" fill="none" stroke="#ffffff" stroke-width="4"/>
+    <path d="M 143 634 L 157 678 L 180 651 L 203 678 L 217 634 L 206 634 L 195 667 L 180 646 L 165 667 L 154 634 Z" 
+          fill="#ffffff" stroke="none"/>
+    
+    <text x="350" y="650" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#ffffff" text-anchor="start">WILBERTH</text>
+    <text x="350" y="680" font-family="Arial, sans-serif" font-size="20" font-weight="400" fill="#ffffff" text-anchor="start">.com</text>
+  </g>
+  
+  <!-- Monocromático -->
+  <g id="monochrome">
+    <rect x="600" y="520" width="550" height="250" fill="white" rx="12" stroke="#e0e0e0" stroke-width="2"/>
+    <text x="875" y="550" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#666" text-anchor="middle">VERSIÓN MONOCROMÁTICA (B/N)</text>
+    
+    <circle cx="740" cy="650" r="55" fill="none" stroke="#000000" stroke-width="4"/>
+    <path d="M 703 634 L 717 678 L 740 651 L 763 678 L 777 634 L 766 634 L 755 667 L 740 646 L 725 667 L 714 634 Z" 
+          fill="#000000" stroke="none"/>
+    
+    <text x="910" y="650" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#000000" text-anchor="start">WILBERTH</text>
+    <text x="910" y="680" font-family="Arial, sans-serif" font-size="20" font-weight="400" fill="#000000" text-anchor="start">.com</text>
+  </g>
+  
+  <!-- Paleta de colores -->
+  <g id="color-palette">
+    <text x="100" y="830" font-family="Arial, sans-serif" font-size="18" font-weight="600" fill="#1a1a1a">PALETA DE COLORES:</text>
+    
+    <rect x="100" y="845" width="80" height="40" fill="#0066cc" rx="4"/>
+    <text x="140" y="895" font-family="monospace" font-size="12" fill="#666" text-anchor="middle">#0066cc</text>
+    
+    <rect x="200" y="845" width="80" height="40" fill="#ffffff" stroke="#0066cc" stroke-width="2" rx="4"/>
+    <text x="240" y="895" font-family="monospace" font-size="12" fill="#666" text-anchor="middle">#ffffff</text>
+    
+    <rect x="300" y="845" width="80" height="40" fill="#1a1a1a" rx="4"/>
+    <text x="340" y="895" font-family="monospace" font-size="12" fill="#666" text-anchor="middle">#1a1a1a</text>
+    
+    <text x="500" y="865" font-family="Arial, sans-serif" font-size="14" fill="#666">Color principal: Azul profesional</text>
+    <text x="500" y="885" font-family="Arial, sans-serif" font-size="14" fill="#666">Transmite: Confianza, profesionalismo, seriedad</text>
+  </g>
+</svg>
