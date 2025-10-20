@@ -11,21 +11,14 @@ export const services: Service[] = [
     name: 'Express',
     description: 'Servicio de mandados en Puerto Jiménez',
     price: 800,
-    image_url: '/src/assets/express.webp',
+    image_url: '/src/assets/express.jpg',
     slug: 'express'
-  },
-  {
-    name: 'Desarrollo de Aplicaciones Web',
-    description: 'Desarrollo de aplicaciones web personalizadas',
-    price: 0,
-    image_url: '/src/assets/desarrollo-web.svg',
-    slug: 'desarrollo-web'
   },
   {
     name: 'Cortiz',
     description: 'Sistema de cotizaciones inteligente con IA',
     price: 0,
-    image_url: '/src/assets/cortiz-placeholder.jpg',
+    image_url: '/src/assets/cortiz.svg',
     slug: 'cortiz'
   },
   {

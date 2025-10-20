@@ -146,16 +146,16 @@ const title = 'Wilberth - Productos y Servicios de Calidad';
 						<p class="text-gray-600 text-lg max-w-2xl mx-auto">Servicios profesionales adaptados a tus necesidades</p>
 					</div>
 
-					<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+					<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
 						{services.map((service) => (
 							<div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
 								<!-- Imagen como enlace -->
 								<a 
 									href={
-										service.name === 'Express' ? '/servicios/express' :
-										service.name === 'Desarrollo de Aplicaciones Web' ? '/servicios/desarrollo-web' :
-										service.name === 'Cortiz' ? '/servicios/cortiz' :
-										'/servicios/paginas-web'
+										service.name === 'Express' ? '/express' :
+										service.name === 'Desarrollo de Aplicaciones Web' ? '/desarrollo-web' :
+										service.name === 'Cortiz' ? '/cortiz' :
+										'/paginas-web'
 									}
 									class="block flex-grow"
 								>
