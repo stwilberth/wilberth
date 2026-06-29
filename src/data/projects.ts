@@ -98,4 +98,21 @@ export const projects: Project[] = [
       "M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z",
     coverPath: "/src/assets/covers/osafishingprocr.com_.png",
   },
+  {
+    slug: "osa-tours-and-travel",
+    name: "Osa Tours & Travel",
+    description:
+      "Agencia de viajes y turismo en Costa Rica. Ofrece paquetes turísticos, excursiones, transporte y experiencias personalizadas para explorar la peninsula de Osa.",
+    category: "Turismo y viajes",
+    categoryColor: "text-violet-200",
+    url: "https://osatoursandtravel.com",
+    gradientFrom: "from-violet-950",
+    gradientVia: "via-violet-950/40",
+    gradientTo: "to-transparent",
+    hoverColor: "bg-violet-600",
+    iconColor: "text-violet-300",
+    svgPath:
+      "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    coverPath: "/src/assets/covers/osatoursandtravel.com_.png",
+  },
 ];

@@ -8,6 +8,7 @@ import ranchoRaices from "../../assets/covers/ranchoraices.com_.png";
 import invictaCr from "../../assets/covers/invictacostarica.com_.png";
 import variedadesCr from "../../assets/covers/variedadescr.com_.png";
 import osaFishing from "../../assets/covers/osafishingprocr.com_.png";
+import osaTours from "../../assets/covers/osatoursandtravel.com_.png";
 
 const coverMap: Record<string, ImageMetadata> = {
     "leiva-tours": leivaTours,
@@ -15,6 +16,7 @@ const coverMap: Record<string, ImageMetadata> = {
     "invicta-costa-rica": invictaCr,
     "variedades-cr": variedadesCr,
     "osa-fishing-pro-cr": osaFishing,
+    "osa-tours-and-travel": osaTours,
 };
 
 export async function getStaticPaths() {
@@ -54,6 +56,11 @@ const colorMap: Record<string, { badge: string; text: string; ring: string }> =
             badge: "bg-sky-500/10 text-sky-300 border-sky-400/20",
             text: "text-sky-400",
             ring: "ring-sky-500/30",
+        },
+        "osa-tours-and-travel": {
+            badge: "bg-violet-500/10 text-violet-300 border-violet-400/20",
+            text: "text-violet-400",
+            ring: "ring-violet-500/30",
         },
     };
 
@@ -229,8 +236,7 @@ const title = `${project.name} - Wilberth`;
 
                     <!-- Volver -->
                     <a
-                        href="/"
-                        data-scroll-to="portafolio"
+                        href="/proyectos"
                         class="flex items-center justify-center gap-2 w-full py-4 bg-white border border-slate-200 rounded-2xl font-bold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all active:scale-95"
                     >
                         <svg
