@@ -95,8 +95,9 @@
                                         <span class="inline-block px-3 py-1 rounded-full text-xs font-bold {{ $badge }}">{{ $quote->status }}</span>
                                     </td>
                                     <td class="px-6 py-4 text-slate-500 text-xs">{{ $quote->created_at->format('d/m/Y H:i') }}</td>
-                                    <td class="px-6 py-4 text-center">
+                                    <td class="px-6 py-4 text-center space-x-2">
                                         <a href="/admin/quotes/{{ $quote->id }}" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Ver</a>
+                                        <a href="/admin/quotes/{{ $quote->id }}/edit" class="text-amber-600 hover:text-amber-800 text-sm font-medium">Editar</a>
                                     </td>
                                 </tr>
                             @endforeach
