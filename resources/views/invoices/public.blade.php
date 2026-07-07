@@ -3,19 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cotización #{{ $quote->id }} - Wilberth</title>
+    <title>Factura {{ $invoice->invoice_number }} - Wilberth</title>
     @vite(['resources/css/app.css'])
     <style>
-        @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; }
-        }
+        @media print { .no-print { display: none !important; } body { background: white !important; } }
     </style>
 </head>
 <body class="bg-slate-100">
     <div class="no-print bg-indigo-600 text-white text-center py-3 text-sm font-medium">
-        Cotización compartida
-        <a href="/cotizacion/{{ $quote->id }}/pdf" class="ml-3 underline">Descargar PDF</a>
+        Factura electrónica
+        <a href="/factura/{{ $invoice->id }}/pdf" class="ml-3 underline">Descargar PDF</a>
         <button onclick="window.print()" class="ml-3 underline">Imprimir</button>
     </div>
 
@@ -24,8 +21,9 @@
             <div class="flex justify-between items-start mb-10">
                 <div>
                     <img src="/assets/images/logo_wilberth.png" alt="Wilberth" class="h-14 w-auto mb-4" />
-                    <h1 class="text-3xl font-black text-slate-900">Cotización #{{ $quote->id }}</h1>
-                    <p class="text-slate-500 text-sm mt-1">{{ $quote->created_at->format('d/m/Y') }}</p>
+                    <h1 class="text-3xl font-black text-slate-900">Factura</h1>
+                    <p class="text-slate-500 text-sm mt-1">{{ $invoice->invoice_number }}</p>
+                    <p class="text-slate-500 text-sm">{{ $invoice->created_at->format('d/m/Y') }}</p>
                 </div>
                 <div class="text-right">
                     <p class="font-bold text-slate-900">Wilberth</p>
@@ -37,17 +35,14 @@
             <div class="border-t border-b border-slate-200 py-6 mb-8 grid grid-cols-2 gap-4">
                 <div>
                     <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Cliente</p>
-                    <p class="font-bold text-slate-900">{{ $quote->client_name }}</p>
-                    <p class="text-sm text-slate-600">{{ strtoupper($quote->client_id_type) }}: {{ $quote->client_id_number }}</p>
-                    <p class="text-sm text-slate-600">{{ $quote->client_email }}</p>
-                    <p class="text-sm text-slate-600">{{ $quote->client_phone }}</p>
+                    <p class="font-bold text-slate-900">{{ $invoice->client_name }}</p>
+                    <p class="text-sm text-slate-600">{{ strtoupper($invoice->client_id_type) }}: {{ $invoice->client_id_number }}</p>
+                    <p class="text-sm text-slate-600">{{ $invoice->client_email }}</p>
+                    <p class="text-sm text-slate-600">{{ $invoice->client_phone }}</p>
                 </div>
                 <div class="text-right">
                     <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Estado</p>
-                    <span class="inline-block px-3 py-1 rounded-full text-xs font-bold
-                        {{ $quote->status === 'aprobada' ? 'bg-emerald-100 text-emerald-800' : ($quote->status === 'rechazada' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800') }}">
-                        {{ ucfirst($quote->status) }}
-                    </span>
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-bold {{ $invoice->status === 'emitida' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800' }}">{{ ucfirst($invoice->status) }}</span>
                 </div>
             </div>
 
@@ -61,7 +56,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
-                    @foreach ($quote->items as $item)
+                    @foreach ($invoice->items as $item)
                         <tr class="text-sm">
                             <td class="py-4 text-slate-900">{{ $item->description }}</td>
                             <td class="py-4 text-center text-slate-600">{{ $item->quantity }}</td>
@@ -75,28 +70,27 @@
             <div class="ml-auto w-72 space-y-2">
                 <div class="flex justify-between text-sm text-slate-600">
                     <span>Subtotal</span>
-                    <span class="font-mono">₡{{ number_format($quote->subtotal, 0, ',', '.') }}</span>
+                    <span class="font-mono">₡{{ number_format($invoice->subtotal, 0, ',', '.') }}</span>
                 </div>
                 <div class="flex justify-between text-sm text-slate-600">
-                    <span>IVA ({{ $quote->tax_rate }}%)</span>
-                    <span class="font-mono">₡{{ number_format($quote->tax_amount, 0, ',', '.') }}</span>
+                    <span>IVA ({{ $invoice->tax_rate }}%)</span>
+                    <span class="font-mono">₡{{ number_format($invoice->tax_amount, 0, ',', '.') }}</span>
                 </div>
                 <div class="flex justify-between text-lg font-bold text-slate-900 border-t-2 border-slate-200 pt-2">
                     <span>Total</span>
-                    <span class="font-mono">₡{{ number_format($quote->total, 0, ',', '.') }}</span>
+                    <span class="font-mono">₡{{ number_format($invoice->total, 0, ',', '.') }}</span>
                 </div>
             </div>
 
-            @if ($quote->notes)
+            @if ($invoice->notes)
                 <div class="mt-8 p-4 bg-slate-50 rounded-xl">
                     <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">Notas</p>
-                    <p class="text-sm text-slate-700 whitespace-pre-wrap">{{ $quote->notes }}</p>
+                    <p class="text-sm text-slate-700 whitespace-pre-wrap">{{ $invoice->notes }}</p>
                 </div>
             @endif
 
             <div class="mt-10 pt-6 border-t border-slate-200 text-center text-xs text-slate-400">
-                <p>Cotización generada por Wilberth - Desarrollo Web para Emprendedores</p>
-                <p class="mt-1">WhatsApp: +506 85008393</p>
+                <p>Wilberth - Desarrollo Web para Emprendedores | WhatsApp: +506 85008393</p>
             </div>
         </div>
     </div>

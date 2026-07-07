@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8" />
-    <title>Cotización #{{ $quote->id }} - Wilberth</title>
+    <title>Factura {{ $invoice->invoice_number }} - Wilberth</title>
     <style>
         body { font-family: 'DejaVu Sans', sans-serif; font-size: 12px; color: #1e293b; padding: 40px; }
         .header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 40px; }
@@ -29,8 +29,9 @@
 <body>
     <div class="header">
         <div class="header-left">
-            <h1>Cotización #{{ $quote->id }}</h1>
-            <p>{{ $quote->created_at->format('d/m/Y') }}</p>
+            <h1>Factura</h1>
+            <p>{{ $invoice->invoice_number }}</p>
+            <p>{{ $invoice->created_at->format('d/m/Y') }}</p>
         </div>
         <div class="header-right">
             <p><strong>Wilberth</strong></p>
@@ -42,14 +43,14 @@
     <div class="client-info">
         <div>
             <strong>Cliente</strong>
-            <p>{{ $quote->client_name }}</p>
-            <p>{{ strtoupper($quote->client_id_type) }}: {{ $quote->client_id_number }}</p>
-            <p>{{ $quote->client_email }}</p>
-            <p>{{ $quote->client_phone }}</p>
+            <p>{{ $invoice->client_name }}</p>
+            <p>{{ strtoupper($invoice->client_id_type) }}: {{ $invoice->client_id_number }}</p>
+            <p>{{ $invoice->client_email }}</p>
+            <p>{{ $invoice->client_phone }}</p>
         </div>
         <div style="text-align:right;">
             <strong>Estado</strong>
-            <p>{{ ucfirst($quote->status) }}</p>
+            <p>{{ ucfirst($invoice->status) }}</p>
         </div>
     </div>
 
@@ -63,7 +64,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($quote->items as $item)
+            @foreach ($invoice->items as $item)
                 <tr>
                     <td>{{ $item->description }}</td>
                     <td class="text-center">{{ $item->quantity }}</td>
@@ -75,20 +76,20 @@
     </table>
 
     <div class="totals">
-        <div><span>Subtotal</span><span class="font-mono">₡{{ number_format($quote->subtotal, 0, ',', '.') }}</span></div>
-        <div><span>IVA ({{ $quote->tax_rate }}%)</span><span class="font-mono">₡{{ number_format($quote->tax_amount, 0, ',', '.') }}</span></div>
-        <div class="grand"><span>Total</span><span class="font-mono">₡{{ number_format($quote->total, 0, ',', '.') }}</span></div>
+        <div><span>Subtotal</span><span class="font-mono">₡{{ number_format($invoice->subtotal, 0, ',', '.') }}</span></div>
+        <div><span>IVA ({{ $invoice->tax_rate }}%)</span><span class="font-mono">₡{{ number_format($invoice->tax_amount, 0, ',', '.') }}</span></div>
+        <div class="grand"><span>Total</span><span class="font-mono">₡{{ number_format($invoice->total, 0, ',', '.') }}</span></div>
     </div>
 
-    @if ($quote->notes)
+    @if ($invoice->notes)
         <div class="notes">
             <strong style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:#64748b;">Notas</strong>
-            <p style="margin:4px 0 0;">{{ $quote->notes }}</p>
+            <p style="margin:4px 0 0;">{{ $invoice->notes }}</p>
         </div>
     @endif
 
     <div class="footer">
-        <p>Cotización generada por Wilberth - Desarrollo Web para Emprendedores | WhatsApp: +506 85008393</p>
+        <p>Wilberth - Desarrollo Web para Emprendedores | WhatsApp: +506 85008393</p>
     </div>
 </body>
 </html>

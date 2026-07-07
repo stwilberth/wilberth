@@ -14,6 +14,8 @@ Route::get('/proyectos', [ProjectController::class, 'index'])->name('projects.in
 Route::get('/portafolio/{slug}', [ProjectController::class, 'show'])->name('projects.show');
 Route::get('/cotizacion/{quote}', [App\Http\Controllers\Admin\QuoteController::class, 'publicView'])->name('quotes.public');
 Route::get('/cotizacion/{quote}/pdf', [App\Http\Controllers\Admin\QuoteController::class, 'downloadPdf'])->name('quotes.pdf');
+Route::get('/factura/{invoice}', [App\Http\Controllers\Admin\InvoiceController::class, 'publicView'])->name('invoices.public');
+Route::get('/factura/{invoice}/pdf', [App\Http\Controllers\Admin\InvoiceController::class, 'pdf'])->name('invoices.pdf');
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
@@ -22,6 +24,11 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('admin.auth')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/invoices', [App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('admin.invoices.index');
+        Route::get('/invoices/create-from-quote/{quote}', [App\Http\Controllers\Admin\InvoiceController::class, 'createFromQuote'])->name('admin.invoices.create-from-quote');
+        Route::post('/invoices', [App\Http\Controllers\Admin\InvoiceController::class, 'store'])->name('admin.invoices.store');
+        Route::get('/invoices/{invoice}', [App\Http\Controllers\Admin\InvoiceController::class, 'show'])->name('admin.invoices.show');
+        Route::delete('/invoices/{invoice}', [App\Http\Controllers\Admin\InvoiceController::class, 'destroy'])->name('admin.invoices.destroy');
         Route::get('/quotes/create', [QuoteController::class, 'create'])->name('admin.quotes.create');
         Route::post('/quotes', [QuoteController::class, 'store'])->name('admin.quotes.store');
         Route::get('/quotes/{quote}', [QuoteController::class, 'show'])->name('admin.quotes.show');

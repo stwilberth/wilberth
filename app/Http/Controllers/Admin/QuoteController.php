@@ -17,6 +17,8 @@ class QuoteController extends Controller
     {
         $data = $request->validate([
             'client_name' => 'required|string|max:255',
+            'client_id_type' => 'required|in:fisica,juridica,dimex,nite',
+            'client_id_number' => 'required|string|max:20',
             'client_email' => 'required|email|max:255',
             'client_phone' => 'required|string|max:50',
             'notes' => 'nullable|string',
@@ -33,6 +35,8 @@ class QuoteController extends Controller
 
         $quote = Quote::create([
             'client_name' => $data['client_name'],
+            'client_id_type' => $data['client_id_type'],
+            'client_id_number' => $data['client_id_number'],
             'client_email' => $data['client_email'],
             'client_phone' => $data['client_phone'],
             'notes' => $data['notes'],
@@ -71,6 +75,8 @@ class QuoteController extends Controller
     {
         $data = $request->validate([
             'client_name' => 'required|string|max:255',
+            'client_id_type' => 'required|in:fisica,juridica,dimex,nite',
+            'client_id_number' => 'required|string|max:20',
             'client_email' => 'required|email|max:255',
             'client_phone' => 'required|string|max:50',
             'notes' => 'nullable|string',
@@ -88,6 +94,8 @@ class QuoteController extends Controller
 
         $quote->update([
             'client_name' => $data['client_name'],
+            'client_id_type' => $data['client_id_type'],
+            'client_id_number' => $data['client_id_number'],
             'client_email' => $data['client_email'],
             'client_phone' => $data['client_phone'],
             'notes' => $data['notes'],
