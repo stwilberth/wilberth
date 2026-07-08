@@ -19,9 +19,12 @@
         .text-right { text-align: right; }
         .text-center { text-align: center; }
         .font-mono { font-family: 'DejaVu Sans Mono', monospace; }
-        .totals { width: 280px; margin-left: auto; }
-        .totals > div { display: flex; justify-content: space-between; padding: 4px 0; font-size: 12px; color: #64748b; }
-        .totals .grand { font-size: 16px; font-weight: 900; color: #0f172a; border-top: 2px solid #e2e8f0; padding-top: 8px; margin-top: 4px; }
+        .currency { font-family: 'DejaVu Sans', sans-serif; font-weight: normal; }
+        .totals { width: 280px; margin-left: auto; border-collapse: collapse; }
+        .totals td { padding: 4px 0; font-size: 12px; color: #64748b; }
+        .totals td.label { text-align: left; }
+        .totals td.amount { text-align: right; }
+        .totals tr.grand td { font-size: 16px; font-weight: 900; color: #0f172a; border-top: 2px solid #e2e8f0; padding-top: 8px; }
         .notes { margin-top: 32px; padding: 16px; background: #f8fafc; border-radius: 8px; font-size: 11px; }
         .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #e2e8f0; text-align: center; font-size: 10px; color: #94a3b8; }
     </style>
@@ -34,10 +37,10 @@
         </div>
         <div class="header-right">
             <p><strong>Wilberth Loría</strong></p>
-            <p>Puerto Jiménez, Puntarenas, Costa Rica</p>
-            <p>stwilberth@gmail.com</p>
-            <p>+506 85008393</p>
-            <p>wilberth.com</p>
+            <p>Cédula: 603950512</p>
+            <p>Tel: +506 85008393</p>
+            <p>Correo: stwilberth@gmail.com</p>
+            <p>Dirección: Puerto Jiménez, Puntarenas, Costa Rica</p>
         </div>
     </div>
 
@@ -70,18 +73,27 @@
                 <tr>
                     <td>{{ $item->description }}</td>
                     <td class="text-center">{{ $item->quantity }}</td>
-                    <td class="text-right font-mono">&#8353;{{ number_format($item->unit_price, 0, ',', '.') }}</td>
-                    <td class="text-right font-mono">&#8353;{{ number_format($item->total_price, 0, ',', '.') }}</td>
+                    <td class="text-right font-mono"><span class="currency">&#x20A1;</span>{{ number_format($item->unit_price, 0, ',', '.') }}</td>
+                    <td class="text-right font-mono"><span class="currency">&#x20A1;</span>{{ number_format($item->total_price, 0, ',', '.') }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <div class="totals">
-        <div><span>Subtotal</span><span class="font-mono">&#8353;{{ number_format($quote->subtotal, 0, ',', '.') }}</span></div>
-        <div><span>IVA ({{ $quote->tax_rate }}%)</span><span class="font-mono">&#8353;{{ number_format($quote->tax_amount, 0, ',', '.') }}</span></div>
-        <div class="grand"><span>Total</span><span class="font-mono">&#8353;{{ number_format($quote->total, 0, ',', '.') }}</span></div>
-    </div>
+    <table class="totals">
+        <tr>
+            <td class="label">Subtotal</td>
+            <td class="amount font-mono"><span class="currency">&#x20A1;</span>{{ number_format($quote->subtotal, 0, ',', '.') }}</td>
+        </tr>
+        <tr>
+            <td class="label">IVA ({{ $quote->tax_rate }}%)</td>
+            <td class="amount font-mono"><span class="currency">&#x20A1;</span>{{ number_format($quote->tax_amount, 0, ',', '.') }}</td>
+        </tr>
+        <tr class="grand">
+            <td class="label">Total</td>
+            <td class="amount"><span class="currency">&#x20A1;</span>{{ number_format($quote->total, 0, ',', '.') }}</td>
+        </tr>
+    </table>
 
     @if ($quote->notes)
         <div class="notes">

@@ -34,8 +34,11 @@ class QuoteController extends Controller
         $taxAmount = $subtotal * ($taxRate / 100);
         $total = $subtotal + $taxAmount;
 
-        $last = Quote::max('id') ?? 0;
-        $quoteNumber = 'COT-' . now()->format('Y') . '-' . str_pad($last + 1, 4, '0', STR_PAD_LEFT);
+        // Use the next available sequential number based on total count to avoid gaps
+        $lastNumber = Quote::whereNotNull('quote_number')
+            ->selectRaw("MAX(CAST(SUBSTRING_INDEX(quote_number, '-', -1) AS UNSIGNED)) as max_num")
+            ->value('max_num') ?? 0;
+        $quoteNumber = 'COT-' . now()->format('Y') . '-' . str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
 
         $quote = Quote::create([
             'quote_number' => $quoteNumber,
