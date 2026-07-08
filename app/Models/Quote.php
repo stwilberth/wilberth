@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Quote extends Model
 {
     protected $fillable = [
-        'quote_number', 'client_name', 'client_id_type', 'client_id_number',
+        'quote_number',         'client_name', 'client_id_type', 'client_id_number', 'client_address',
         'client_email', 'client_phone', 'notes',
         'subtotal', 'tax_rate', 'tax_amount', 'total', 'status',
     ];

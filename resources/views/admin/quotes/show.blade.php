@@ -48,6 +48,10 @@
                     <p class="text-slate-700 text-sm">{{ strtoupper($quote->client_id_type) }}: {{ $quote->client_id_number }}</p>
                 </div>
                 <div>
+                    <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Dirección</p>
+                    <p class="text-slate-700 text-sm">{{ $quote->client_address ?? '—' }}</p>
+                </div>
+                <div>
                     <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Email</p>
                     <p class="text-slate-700 break-words">{{ $quote->client_email }}</p>
                 </div>

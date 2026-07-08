@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8" />
-    <title>Cotización {{ $quote->quote_number }} - Wilberth</title>
+    <title>Cotización {{ $quote->quote_number }} - Wilberth Loría</title>
     <style>
         body { font-family: 'DejaVu Sans', sans-serif; font-size: 12px; color: #1e293b; padding: 40px; }
         .header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 40px; }
@@ -33,9 +33,11 @@
             <p>{{ $quote->created_at->format('d/m/Y') }}</p>
         </div>
         <div class="header-right">
-            <p><strong>Wilberth</strong></p>
-            <p>Desarrollo Web</p>
+            <p><strong>Wilberth Loría</strong></p>
+            <p>Puerto Jiménez, Puntarenas, Costa Rica</p>
+            <p>stwilberth@gmail.com</p>
             <p>+506 85008393</p>
+            <p>wilberth.com</p>
         </div>
     </div>
 
@@ -44,6 +46,7 @@
             <strong>Cliente</strong>
             <p>{{ $quote->client_name }}</p>
             <p>{{ strtoupper($quote->client_id_type) }}: {{ $quote->client_id_number }}</p>
+            <p>{{ $quote->client_address ?? '' }}</p>
             <p style="word-break: break-word;">{{ $quote->client_email }}</p>
             <p>{{ $quote->client_phone }}</p>
         </div>
@@ -88,7 +91,7 @@
     @endif
 
     <div class="footer">
-        <p>Cotización generada por Wilberth - Desarrollo Web para Emprendedores | WhatsApp: +506 85008393</p>
+        <p>Cotización generada por Wilberth.com | WhatsApp: +506 85008393</p>
     </div>
 </body>
 </html>

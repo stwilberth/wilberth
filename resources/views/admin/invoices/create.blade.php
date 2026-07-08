@@ -45,6 +45,11 @@
                             class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />
                     </div>
                     <div>
+                        <label for="client_address" class="block text-sm font-medium text-slate-700 mb-1">Dirección</label>
+                        <input type="text" id="client_address" name="client_address" value="{{ $quote->client_address ?? '' }}"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />
+                    </div>
+                    <div>
                         <label for="client_email" class="block text-sm font-medium text-slate-700 mb-1">Email *</label>
                         <input type="email" id="client_email" name="client_email" value="{{ $quote->client_email ?? '' }}" required
                             class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />

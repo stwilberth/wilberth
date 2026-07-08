@@ -45,6 +45,7 @@
             <strong>Cliente</strong>
             <p>{{ $invoice->client_name }}</p>
             <p>{{ strtoupper($invoice->client_id_type) }}: {{ $invoice->client_id_number }}</p>
+            <p>{{ $invoice->client_address ?? '' }}</p>
             <p>{{ $invoice->client_email }}</p>
             <p>{{ $invoice->client_phone }}</p>
         </div>

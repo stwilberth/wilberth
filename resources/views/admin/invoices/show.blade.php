@@ -43,6 +43,10 @@
                     <p class="text-slate-700 text-sm">{{ strtoupper($invoice->client_id_type) }}: {{ $invoice->client_id_number }}</p>
                 </div>
                 <div>
+                    <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Dirección</p>
+                    <p class="text-slate-700 text-sm">{{ $invoice->client_address ?? '—' }}</p>
+                </div>
+                <div>
                     <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Email</p>
                     <p class="text-slate-700">{{ $invoice->client_email }}</p>
                 </div>
