@@ -34,7 +34,7 @@ class QuoteController extends Controller
         $total = $subtotal + $taxAmount;
 
         $last = Quote::max('id') ?? 0;
-        $quoteNumber = 'COT-' . now()->format('Ymd') . '-' . str_pad($last + 1, 4, '0', STR_PAD_LEFT);
+        $quoteNumber = 'COT-' . now()->format('Y') . '-' . str_pad($last + 1, 4, '0', STR_PAD_LEFT);
 
         $quote = Quote::create([
             'quote_number' => $quoteNumber,

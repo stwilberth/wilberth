@@ -35,11 +35,11 @@
             </div>
 
             <div class="border-t border-b border-slate-200 py-6 mb-8 grid grid-cols-2 gap-4">
-                <div>
+                <div class="space-y-1">
                     <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Cliente</p>
                     <p class="font-bold text-slate-900">{{ $quote->client_name }}</p>
                     <p class="text-sm text-slate-600">{{ strtoupper($quote->client_id_type) }}: {{ $quote->client_id_number }}</p>
-                    <p class="text-sm text-slate-600">{{ $quote->client_email }}</p>
+                    <p class="text-sm text-slate-600 break-words">{{ $quote->client_email }}</p>
                     <p class="text-sm text-slate-600">{{ $quote->client_phone }}</p>
                 </div>
                 <div class="text-right">

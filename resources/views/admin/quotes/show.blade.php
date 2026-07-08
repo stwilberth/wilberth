@@ -49,7 +49,7 @@
                 </div>
                 <div>
                     <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Email</p>
-                    <p class="text-slate-700">{{ $quote->client_email }}</p>
+                    <p class="text-slate-700 break-words">{{ $quote->client_email }}</p>
                 </div>
                 <div>
                     <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Teléfono</p>

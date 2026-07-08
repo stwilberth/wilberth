@@ -44,7 +44,7 @@
             <strong>Cliente</strong>
             <p>{{ $quote->client_name }}</p>
             <p>{{ strtoupper($quote->client_id_type) }}: {{ $quote->client_id_number }}</p>
-            <p>{{ $quote->client_email }}</p>
+            <p style="word-break: break-word;">{{ $quote->client_email }}</p>
             <p>{{ $quote->client_phone }}</p>
         </div>
         <div style="text-align:right;">
