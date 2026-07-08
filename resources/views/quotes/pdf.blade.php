@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8" />
-    <title>Cotización #{{ $quote->id }} - Wilberth</title>
+    <title>Cotización {{ $quote->quote_number }} - Wilberth</title>
     <style>
         body { font-family: 'DejaVu Sans', sans-serif; font-size: 12px; color: #1e293b; padding: 40px; }
         .header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 40px; }
@@ -29,7 +29,7 @@
 <body>
     <div class="header">
         <div class="header-left">
-            <h1>Cotización #{{ $quote->id }}</h1>
+            <h1>Cotización {{ $quote->quote_number }}</h1>
             <p>{{ $quote->created_at->format('d/m/Y') }}</p>
         </div>
         <div class="header-right">

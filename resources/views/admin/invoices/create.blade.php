@@ -23,8 +23,8 @@
 
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
                 <h3 class="text-lg font-bold text-slate-900">Datos del Cliente</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="md:col-span-3">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-2">
                         <label for="client_name" class="block text-sm font-medium text-slate-700 mb-1">Nombre *</label>
                         <input type="text" id="client_name" name="client_name" value="{{ $quote->client_name ?? '' }}" required
                             class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />
@@ -39,7 +39,7 @@
                             <option value="nite" {{ ($quote->client_id_type ?? '') === 'nite' ? 'selected' : '' }}>NITE</option>
                         </select>
                     </div>
-                    <div class="md:col-span-2">
+                    <div>
                         <label for="client_id_number" class="block text-sm font-medium text-slate-700 mb-1">Número ID *</label>
                         <input type="text" id="client_id_number" name="client_id_number" value="{{ $quote->client_id_number ?? '' }}" required
                             class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />

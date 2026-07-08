@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cotización #{{ $quote->id }} - Wilberth</title>
+    <title>Cotización {{ $quote->quote_number }} - Wilberth</title>
     @vite(['resources/css/app.css'])
     <style>
         @media print {
@@ -24,7 +24,7 @@
             <div class="flex justify-between items-start mb-10">
                 <div>
                     <img src="/assets/images/logo_wilberth.png" alt="Wilberth" class="h-14 w-auto mb-4" />
-                    <h1 class="text-3xl font-black text-slate-900">Cotización #{{ $quote->id }}</h1>
+                    <h1 class="text-3xl font-black text-slate-900">Cotización {{ $quote->quote_number }}</h1>
                     <p class="text-slate-500 text-sm mt-1">{{ $quote->created_at->format('d/m/Y') }}</p>
                 </div>
                 <div class="text-right">

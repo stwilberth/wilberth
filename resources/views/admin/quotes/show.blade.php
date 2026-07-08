@@ -11,14 +11,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cotización #{{ $quote->id }} - Admin Wilberth</title>
+    <title>Cotización {{ $quote->quote_number }} - Admin Wilberth</title>
     @vite(['resources/css/app.css'])
 </head>
 <body class="bg-slate-50 min-h-screen">
     <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-4">
-                <h1 class="text-xl font-black text-slate-900">Cotización #{{ $quote->id }}</h1>
+                <h1 class="text-xl font-black text-slate-900">Cotización {{ $quote->quote_number }}</h1>
                 <span class="inline-block px-3 py-1 rounded-full text-xs font-bold {{ $badge }}">{{ $quote->status }}</span>
             </div>
             <a href="/admin/dashboard" class="text-sm text-slate-500 hover:text-slate-700">← Volver</a>
@@ -33,7 +33,7 @@
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-6">
             <div class="flex justify-between items-start mb-8">
                 <div>
-                    <h2 class="text-2xl font-black text-slate-900 mb-1">Cotización #{{ $quote->id }}</h2>
+                    <h2 class="text-2xl font-black text-slate-900 mb-1">Cotización {{ $quote->quote_number }}</h2>
                     <p class="text-sm text-slate-500">Creada el {{ $quote->created_at->format('d/m/Y H:i') }}</p>
                 </div>
             </div>

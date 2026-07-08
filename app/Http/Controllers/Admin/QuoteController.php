@@ -33,7 +33,11 @@ class QuoteController extends Controller
         $taxAmount = $subtotal * ($taxRate / 100);
         $total = $subtotal + $taxAmount;
 
+        $last = Quote::max('id') ?? 0;
+        $quoteNumber = 'COT-' . now()->format('Ymd') . '-' . str_pad($last + 1, 4, '0', STR_PAD_LEFT);
+
         $quote = Quote::create([
+            'quote_number' => $quoteNumber,
             'client_name' => $data['client_name'],
             'client_id_type' => $data['client_id_type'],
             'client_id_number' => $data['client_id_number'],
