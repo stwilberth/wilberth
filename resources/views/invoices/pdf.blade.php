@@ -69,17 +69,17 @@
                 <tr>
                     <td>{{ $item->description }}</td>
                     <td class="text-center">{{ $item->quantity }}</td>
-                    <td class="text-right font-mono">₡{{ number_format($item->unit_price, 0, ',', '.') }}</td>
-                    <td class="text-right font-mono">₡{{ number_format($item->total_price, 0, ',', '.') }}</td>
+                    <td class="text-right font-mono">&#8353;{{ number_format($item->unit_price, 0, ',', '.') }}</td>
+                    <td class="text-right font-mono">&#8353;{{ number_format($item->total_price, 0, ',', '.') }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
     <div class="totals">
-        <div><span>Subtotal</span><span class="font-mono">₡{{ number_format($invoice->subtotal, 0, ',', '.') }}</span></div>
-        <div><span>IVA ({{ $invoice->tax_rate }}%)</span><span class="font-mono">₡{{ number_format($invoice->tax_amount, 0, ',', '.') }}</span></div>
-        <div class="grand"><span>Total</span><span class="font-mono">₡{{ number_format($invoice->total, 0, ',', '.') }}</span></div>
+        <div><span>Subtotal</span><span class="font-mono">&#8353;{{ number_format($invoice->subtotal, 0, ',', '.') }}</span></div>
+        <div><span>IVA ({{ $invoice->tax_rate }}%)</span><span class="font-mono">&#8353;{{ number_format($invoice->tax_amount, 0, ',', '.') }}</span></div>
+        <div class="grand"><span>Total</span><span class="font-mono">&#8353;{{ number_format($invoice->total, 0, ',', '.') }}</span></div>
     </div>
 
     @if ($invoice->notes)
