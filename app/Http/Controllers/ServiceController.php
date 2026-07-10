@@ -10,8 +10,18 @@ class ServiceController extends Controller
             'name' => 'Wilberth',
             'whatsapp' => '+506 85008393',
         ];
-        $title = 'Páginas Web, Apps Web y Tiendas en Línea - Wilberth';
+        $title = 'Páginas Web para Emprendedores en Costa Rica | Precios desde ₡99,000';
 
         return view('services.paginas-web', compact('seller', 'title'));
+    }
+
+    public function proceso()
+    {
+        $seller = (object) [
+            'name' => 'Wilberth',
+            'whatsapp' => '+506 85008393',
+        ];
+
+        return view('proceso', compact('seller'));
     }
 }

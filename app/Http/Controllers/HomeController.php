@@ -13,6 +13,8 @@ class HomeController extends Controller
             'whatsapp' => '+506 85008393',
         ];
 
-        return view('home', compact('seller'));
+        $title = 'Wilberth - Desarrollo Web para Emprendedores y Pequeñas Empresas en Costa Rica';
+
+        return view('home', compact('seller', 'title'));
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Wilberth - Desarrollo Web para Emprendedores')
+@section('title', $title)
 
 @section('content')
 <style>
@@ -112,6 +112,28 @@
         <button class="slider-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-all cursor-pointer" data-slide="1" aria-label="Slide 2"></button>
     </div>
 </div>
+
+<section class="max-w-4xl mx-auto mt-16 mb-16 px-4">
+    <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+        <div class="flex flex-col md:flex-row gap-8 items-center">
+            <div class="flex-shrink-0">
+                <div class="w-32 h-32 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-3xl flex items-center justify-center shadow-xl">
+                    <span class="text-5xl font-bold text-white">W</span>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Sobre Mí</h2>
+                <p class="text-indigo-600 font-medium mb-4">Desarrollador Web · Especialista en Laravel y Astro</p>
+                <p class="text-gray-600 leading-relaxed mb-3">
+                    Tengo más de 7 años de experiencia en desarrollo web con PHP, trabajando con empresas y clientes para crear páginas y aplicaciones web. Me especializo en <strong>Laravel</strong> y <strong>Astro</strong>, tecnologías modernas que garantizan sitios rápidos, seguros y fáciles de mantener.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Soy desarrollador web autodidacta. Aprendí haciendo, resolviendo problemas reales y trabajando con clientes de verdad. Cada proyecto que tomo lo trato como si fuera propio, poniendo atención al detalle y buscando siempre la mejor solución para cada cliente.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
 @push('scripts')
 <script>
