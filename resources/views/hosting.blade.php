@@ -16,6 +16,16 @@
 </section>
 
 <section class="mb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white rounded-xl shadow-lg p-8 mb-10">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">¿Qué es el Hospedaje Web?</h2>
+        <p class="text-gray-600 text-lg leading-relaxed mb-4">
+            El hospedaje web (o hosting) es el servicio que mantiene tu página web en internet 24/7. Es como el "terreno" donde se construye tu sitio: sin hosting, tu web no existe en línea.
+        </p>
+        <p class="text-gray-600 text-lg leading-relaxed">
+            Yo me encargo de todo: configuro el servidor, instalo lo necesario, activo la seguridad (HTTPS), hago respaldos y me aseguro de que tu sitio siempre esté disponible y cargue rápido. Vos solo te preocupás por tu negocio.
+        </p>
+    </div>
+
     <div class="text-center mb-10">
         <h2 class="text-3xl font-bold text-gray-900 mb-3">Planes de Hospedaje</h2>
         <p class="text-gray-600 text-lg">Solo pagás por el hospedaje. Yo lo configuro y lo mantengo.</p>
