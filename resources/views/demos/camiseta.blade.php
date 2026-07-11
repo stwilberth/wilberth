@@ -66,41 +66,95 @@
                           </defs>
 
                           <!-- Front Short Sleeve Base -->
-                          <g id="base-front-short" class="base-group">
-                            <path class="tshirt-fill" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#ffffff" />
-                            <path class="tshirt-texture cotton" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
-                            <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
-                            <path class="tshirt-texture heather hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-                            <!-- Inside collar area -->
-                            <path d="M 180 60 C 215 85, 285 85, 320 60 C 285 52, 215 52, 180 60 Z" fill="rgba(0,0,0,0.18)" />
-                          </g>
+                          
+  <!-- FRONT SHORT SLEEVE REGULAR BASE -->
+  <g id="base-front-short-regular" class="base-group">
+    <path class="tshirt-fill" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#ffffff" />
+    <path class="tshirt-texture cotton" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
+    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
+    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
+    <!-- Inside collar area -->
+    <path d="M 180 60 C 215 85, 285 85, 320 60 C 285 52, 215 52, 180 60 Z" fill="rgba(0,0,0,0.18)" />
+  </g>
 
-                          <!-- Front Long Sleeve Base -->
-                          <g id="base-front-long" class="base-group hidden">
-                            <path class="tshirt-fill" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#ffffff" />
-                            <path class="tshirt-texture cotton" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
-                            <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
-                            <path class="tshirt-texture heather hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-                            <!-- Inside collar area -->
-                            <path d="M 180 60 C 215 85, 285 85, 320 60 C 285 52, 215 52, 180 60 Z" fill="rgba(0,0,0,0.18)" />
-                          </g>
+  <!-- FRONT LONG SLEEVE REGULAR BASE -->
+  <g id="base-front-long-regular" class="base-group hidden">
+    <path class="tshirt-fill" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#ffffff" />
+    <path class="tshirt-texture cotton" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
+    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
+    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
+    <!-- Inside collar area -->
+    <path d="M 180 60 C 215 85, 285 85, 320 60 C 285 52, 215 52, 180 60 Z" fill="rgba(0,0,0,0.18)" />
+  </g>
 
-                          <!-- Back Short Sleeve Base -->
-                          <g id="base-back-short" class="base-group hidden">
-                            <path class="tshirt-fill" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#ffffff" />
-                            <path class="tshirt-texture cotton" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
-                            <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
-                            <path class="tshirt-texture heather hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-                          </g>
+  <!-- BACK SHORT SLEEVE REGULAR BASE -->
+  <g id="base-back-short-regular" class="base-group hidden">
+    <path class="tshirt-fill" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#ffffff" />
+    <path class="tshirt-texture cotton" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
+    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
+    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
+  </g>
 
-                          <!-- Back Long Sleeve Base -->
-                          <g id="base-back-long" class="base-group hidden">
-                            <path class="tshirt-fill" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#ffffff" />
-                            <path class="tshirt-texture cotton" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
-                            <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
-                            <path class="tshirt-texture heather hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-                          </g>
-                        </svg>
+  <!-- BACK LONG SLEEVE REGULAR BASE -->
+  <g id="base-back-long-regular" class="base-group hidden">
+    <path class="tshirt-fill" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#ffffff" />
+    <path class="tshirt-texture cotton" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
+    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
+    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
+  </g>
+
+  <!-- FRONT SHORT SLEEVE MUJER BASE -->
+  <g id="base-front-short-mujer" class="base-group hidden">
+    <path class="tshirt-fill" d="M 175 65 C 210 90, 290 90, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="#ffffff" />
+    <path class="tshirt-texture cotton" d="M 175 65 C 210 90, 290 90, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="url(#pat-cotton)" />
+    <path class="tshirt-texture polyester hidden" d="M 175 65 C 210 90, 290 90, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="url(#pat-polyester)" />
+    <path class="tshirt-texture heather hidden" d="M 175 65 C 210 90, 290 90, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
+    <!-- Inside collar area -->
+    <path d="M 175 65 C 210 90, 290 90, 325 65 C 290 55, 210 55, 175 65 Z" fill="rgba(0,0,0,0.18)" />
+  </g>
+
+  <!-- BACK SHORT SLEEVE MUJER BASE -->
+  <g id="base-back-short-mujer" class="base-group hidden">
+    <path class="tshirt-fill" d="M 175 65 C 210 55, 290 55, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="#ffffff" />
+    <path class="tshirt-texture cotton" d="M 175 65 C 210 55, 290 55, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="url(#pat-cotton)" />
+    <path class="tshirt-texture polyester hidden" d="M 175 65 C 210 55, 290 55, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="url(#pat-polyester)" />
+    <path class="tshirt-texture heather hidden" d="M 175 65 C 210 55, 290 55, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
+  </g>
+
+  <!-- FRONT SHORT SLEEVE POLO BASE -->
+  <g id="base-front-short-polo" class="base-group hidden">
+    <!-- Body and sleeves (similar to regular short sleeve) -->
+    <path class="tshirt-fill" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#ffffff" />
+    <path class="tshirt-texture cotton" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
+    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
+    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
+    
+    <!-- Placket backdrop -->
+    <path d="M 238 60 L 262 60 L 262 170 L 238 170 Z" fill="rgba(0,0,0,0.08)" />
+    <path class="tshirt-fill" d="M 240 60 L 260 60 L 260 168 L 240 168 Z" fill="#ffffff" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" />
+    
+    <!-- Collar Left Flap -->
+    <path class="tshirt-fill" d="M 180 60 C 200 68, 235 85, 248 85 L 230 135 L 195 105 Z" fill="#ffffff" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" />
+    <!-- Collar Right Flap -->
+    <path class="tshirt-fill" d="M 320 60 C 300 68, 265 85, 252 85 L 270 135 L 305 105 Z" fill="#ffffff" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" />
+    
+    <!-- Buttons -->
+    <circle cx="250" cy="100" r="3.5" fill="#f1f5f9" stroke="rgba(0,0,0,0.25)" stroke-width="1" />
+    <circle cx="250" cy="135" r="3.5" fill="#f1f5f9" stroke="rgba(0,0,0,0.25)" stroke-width="1" />
+  </g>
+
+  <!-- BACK SHORT SLEEVE POLO BASE -->
+  <g id="base-back-short-polo" class="base-group hidden">
+    <!-- Similar to normal back short sleeve -->
+    <path class="tshirt-fill" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#ffffff" />
+    <path class="tshirt-texture cotton" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
+    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
+    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
+    <!-- Back of the Collar -->
+    <path class="tshirt-fill" d="M 180 60 C 200 48, 300 48, 320 60 C 300 55, 200 55, 180 60 Z" fill="#ffffff" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" />
+  </g>
+
+</svg>
                     </div>
 
                     <!-- DESIGN INTERACTIVE CANVAS (z-10) -->
@@ -123,78 +177,152 @@
                           </defs>
 
                           <!-- Front Short Sleeve Overlay -->
-                          <g id="overlay-front-short" class="overlay-group">
-                              <path d="M 180 60 C 215 85, 285 85, 320 60" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="4.5" />
-                              <path d="M 180 60 C 215 85, 285 85, 320 60" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="1.5,1" />
-                              <path d="M 178 60 C 215 50, 285 50, 322 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-                              <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-                              <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-                              <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-                                  <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-                                  <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-                                  <path d="M 145 170 Q 185 190, 220 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
-                                  <path d="M 355 170 Q 315 190, 280 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
-                                  <path d="M 195 200 Q 170 300, 185 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <path d="M 305 200 Q 330 300, 315 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <path d="M 180 62 C 215 89, 285 89, 320 62" fill="none" stroke="rgba(0,0,0,0.32)" stroke-width="7" filter="url(#blur-soft)" />
-                              </g>
-                              <path d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-                          </g>
+                          
+  <!-- FRONT SHORT SLEEVE REGULAR OVERLAY -->
+  <g id="overlay-front-short-regular" class="overlay-group">
+      <path d="M 180 60 C 215 85, 285 85, 320 60" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="4.5" />
+      <path d="M 180 60 C 215 85, 285 85, 320 60" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="1.5,1" />
+      <path d="M 178 60 C 215 50, 285 50, 322 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
+      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
+          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 145 170 Q 185 190, 220 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
+          <path d="M 355 170 Q 315 190, 280 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
+          <path d="M 195 200 Q 170 300, 185 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 305 200 Q 330 300, 315 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 180 62 C 215 89, 285 89, 320 62" fill="none" stroke="rgba(0,0,0,0.32)" stroke-width="7" filter="url(#blur-soft)" />
+      </g>
+      <path d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
+  </g>
 
-                          <!-- Front Long Sleeve Overlay -->
-                          <g id="overlay-front-long" class="overlay-group hidden">
-                              <path d="M 180 60 C 215 85, 285 85, 320 60" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="4.5" />
-                              <path d="M 178 60 C 215 50, 285 50, 322 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-                              <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-                              <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-                              <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-                                  <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-                                  <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-                                  <path d="M 145 170 Q 185 190, 220 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
-                                  <path d="M 355 170 Q 315 190, 280 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
-                                  <!-- Left long sleeve folds -->
-                                  <path d="M 110 90 Q 90 200 120 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <path d="M 145 160 Q 130 250 145 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <!-- Right long sleeve folds -->
-                                  <path d="M 390 90 Q 410 200 380 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <path d="M 355 160 Q 370 250 355 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <path d="M 180 62 C 215 89, 285 89, 320 62" fill="none" stroke="rgba(0,0,0,0.32)" stroke-width="7" filter="url(#blur-soft)" />
-                              </g>
-                              <path d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-                          </g>
+  <!-- FRONT LONG SLEEVE REGULAR OVERLAY -->
+  <g id="overlay-front-long-regular" class="overlay-group hidden">
+      <path d="M 180 60 C 215 85, 285 85, 320 60" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="4.5" />
+      <path d="M 178 60 C 215 50, 285 50, 322 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
+      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
+          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 145 170 Q 185 190, 220 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
+          <path d="M 355 170 Q 315 190, 280 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
+          <path d="M 110 90 Q 90 200 120 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 145 160 Q 130 250 145 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 390 90 Q 410 200 380 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 355 160 Q 370 250 355 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 180 62 C 215 89, 285 89, 320 62" fill="none" stroke="rgba(0,0,0,0.32)" stroke-width="7" filter="url(#blur-soft)" />
+      </g>
+      <path d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
+  </g>
 
-                          <!-- Back Short Sleeve Overlay -->
-                          <g id="overlay-back-short" class="overlay-group hidden">
-                              <path d="M 180 60 C 215 50, 285 50, 320 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="4.5" />
-                              <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-                              <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-                              <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-                                  <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-                                  <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-                                  <path d="M 195 200 Q 170 300, 185 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <path d="M 305 200 Q 330 300, 315 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <path d="M 180 62 C 215 52, 285 52, 320 62" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="6" filter="url(#blur-soft)" />
-                              </g>
-                              <path d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-                          </g>
+  <!-- BACK SHORT SLEEVE REGULAR OVERLAY -->
+  <g id="overlay-back-short-regular" class="overlay-group hidden">
+      <path d="M 180 60 C 215 50, 285 50, 320 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="4.5" />
+      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
+          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 195 200 Q 170 300, 185 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 305 200 Q 330 300, 315 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 180 62 C 215 52, 285 52, 320 62" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="6" filter="url(#blur-soft)" />
+      </g>
+      <path d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
+  </g>
 
-                          <!-- Back Long Sleeve Overlay -->
-                          <g id="overlay-back-long" class="overlay-group hidden">
-                              <path d="M 180 60 C 215 50, 285 50, 320 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="4.5" />
-                              <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-                              <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-                              <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-                                  <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-                                  <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-                                  <path d="M 110 90 Q 90 200 120 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <path d="M 145 160 Q 130 250 145 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <path d="M 390 90 Q 410 200 380 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <path d="M 355 160 Q 370 250 355 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-                                  <path d="M 180 62 C 215 52, 285 52, 320 62" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="6" filter="url(#blur-soft)" />
-                              </g>
-                              <path d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-                          </g>
-                        </svg>
+  <!-- BACK LONG SLEEVE REGULAR OVERLAY -->
+  <g id="overlay-back-long-regular" class="overlay-group hidden">
+      <path d="M 180 60 C 215 50, 285 50, 320 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="4.5" />
+      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
+          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 110 90 Q 90 200 120 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 145 160 Q 130 250 145 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 390 90 Q 410 200 380 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 355 160 Q 370 250 355 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
+          <path d="M 180 62 C 215 52, 285 52, 320 62" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="6" filter="url(#blur-soft)" />
+      </g>
+      <path d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
+  </g>
+
+  <!-- FRONT SHORT SLEEVE MUJER OVERLAY -->
+  <g id="overlay-front-short-mujer" class="overlay-group hidden">
+      <path d="M 175 65 C 210 90, 290 90, 325 65" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="3.5" />
+      <path d="M 175 65 C 210 90, 290 90, 325 65" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="1.5,1" />
+      <path d="M 173 65 C 210 55, 290 55, 327 65" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2" />
+      
+      <!-- Short sleeve seams -->
+      <path d="M 120 90 L 145 155" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" />
+      <path d="M 380 90 L 355 155" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" />
+      
+      <!-- Fitted side shading -->
+      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
+          <path d="M 145 155 C 160 240, 160 340, 155 440" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 355 155 C 340 240, 340 340, 345 440" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="10" filter="url(#blur-soft)" />
+          <!-- Chest folds -->
+          <path d="M 145 165 Q 185 180, 220 175" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="5" filter="url(#blur-soft)" />
+          <path d="M 355 165 Q 315 180, 280 175" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="5" filter="url(#blur-soft)" />
+          <path d="M 175 67 C 210 92, 290 92, 325 67" fill="none" stroke="rgba(0,0,0,0.28)" stroke-width="6" filter="url(#blur-soft)" />
+      </g>
+      
+      <path d="M 175 65 C 210 90, 290 90, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2" />
+  </g>
+
+  <!-- BACK SHORT SLEEVE MUJER OVERLAY -->
+  <g id="overlay-back-short-mujer" class="overlay-group hidden">
+      <path d="M 175 65 C 210 55, 290 55, 325 65" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="3.5" />
+      <path d="M 120 90 L 145 155" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" />
+      <path d="M 380 90 L 355 155" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" />
+      
+      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
+          <path d="M 145 155 C 160 240, 160 340, 155 440" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 355 155 C 340 240, 340 340, 345 440" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 175 67 C 210 57, 290 57, 325 67" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="6" filter="url(#blur-soft)" />
+      </g>
+      <path d="M 175 65 C 210 55, 290 55, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2" />
+  </g>
+
+  <!-- FRONT SHORT SLEEVE POLO OVERLAY -->
+  <g id="overlay-front-short-polo" class="overlay-group hidden">
+      <!-- Seam lines -->
+      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <!-- Ribbing cuffs -->
+      <path d="M 85 155 L 135 175" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="3" />
+      <path d="M 365 175 L 415 155" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="3" />
+      
+      <!-- Folds & Shading -->
+      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
+          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <!-- Placket shadow -->
+          <path d="M 238 60 L 238 170" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="3" filter="url(#blur-soft)" />
+          <path d="M 262 60 L 262 170" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="3" filter="url(#blur-soft)" />
+          <path d="M 240 168 L 260 168" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="4" filter="url(#blur-soft)" />
+          <!-- Collar shadow on chest -->
+          <path d="M 180 62 C 200 70, 235 88, 250 88 C 265 88, 300 70, 320 62" fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="8" filter="url(#blur-soft)" />
+      </g>
+      <path d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
+  </g>
+
+  <!-- BACK SHORT SLEEVE POLO OVERLAY -->
+  <g id="overlay-back-short-polo" class="overlay-group hidden">
+      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
+      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
+          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
+          <!-- Under collar shadow -->
+          <path d="M 180 62 C 200 50, 300 50, 320 62" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
+      </g>
+      <path d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
+  </g>
+
+</svg>
                     </div>
                 </div>
             </div>
@@ -237,230 +365,227 @@
         <!-- COLUMNA DERECHA: PANELES DE CONTROL (DASHBOARD CONTROLS) -->
         <div class="lg:col-span-5 space-y-6">
             
-            <!-- PANEL: PRENDA, TEXTURA Y COLOR -->
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6">
-                <h3 class="font-bold text-gray-900 text-base mb-4 flex items-center gap-2">
-                    <span class="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-                    </span>
-                    1. Configuración de Prenda
-                </h3>
-
-                <div class="space-y-5">
-                    <!-- sleeves toggle -->
-                    <div>
-                        <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Estilo de Manga</span>
-                        <div class="grid grid-cols-2 gap-3">
-                            <label class="flex items-center justify-center gap-2 border-2 border-slate-100 rounded-xl p-3 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
-                                <input type="radio" name="type" value="manga-corta" checked class="hidden" onchange="updateSleeve('manga-corta')">
-                                <span class="text-xs font-bold text-slate-700">Manga Corta</span>
-                            </label>
-                            <label class="flex items-center justify-center gap-2 border-2 border-slate-100 rounded-xl p-3 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
-                                <input type="radio" name="type" value="manga-larga" class="hidden" onchange="updateSleeve('manga-larga')">
-                                <span class="text-xs font-bold text-slate-700">Manga Larga</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- fabric weave textures -->
-                    <div>
-                        <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Material / Textura</span>
-                        <div class="grid grid-cols-3 gap-2.5">
-                            <button onclick="setMaterial('cotton')" id="mat-btn-cotton" class="px-3 py-2.5 rounded-xl text-xs font-bold border-2 border-indigo-600 bg-indigo-50/30 text-indigo-700 transition-all">
-                                Algodón
-                            </button>
-                            <button onclick="setMaterial('polyester')" id="mat-btn-polyester" class="px-3 py-2.5 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all">
-                                Poliéster
-                            </button>
-                            <button onclick="setMaterial('heather')" id="mat-btn-heather" class="px-3 py-2.5 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all">
-                                Jaspeado
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- curated color palette + colorpicker -->
-                    <div>
-                        <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Color de la Prenda</span>
-                        <div class="flex flex-wrap gap-2.5 items-center">
-                            <!-- Blanco -->
-                            <button onclick="setColor('#ffffff')" class="color-btn w-9 h-9 rounded-full border-2 border-slate-200 ring-2 ring-indigo-500 shadow-md transform hover:scale-105 transition-all" style="background:#ffffff" data-color="#ffffff" title="Blanco"></button>
-                            <!-- Carbono -->
-                            <button onclick="setColor('#2F3E46')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#2F3E46" data-color="#2F3E46" title="Carbono"></button>
-                            <!-- Negro -->
-                            <button onclick="setColor('#0e1111')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#0e1111" data-color="#0e1111" title="Negro"></button>
-                            <!-- Azul Marino -->
-                            <button onclick="setColor('#1D3557')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#1D3557" data-color="#1D3557" title="Azul Marino"></button>
-                            <!-- Bosque -->
-                            <button onclick="setColor('#2A9D8F')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#2A9D8F" data-color="#2A9D8F" title="Verde Bosque"></button>
-                            <!-- Carmesi -->
-                            <button onclick="setColor('#9B2226')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#9B2226" data-color="#9B2226" title="Carmesí"></button>
-                            <!-- Mostaza -->
-                            <button onclick="setColor('#E9C46A')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#E9C46A" data-color="#E9C46A" title="Mostaza"></button>
-                            <!-- Rosa Pastel -->
-                            <button onclick="setColor('#ffccd5')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#ffccd5" data-color="#ffccd5" title="Rosa Pastel"></button>
-                            
-                            <!-- Custom Color Picker -->
-                            <div class="relative w-9 h-9 rounded-full border border-slate-300 overflow-hidden shadow-md flex items-center justify-center bg-slate-50 cursor-pointer transform hover:scale-105 transition-all">
-                                <svg class="w-4 h-4 text-slate-400 pointer-events-none absolute z-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-                                <input type="color" id="custom-color-picker" oninput="setColor(this.value)" class="absolute inset-0 opacity-0 w-full h-full cursor-pointer z-10">
-                            </div>
-                        </div>
-                    </div>
+                        <!-- PANEL DE CONTROL CON TABS (MENÚ) -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden flex flex-col" style="min-height: 480px;">
+                <!-- Cabecera de Navegación de Tabs -->
+                <div class="flex border-b border-slate-100 bg-slate-50/50 p-1.5 gap-1 select-none">
+                    <button onclick="switchTab('tab-prenda')" id="btn-tab-prenda" class="flex-1 py-2.5 px-1 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-indigo-600 bg-white shadow-sm border border-slate-200/50">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        Prenda
+                    </button>
+                    <button onclick="switchTab('tab-graficos')" id="btn-tab-graficos" class="flex-1 py-2.5 px-1 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-slate-500 hover:text-slate-800">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        Gráficos
+                    </button>
+                    <button onclick="switchTab('tab-plantillas')" id="btn-tab-plantillas" class="flex-1 py-2.5 px-1 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-slate-500 hover:text-slate-800">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                        Plantillas
+                    </button>
+                    <button onclick="switchTab('tab-ajustes')" id="btn-tab-ajustes" class="flex-1 py-2.5 px-1 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-slate-500 hover:text-slate-800">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31(2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        Ajustes
+                    </button>
                 </div>
-            </div>
 
-            <!-- PANEL: SUBIR ARTE Y TEXTO -->
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6">
-                <h3 class="font-bold text-gray-900 text-base mb-4 flex items-center gap-2">
-                    <span class="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    </span>
-                    2. Elementos Gráficos
-                </h3>
-
-                <!-- TABS DE ELEMENTOS: IMAGEN / TEXTO -->
-                <div class="space-y-4">
-                    <!-- Subir Imagen -->
-                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                        <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Subir Imagen o Logotipo</span>
-                        
-                        <label id="drop-zone" class="border-2 border-dashed border-slate-200 hover:border-indigo-500 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer transition-all bg-white group">
-                            <input type="file" id="image-input" accept="image/*" class="hidden" onchange="handleImageUpload(event)" />
-                            <svg class="w-8 h-8 text-slate-400 group-hover:text-indigo-500 mb-2 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                            <span class="text-xs font-bold text-slate-700 text-center">Haz clic o arrastra tu archivo</span>
-                            <span class="text-[10px] text-slate-400 mt-1">PNG, JPG (Recomendado fondo transparente)</span>
-                        </label>
-                    </div>
-
-                    <!-- Añadir Texto -->
-                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 space-y-3">
-                        <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Añadir Texto Personalizado</span>
-                        
-                        <div class="flex gap-2">
-                            <input type="text" id="text-input" placeholder="Escribí algo..." class="block w-full rounded-lg border-slate-200 border px-3 py-2 text-xs focus:ring-indigo-500 focus:border-indigo-500" />
-                            <button onclick="handleCreateText()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold transition-all shrink-0 active:scale-95">
-                                Añadir
-                            </button>
+                <!-- Área de Contenido de los Tabs -->
+                <div class="p-6 flex-1 overflow-y-auto">
+                    
+                    <!-- TAB 1: PRENDA -->
+                    <div id="tab-prenda" class="tab-pane space-y-6">
+                        <div>
+                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Corte / Tipo de Camiseta</span>
+                            <div class="grid grid-cols-3 gap-2">
+                                <label class="flex flex-col items-center justify-center gap-1 border-2 border-slate-100 rounded-xl p-2 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
+                                    <input type="radio" name="style" value="regular" checked class="hidden" onchange="updateStyle('regular')">
+                                    <span class="text-xs font-bold text-slate-700">Normal</span>
+                                </label>
+                                <label class="flex flex-col items-center justify-center gap-1 border-2 border-slate-100 rounded-xl p-2 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
+                                    <input type="radio" name="style" value="mujer" class="hidden" onchange="updateStyle('mujer')">
+                                    <span class="text-xs font-bold text-slate-700">Mujer Fit</span>
+                                </label>
+                                <label class="flex flex-col items-center justify-center gap-1 border-2 border-slate-100 rounded-xl p-2 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
+                                    <input type="radio" name="style" value="polo" class="hidden" onchange="updateStyle('polo')">
+                                    <span class="text-xs font-bold text-slate-700">Tipo Polo</span>
+                                </label>
+                            </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Fuente</label>
-                                <select id="text-font" class="block w-full rounded-lg border-slate-200 border p-2 text-xs">
-                                    <option value="'Montserrat', sans-serif">Montserrat (Moderna)</option>
-                                    <option value="'Pacifico', cursive">Pacifico (Retro)</option>
-                                    <option value="'Playfair Display', serif">Playfair (Elegante)</option>
-                                    <option value="'Bebas Neue', sans-serif">Bebas Neue (Impacto)</option>
-                                    <option value="'Outfit', sans-serif">Outfit (Premium)</option>
-                                </select>
+                        <div>
+                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Estilo de Manga</span>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="flex items-center justify-center gap-2 border-2 border-slate-100 rounded-xl p-3 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
+                                    <input type="radio" name="type" value="manga-corta" checked class="hidden" onchange="updateSleeve('manga-corta')">
+                                    <span class="text-xs font-bold text-slate-700">Manga Corta</span>
+                                </label>
+                                <label class="flex items-center justify-center gap-2 border-2 border-slate-100 rounded-xl p-3 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
+                                    <input type="radio" name="type" value="manga-larga" class="hidden" onchange="updateSleeve('manga-larga')">
+                                    <span class="text-xs font-bold text-slate-700">Manga Larga</span>
+                                </label>
                             </div>
-                            <div>
-                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Color de Texto</label>
-                                <div class="flex gap-1.5 items-center mt-1">
-                                    <button onclick="setTextColor('#ffffff')" class="text-color-btn w-5 h-5 rounded-full border border-slate-300 ring-2 ring-indigo-500" style="background:#ffffff" data-color="#ffffff" title="Blanco"></button>
-                                    <button onclick="setTextColor('#1e293b')" class="text-color-btn w-5 h-5 rounded-full border border-slate-300" style="background:#1e293b" data-color="#1e293b" title="Carbono"></button>
-                                    <button onclick="setTextColor('#ea580c')" class="text-color-btn w-5 h-5 rounded-full border border-slate-300" style="background:#ea580c" data-color="#ea580c" title="Naranja"></button>
-                                    <button onclick="setTextColor('#f43f5e')" class="text-color-btn w-5 h-5 rounded-full border border-slate-300" style="background:#f43f5e" data-color="#f43f5e" title="Rojo"></button>
-                                    
-                                    <div class="relative w-5 h-5 rounded-full border border-slate-300 overflow-hidden flex items-center justify-center bg-slate-50 cursor-pointer">
-                                        <svg class="w-3 h-3 text-slate-400 pointer-events-none absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-                                        <input type="color" id="text-color-picker" oninput="setTextColor(this.value)" class="absolute inset-0 opacity-0 w-full h-full cursor-pointer">
+                        </div>
+
+                        <div>
+                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Material / Textura</span>
+                            <div class="grid grid-cols-3 gap-2.5">
+                                <button onclick="setMaterial('cotton')" id="mat-btn-cotton" class="px-3 py-2.5 rounded-xl text-xs font-bold border-2 border-indigo-600 bg-indigo-50/30 text-indigo-700 transition-all">
+                                    Algodón
+                                </button>
+                                <button onclick="setMaterial('polyester')" id="mat-btn-polyester" class="px-3 py-2.5 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all">
+                                    Poliéster
+                                </button>
+                                <button onclick="setMaterial('heather')" id="mat-btn-heather" class="px-3 py-2.5 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all">
+                                    Jaspeado
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Color de la Prenda</span>
+                            <div class="flex flex-wrap gap-2.5 items-center">
+                                <button onclick="setColor('#ffffff')" class="color-btn w-9 h-9 rounded-full border-2 border-slate-200 ring-2 ring-indigo-500 shadow-md transform hover:scale-105 transition-all" style="background:#ffffff" data-color="#ffffff" title="Blanco"></button>
+                                <button onclick="setColor('#2F3E46')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#2F3E46" data-color="#2F3E46" title="Carbono"></button>
+                                <button onclick="setColor('#0e1111')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#0e1111" data-color="#0e1111" title="Negro"></button>
+                                <button onclick="setColor('#1D3557')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#1D3557" data-color="#1D3557" title="Azul Marino"></button>
+                                <button onclick="setColor('#2A9D8F')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#2A9D8F" data-color="#2A9D8F" title="Verde Bosque"></button>
+                                <button onclick="setColor('#9B2226')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#9B2226" data-color="#9B2226" title="Carmesí"></button>
+                                <button onclick="setColor('#E9C46A')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#E9C46A" data-color="#E9C46A" title="Mostaza"></button>
+                                <button onclick="setColor('#ffccd5')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#ffccd5" data-color="#ffccd5" title="Rosa Pastel"></button>
+                                <div class="relative w-9 h-9 rounded-full border border-slate-300 overflow-hidden shadow-md flex items-center justify-center bg-slate-50 cursor-pointer transform hover:scale-105 transition-all">
+                                    <svg class="w-4 h-4 text-slate-400 pointer-events-none absolute z-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                                    <input type="color" id="custom-color-picker" oninput="setColor(this.value)" class="absolute inset-0 opacity-0 w-full h-full cursor-pointer z-10">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: GRAFICOS & TEXTO -->
+                    <div id="tab-graficos" class="tab-pane hidden space-y-5">
+                        <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                             <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Subir Imagen o Logotipo</span>
+                             <label id="drop-zone" class="border-2 border-dashed border-slate-200 hover:border-indigo-500 rounded-xl p-5 flex flex-col items-center justify-center cursor-pointer transition-all bg-white group">
+                                 <input type="file" id="image-input" accept="image/*" class="hidden" onchange="handleImageUpload(event)" />
+                                 <svg class="w-7 h-7 text-slate-400 group-hover:text-indigo-500 mb-1 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                 <span class="text-xs font-bold text-slate-700 text-center">Haz clic o arrastra tu archivo</span>
+                                 <span class="text-[10px] text-slate-400 mt-0.5">PNG, JPG (Fondo transparente recomendado)</span>
+                             </label>
+                        </div>
+
+                        <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 space-y-3">
+                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Añadir Texto Personalizado</span>
+                            <div class="flex gap-2">
+                                <input type="text" id="text-input" placeholder="Escribí algo..." class="block w-full rounded-lg border-slate-200 border px-3 py-2 text-xs focus:ring-indigo-500 focus:border-indigo-500" />
+                                <button onclick="handleCreateText()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold transition-all shrink-0 active:scale-95">
+                                    Añadir
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Fuente</label>
+                                    <select id="text-font" class="block w-full rounded-lg border-slate-200 border p-2 text-xs">
+                                        <option value="'Montserrat', sans-serif">Montserrat (Moderna)</option>
+                                        <option value="'Pacifico', cursive">Pacifico (Retro)</option>
+                                        <option value="'Playfair Display', serif">Playfair (Elegante)</option>
+                                        <option value="'Bebas Neue', sans-serif">Bebas Neue (Impacto)</option>
+                                        <option value="'Outfit', sans-serif">Outfit (Premium)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Color de Texto</label>
+                                    <div class="flex gap-1.5 items-center mt-1">
+                                        <button onclick="setTextColor('#ffffff')" class="text-color-btn w-5 h-5 rounded-full border border-slate-300 ring-2 ring-indigo-500" style="background:#ffffff" data-color="#ffffff" title="Blanco"></button>
+                                        <button onclick="setTextColor('#1e293b')" class="text-color-btn w-5 h-5 rounded-full border border-slate-300" style="background:#1e293b" data-color="#1e293b" title="Carbono"></button>
+                                        <button onclick="setTextColor('#ea580c')" class="text-color-btn w-5 h-5 rounded-full border border-slate-300" style="background:#ea580c" data-color="#ea580c" title="Naranja"></button>
+                                        <button onclick="setTextColor('#f43f5e')" class="text-color-btn w-5 h-5 rounded-full border border-slate-300" style="background:#f43f5e" data-color="#f43f5e" title="Rojo"></button>
+                                        <div class="relative w-5 h-5 rounded-full border border-slate-300 overflow-hidden flex items-center justify-center bg-slate-50 cursor-pointer">
+                                            <svg class="w-3 h-3 text-slate-400 pointer-events-none absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                                            <input type="color" id="text-color-picker" oninput="setTextColor(this.value)" class="absolute inset-0 opacity-0 w-full h-full cursor-pointer">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- PANEL: TEMPLATES PREDISEÑADOS -->
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6">
-                <h3 class="font-bold text-gray-900 text-base mb-4 flex items-center gap-2">
-                    <span class="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-                    </span>
-                    3. Diseños de Plantilla Rápidos
-                </h3>
-                <p class="text-xs text-slate-400 mb-3 leading-relaxed">¿No tenés una imagen a mano? Hacé clic en una plantilla de abajo para probar el estudio inmediatamente:</p>
-                
-                <div class="grid grid-cols-4 gap-3">
-                    <!-- Template 1: Pura Vida Sunset -->
-                    <button onclick="addTemplate('sunset')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-1.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex flex-col items-center">
-                        <svg viewBox="0 0 100 100" class="w-12 h-12 shadow-sm rounded-lg bg-white">
-                            <circle cx="50" cy="45" r="35" fill="#f97316"/>
-                            <rect x="0" y="50" width="100" height="3" fill="#ffffff" />
-                            <rect x="0" y="58" width="100" height="4" fill="#ffffff" />
-                            <rect x="0" y="68" width="100" height="5" fill="#ffffff" />
-                            <text x="50" y="38" font-family="'Pacifico'" font-size="12" fill="#ffffff" text-anchor="middle">Pura Vida</text>
-                        </svg>
-                        <span class="text-[9px] font-bold text-slate-500 mt-1">Retro Sun</span>
-                    </button>
+                    <!-- TAB 3: PLANTILLAS -->
+                    <div id="tab-plantillas" class="tab-pane hidden space-y-4">
+                        <p class="text-xs text-slate-400 leading-relaxed">¿No tenés una imagen a mano? Hacé clic en una plantilla de abajo para probar el estudio inmediatamente:</p>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="addTemplate('sunset')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                <svg viewBox="0 0 100 100" class="w-12 h-12 shadow-sm rounded-lg bg-white shrink-0">
+                                    <circle cx="50" cy="45" r="35" fill="#f97316"/>
+                                    <rect x="0" y="50" width="100" height="3" fill="#ffffff" />
+                                    <rect x="0" y="58" width="100" height="4" fill="#ffffff" />
+                                    <rect x="0" y="68" width="100" height="5" fill="#ffffff" />
+                                    <text x="50" y="38" font-family="'Pacifico'" font-size="12" fill="#ffffff" text-anchor="middle">Pura Vida</text>
+                                </svg>
+                                <div class="text-left">
+                                    <span class="block text-xs font-bold text-slate-700">Retro Sun</span>
+                                    <span class="text-[10px] text-slate-400">Atardecer vintage</span>
+                                </div>
+                            </button>
 
-                    <!-- Template 2: Developer Life -->
-                    <button onclick="addTemplate('dev')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-1.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex flex-col items-center">
-                        <svg viewBox="0 0 100 100" class="w-12 h-12 shadow-sm rounded-lg bg-slate-900">
-                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
-                            <text x="50" y="55" font-family="monospace" font-size="10" font-weight="bold" fill="#38bdf8" text-anchor="middle">DEV // LIFE</text>
-                            <text x="50" y="72" font-family="monospace" font-size="7" fill="#a7f3d0" text-anchor="middle">eat_sleep_code();</text>
-                        </svg>
-                        <span class="text-[9px] font-bold text-slate-500 mt-1">Developer</span>
-                    </button>
+                            <button onclick="addTemplate('dev')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                <svg viewBox="0 0 100 100" class="w-12 h-12 shadow-sm rounded-lg bg-slate-900 shrink-0">
+                                    <rect x="10" y="10" width="80" height="80" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+                                    <text x="50" y="55" font-family="monospace" font-size="10" font-weight="bold" fill="#38bdf8" text-anchor="middle">DEV // LIFE</text>
+                                    <text x="50" y="72" font-family="monospace" font-size="7" fill="#a7f3d0" text-anchor="middle">eat_sleep_code();</text>
+                                </svg>
+                                <div class="text-left">
+                                    <span class="block text-xs font-bold text-slate-700">Developer</span>
+                                    <span class="text-[10px] text-slate-400">Código de programación</span>
+                                </div>
+                            </button>
 
-                    <!-- Template 3: Wilderness Mountains -->
-                    <button onclick="addTemplate('mountains')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-1.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex flex-col items-center">
-                        <svg viewBox="0 0 100 100" class="w-12 h-12 shadow-sm rounded-lg bg-white">
-                            <circle cx="50" cy="45" r="22" fill="#fecdd3" opacity="0.6"/>
-                            <path d="M 15 75 L 45 30 L 70 75 Z" fill="#475569" opacity="0.8"/>
-                            <path d="M 40 75 L 65 40 L 90 75 Z" fill="#334155"/>
-                            <text x="50" y="90" font-family="sans-serif" font-weight="900" font-size="7" fill="#1e293b" text-anchor="middle">WILDERNESS</text>
-                        </svg>
-                        <span class="text-[9px] font-bold text-slate-500 mt-1">Montañas</span>
-                    </button>
+                            <button onclick="addTemplate('mountains')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                <svg viewBox="0 0 100 100" class="w-12 h-12 shadow-sm rounded-lg bg-white shrink-0">
+                                    <circle cx="50" cy="45" r="22" fill="#fecdd3" opacity="0.6"/>
+                                    <path d="M 15 75 L 45 30 L 70 75 Z" fill="#475569" opacity="0.8"/>
+                                    <path d="M 40 75 L 65 40 L 90 75 Z" fill="#334155"/>
+                                    <text x="50" y="90" font-family="sans-serif" font-weight="900" font-size="7" fill="#1e293b" text-anchor="middle">WILDERNESS</text>
+                                </svg>
+                                <div class="text-left">
+                                    <span class="block text-xs font-bold text-slate-700">Montañas</span>
+                                    <span class="text-[10px] text-slate-400">Minimalista de naturaleza</span>
+                                </div>
+                            </button>
 
-                    <!-- Template 4: Coffee Mug Mascot -->
-                    <button onclick="addTemplate('coffee')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-1.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex flex-col items-center">
-                        <svg viewBox="0 0 100 100" class="w-12 h-12 shadow-sm rounded-lg bg-orange-50">
-                            <rect x="35" y="30" width="30" height="30" rx="6" fill="#fdba74" stroke="#7c2d12" stroke-width="2"/>
-                            <path d="M 65 37 C 75 37 75 53 65 53" stroke="#7c2d12" stroke-width="2" fill="none"/>
-                            <circle cx="43" cy="42" r="2" fill="#7c2d12"/>
-                            <circle cx="57" cy="42" r="2" fill="#7c2d12"/>
-                            <path d="M 48 48 Q 50 51 52 48" stroke="#7c2d12" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                            <text x="50" y="80" font-family="sans-serif" font-weight="bold" font-size="7" fill="#7c2d12" text-anchor="middle">Coffee Time</text>
-                        </svg>
-                        <span class="text-[9px] font-bold text-slate-500 mt-1">Coffee Mascot</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- PANEL: AJUSTES DE SOMBRAS Y TEXTURAS -->
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 space-y-4">
-                <h3 class="font-bold text-gray-900 text-base flex items-center gap-2">
-                    <span class="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    </span>
-                    4. Renderizado y Acabado
-                </h3>
-
-                <div class="space-y-4">
-                    <div>
-                        <div class="flex justify-between text-xs mb-1.5">
-                            <span class="font-bold text-slate-700">Intensidad de Arrugas / Sombra</span>
-                            <span id="shadow-val" class="font-semibold text-slate-500">45%</span>
+                            <button onclick="addTemplate('coffee')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                <svg viewBox="0 0 100 100" class="w-12 h-12 shadow-sm rounded-lg bg-orange-50 shrink-0">
+                                    <rect x="35" y="30" width="30" height="30" rx="6" fill="#fdba74" stroke="#7c2d12" stroke-width="2"/>
+                                    <path d="M 65 37 C 75 37 75 53 65 53" stroke="#7c2d12" stroke-width="2" fill="none"/>
+                                    <circle cx="43" cy="42" r="2" fill="#7c2d12"/>
+                                    <circle cx="57" cy="42" r="2" fill="#7c2d12"/>
+                                    <path d="M 48 48 Q 50 51 52 48" stroke="#7c2d12" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                                    <text x="50" y="80" font-family="sans-serif" font-weight="bold" font-size="7" fill="#7c2d12" text-anchor="middle">Coffee Time</text>
+                                </svg>
+                                <div class="text-left">
+                                    <span class="block text-xs font-bold text-slate-700">Mascota Café</span>
+                                    <span class="text-[10px] text-slate-400">Taza de café animada</span>
+                                </div>
+                            </button>
                         </div>
-                        <input type="range" id="shading-intensity" min="10" max="90" value="45" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600" oninput="updateShadingIntensity(this.value)" />
                     </div>
 
-                    <div>
-                        <div class="flex justify-between text-xs mb-1.5">
-                            <span class="font-bold text-slate-700">Opacidad de la Textura (Tela)</span>
-                            <span id="texture-val" class="font-semibold text-slate-500">60%</span>
+                    <!-- TAB 4: AJUSTES -->
+                    <div id="tab-ajustes" class="tab-pane hidden space-y-5">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1.5">
+                                <span class="font-bold text-slate-700">Intensidad de Arrugas / Sombra</span>
+                                <span id="shadow-val" class="font-semibold text-slate-500">45%</span>
+                            </div>
+                            <input type="range" id="shading-intensity" min="10" max="90" value="45" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600" oninput="updateShadingIntensity(this.value)" />
                         </div>
-                        <input type="range" id="texture-opacity" min="10" max="100" value="60" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600" oninput="updateTextureOpacity(this.value)" />
+
+                        <div>
+                            <div class="flex justify-between text-xs mb-1.5">
+                                <span class="font-bold text-slate-700">Opacidad de la Textura (Tela)</span>
+                                <span id="texture-val" class="font-semibold text-slate-500">60%</span>
+                            </div>
+                            <input type="range" id="texture-opacity" min="10" max="100" value="60" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600" oninput="updateTextureOpacity(this.value)" />
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- RESUMEN DE COTIZACION Y PEDIDO WHATSAPP -->
+            </div>\n\n            <!-- RESUMEN DE COTIZACION Y PEDIDO WHATSAPP -->
             <div class="bg-gradient-to-br from-indigo-900 to-slate-950 text-white rounded-2xl shadow-xl border border-indigo-950 p-6 relative overflow-hidden">
                 <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl"></div>
                 
@@ -482,8 +607,26 @@
 </section>
 
 <script>
+    // TABS / MENU LOGIC
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+        document.getElementById(tabId).classList.remove('hidden');
+
+        document.querySelectorAll('[id^="btn-tab-"]').forEach(btn => {
+            btn.className = "flex-1 py-2.5 px-1 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-slate-500 hover:text-slate-800";
+        });
+
+        const activeBtn = document.getElementById(`btn-${tabId}`);
+        if (activeBtn) {
+            activeBtn.className = "flex-1 py-2.5 px-1 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-indigo-600 bg-white shadow-sm border border-slate-200/50";
+        }
+    }
+
     // PRESETS & STATE
+    
+    let garmentStyle = 'regular'; // 'regular' | 'mujer' | 'polo'
     let frontElements = [];
+
     let backElements = [];
     let currentView = 'front'; // 'front' | 'back'
     let selectedElementId = null;
@@ -530,7 +673,7 @@
         document.querySelectorAll('#tshirt-overlay-svg .overlay-group').forEach(el => el.classList.add('hidden'));
 
         // Identify group ID suffix
-        let suffix = `${currentView}-${garmentSleeve === 'manga-larga' ? 'long' : 'short'}`;
+        let suffix = `${currentView}-${garmentSleeve === 'manga-larga' ? 'long' : 'short'}-${garmentStyle}`;
         
         // Show correct base and overlay groups
         const activeBase = document.getElementById(`base-${suffix}`);
@@ -544,6 +687,29 @@
         updateShadingIntensity(shadingIntensity * 100);
         updateTextureOpacity(textureOpacity * 100);
         setMaterial(garmentMaterial);
+    }
+
+    
+    // UPDATE GARMENT STYLE (REGULAR, MUJER, POLO)
+    function updateStyle(style) {
+        garmentStyle = style;
+        
+        // Disable long sleeve for mujer and polo (only regular short sleeve is supported/realistic)
+        const longSleeveLabel = document.querySelector('input[value="manga-larga"]').closest('label');
+        if (style === 'mujer' || style === 'polo') {
+            longSleeveLabel.style.opacity = '0.35';
+            longSleeveLabel.style.pointerEvents = 'none';
+            if (garmentSleeve === 'manga-larga') {
+                document.querySelector('input[value="manga-corta"]').checked = true;
+                garmentSleeve = 'manga-corta';
+            }
+        } else {
+            longSleeveLabel.style.opacity = '1';
+            longSleeveLabel.style.pointerEvents = 'auto';
+        }
+        
+        updateActiveGroup();
+        updatePrice();
     }
 
     // TOGGLE FRONT/BACK VISTA
@@ -1012,7 +1178,8 @@
 
     // ESTIMATE & UPDATE PRICE
     function updatePrice() {
-        let basePrice = 7500; // base price manga corta
+        let basePrice = 7500;
+        if (garmentStyle === 'polo') basePrice = 9000;
         
         if (garmentSleeve === 'manga-larga') {
             basePrice += 2000;
@@ -1197,6 +1364,7 @@
 
         let detailString = `Hola Wilberth! Estuve diseñando una camiseta en tu demo.\n\n`;
         detailString += `*Detalles del pedido:*\n`;
+        detailString += `- Estilo / Corte: ${garmentStyle === 'regular' ? 'Normal' : garmentStyle === 'mujer' ? 'Mujer Fit' : 'Tipo Polo'}\n`;
         detailString += `- Tipo de Manga: ${garmentSleeve === 'manga-corta' ? 'Manga Corta' : 'Manga Larga'}\n`;
         detailString += `- Material/Textura: ${garmentMaterial.charAt(0).toUpperCase() + garmentMaterial.slice(1)}\n`;
         detailString += `- Color de Camiseta: ${garmentColor}\n`;
