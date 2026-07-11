@@ -159,7 +159,7 @@
 
                     <!-- DESIGN INTERACTIVE CANVAS (z-10) -->
                     <!-- Absolute coordinates matching torso chest/back area -->
-                    <div id="printable-zone" class="absolute left-[29%] top-[22%] w-[42%] h-[56%] z-10 overflow-visible rounded border border-dashed border-white/20 hover:border-indigo-500/50 transition-colors">
+                    <div id="printable-zone" class="absolute left-[29%] top-[22%] w-[42%] h-[56%] z-10 overflow-hidden rounded border border-dashed border-white/20 hover:border-indigo-500/50 transition-colors">
                         <!-- Custom layers (image/text) will be dynamically loaded here by JS -->
                     </div>
 
