@@ -568,6 +568,116 @@
                                 </div>
                             </button>
                         </div>
+
+                        <div class="border-t border-slate-100 pt-4 mt-2">
+                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Plantillas de Texto (WordArt)</span>
+                            <p class="text-[10px] text-slate-400 mb-2">Hacé clic para agregar texto decorado. Seleccioná el texto en la camiseta para editarlo.</p>
+                            <div class="grid grid-cols-2 gap-3">
+                                <!-- Arco -->
+                                <button onclick="addTextTemplate('arch')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                    <svg viewBox="0 0 100 70" class="w-12 h-10 shadow-sm rounded-lg bg-white shrink-0 overflow-visible">
+                                        <defs><path id="arch-path" d="M 10 55 Q 50 0 90 55" fill="none"/></defs>
+                                        <text font-family="'Montserrat',sans-serif" font-size="14" font-weight="900" fill="#6d28d9" letter-spacing="2"><textPath href="#arch-path" startOffset="50%" text-anchor="middle">ARCO</textPath></text>
+                                    </svg>
+                                    <div class="text-left">
+                                        <span class="block text-xs font-bold text-slate-700">Arco</span>
+                                        <span class="text-[10px] text-slate-400">Texto curvado hacia arriba</span>
+                                    </div>
+                                </button>
+
+                                <!-- Onda -->
+                                <button onclick="addTextTemplate('wave')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                    <svg viewBox="0 0 100 70" class="w-12 h-10 shadow-sm rounded-lg bg-white shrink-0 overflow-visible">
+                                        <defs><path id="wave-path" d="M 5 40 C 20 15 35 60 50 35 C 65 10 80 55 95 30" fill="none"/></defs>
+                                        <text font-family="'Pacifico',cursive" font-size="13" fill="#e11d48" letter-spacing="1"><textPath href="#wave-path" startOffset="50%" text-anchor="middle">ONDA</textPath></text>
+                                    </svg>
+                                    <div class="text-left">
+                                        <span class="block text-xs font-bold text-slate-700">Onda</span>
+                                        <span class="text-[10px] text-slate-400">Texto con ondulación</span>
+                                    </div>
+                                </button>
+
+                                <!-- Círculo -->
+                                <button onclick="addTextTemplate('circle')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                    <svg viewBox="0 0 100 100" class="w-12 h-12 shadow-sm rounded-lg bg-slate-900 shrink-0">
+                                        <defs><path id="circle-path" d="M 50 15 A 35 35 0 1 1 49.99 15" fill="none"/></defs>
+                                        <text font-family="'Bebas Neue',sans-serif" font-size="11" fill="#facc15" letter-spacing="4"><textPath href="#circle-path" startOffset="0%">CÍRCULO • DISEÑO • </textPath></text>
+                                    </svg>
+                                    <div class="text-left">
+                                        <span class="block text-xs font-bold text-slate-700">Círculo</span>
+                                        <span class="text-[10px] text-slate-400">Texto en círculo completo</span>
+                                    </div>
+                                </button>
+
+                                <!-- Contorno / Stroke -->
+                                <button onclick="addTextTemplate('outline')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                    <svg viewBox="0 0 100 60" class="w-12 h-10 shadow-sm rounded-lg bg-white shrink-0">
+                                        <text x="50" y="42" font-family="'Montserrat',sans-serif" font-size="24" font-weight="900" fill="none" stroke="#1e40af" stroke-width="2" text-anchor="middle">HOLA</text>
+                                    </svg>
+                                    <div class="text-left">
+                                        <span class="block text-xs font-bold text-slate-700">Contorno</span>
+                                        <span class="text-[10px] text-slate-400">Solo borde del texto</span>
+                                    </div>
+                                </button>
+
+                                <!-- Sombra 3D -->
+                                <button onclick="addTextTemplate('shadow3d')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                    <svg viewBox="0 0 100 60" class="w-12 h-10 shadow-sm rounded-lg bg-white shrink-0">
+                                        <text x="53" y="44" font-family="'Montserrat',sans-serif" font-size="22" font-weight="900" fill="#d1d5db" text-anchor="middle">3D</text>
+                                        <text x="50" y="41" font-family="'Montserrat',sans-serif" font-size="22" font-weight="900" fill="#7c3aed" text-anchor="middle">3D</text>
+                                    </svg>
+                                    <div class="text-left">
+                                        <span class="block text-xs font-bold text-slate-700">Sombra 3D</span>
+                                        <span class="text-[10px] text-slate-400">Efecto de profundidad</span>
+                                    </div>
+                                </button>
+
+                                <!-- Gradiente -->
+                                <button onclick="addTextTemplate('gradient')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                    <svg viewBox="0 0 100 60" class="w-12 h-10 shadow-sm rounded-lg bg-slate-900 shrink-0">
+                                        <defs>
+                                            <linearGradient id="grad-preview" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stop-color="#f97316"/>
+                                                <stop offset="100%" stop-color="#ec4899"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <text x="50" y="40" font-family="'Outfit',sans-serif" font-size="20" font-weight="800" fill="url(#grad-preview)" text-anchor="middle">FUEGO</text>
+                                    </svg>
+                                    <div class="text-left">
+                                        <span class="block text-xs font-bold text-slate-700">Gradiente</span>
+                                        <span class="text-[10px] text-slate-400">Color degradado naranja-rosa</span>
+                                    </div>
+                                </button>
+
+                                <!-- Vintage Badge -->
+                                <button onclick="addTextTemplate('badge')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                    <svg viewBox="0 0 100 100" class="w-12 h-12 shadow-sm rounded-lg bg-white shrink-0">
+                                        <circle cx="50" cy="50" r="38" fill="none" stroke="#92400e" stroke-width="3"/>
+                                        <circle cx="50" cy="50" r="32" fill="none" stroke="#92400e" stroke-width="1"/>
+                                        <text x="50" y="46" font-family="'Bebas Neue',sans-serif" font-size="14" fill="#92400e" text-anchor="middle" letter-spacing="2">PREMIUM</text>
+                                        <text x="50" y="62" font-family="'Montserrat',sans-serif" font-size="7" fill="#92400e" text-anchor="middle" letter-spacing="3">QUALITY</text>
+                                        <line x1="20" y1="48" x2="80" y2="48" stroke="#92400e" stroke-width="0.5"/>
+                                    </svg>
+                                    <div class="text-left">
+                                        <span class="block text-xs font-bold text-slate-700">Badge Vintage</span>
+                                        <span class="text-[10px] text-slate-400">Emblema estilo retro</span>
+                                    </div>
+                                </button>
+
+                                <!-- Glitch -->
+                                <button onclick="addTextTemplate('glitch')" class="border border-slate-200 hover:border-indigo-500 rounded-xl p-2.5 bg-slate-50 hover:bg-indigo-50/20 transition-all flex items-center gap-3">
+                                    <svg viewBox="0 0 100 60" class="w-12 h-10 shadow-sm rounded-lg bg-slate-950 shrink-0">
+                                        <text x="52" y="40" font-family="monospace" font-size="20" font-weight="bold" fill="#22d3ee" text-anchor="middle" opacity="0.7">CODE</text>
+                                        <text x="48" y="38" font-family="monospace" font-size="20" font-weight="bold" fill="#f43f5e" text-anchor="middle" opacity="0.7">CODE</text>
+                                        <text x="50" y="39" font-family="monospace" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">CODE</text>
+                                    </svg>
+                                    <div class="text-left">
+                                        <span class="block text-xs font-bold text-slate-700">Glitch</span>
+                                        <span class="text-[10px] text-slate-400">Efecto digital roto</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- TAB 4: AJUSTES -->
@@ -996,6 +1106,63 @@
                 <circle cx="78" cy="92" r="3" fill="%23f87171" opacity="0.7"/>
                 <circle cx="122" cy="92" r="3" fill="%23f87171" opacity="0.7"/>
                 <text x="100" y="155" font-family="sans-serif" font-size="15" font-weight="bold" fill="%237c2d12" text-anchor="middle">Coffee Time</text>
+            </svg>`;
+        }
+
+        const dataUri = `data:image/svg+xml;utf8,${svgString}`;
+        addImageElement(dataUri);
+    }
+
+    // WORDART TEXT TEMPLATES
+    function addTextTemplate(type) {
+        let svgString = '';
+        const userText = prompt('Escribí tu texto:', type === 'arch' ? 'ARCO' : type === 'wave' ? 'ONDA' : type === 'circle' ? 'DISEÑO' : type === 'outline' ? 'HOLA' : type === 'shadow3d' ? '3D' : type === 'gradient' ? 'FUEGO' : type === 'badge' ? 'PREMIUM' : 'CODE');
+        if (!userText) return;
+
+        const encoded = userText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+        if (type === 'arch') {
+            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180">
+                <defs><path id="arch-p" d="M 30 150 Q 150 10 270 150" fill="none"/></defs>
+                <text font-family="'Montserrat',sans-serif" font-size="48" font-weight="900" fill="%236d28d9" letter-spacing="4"><textPath href="#arch-p" startOffset="50%" text-anchor="middle">${encoded}</textPath></text>
+            </svg>`;
+        } else if (type === 'wave') {
+            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
+                <defs><path id="wave-p" d="M 10 70 C 60 10 100 110 150 50 C 200 -10 240 100 290 40" fill="none"/></defs>
+                <text font-family="'Pacifico',cursive" font-size="40" fill="%23e11d48" letter-spacing="2"><textPath href="#wave-p" startOffset="50%" text-anchor="middle">${encoded}</textPath></text>
+            </svg>`;
+        } else if (type === 'circle') {
+            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+                <defs><path id="circ-p" d="M 100 25 A 75 75 0 1 1 99.99 25" fill="none"/></defs>
+                <text font-family="'Bebas Neue',sans-serif" font-size="22" fill="%23facc15" letter-spacing="6"><textPath href="#circ-p" startOffset="0%">${encoded} • ${encoded} • </textPath></text>
+            </svg>`;
+        } else if (type === 'outline') {
+            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+                <text x="150" y="72" font-family="'Montserrat',sans-serif" font-size="72" font-weight="900" fill="none" stroke="%231e40af" stroke-width="3" text-anchor="middle" letter-spacing="6">${encoded}</text>
+            </svg>`;
+        } else if (type === 'shadow3d') {
+            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+                <text x="155" y="75" font-family="'Montserrat',sans-serif" font-size="72" font-weight="900" fill="%23d1d5db" text-anchor="middle" letter-spacing="4">${encoded}</text>
+                <text x="150" y="72" font-family="'Montserrat',sans-serif" font-size="72" font-weight="900" fill="%237c3aed" text-anchor="middle" letter-spacing="4">${encoded}</text>
+            </svg>`;
+        } else if (type === 'gradient') {
+            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+                <defs><linearGradient id="gfill" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" stop-color="%23f97316"/><stop offset="100%25" stop-color="%23ec4899"/></linearGradient></defs>
+                <text x="150" y="72" font-family="'Outfit',sans-serif" font-size="72" font-weight="800" fill="url(%23gfill)" text-anchor="middle" letter-spacing="4">${encoded}</text>
+            </svg>`;
+        } else if (type === 'badge') {
+            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+                <circle cx="100" cy="100" r="85" fill="none" stroke="%2392400e" stroke-width="5"/>
+                <circle cx="100" cy="100" r="75" fill="none" stroke="%2392400e" stroke-width="2"/>
+                <text x="100" y="95" font-family="'Bebas Neue',sans-serif" font-size="36" fill="%2392400e" text-anchor="middle" letter-spacing="4">${encoded}</text>
+                <line x1="35" y1="100" x2="165" y2="100" stroke="%2392400e" stroke-width="1"/>
+                <text x="100" y="120" font-family="'Montserrat',sans-serif" font-size="12" fill="%2392400e" text-anchor="middle" letter-spacing="6">QUALITY</text>
+            </svg>`;
+        } else if (type === 'glitch') {
+            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+                <text x="153" y="65" font-family="monospace" font-size="52" font-weight="bold" fill="%2322d3ee" text-anchor="middle" opacity="0.7">${encoded}</text>
+                <text x="147" y="62" font-family="monospace" font-size="52" font-weight="bold" fill="%23f43f5e" text-anchor="middle" opacity="0.7">${encoded}</text>
+                <text x="150" y="63" font-family="monospace" font-size="52" font-weight="bold" fill="%23ffffff" text-anchor="middle">${encoded}</text>
             </svg>`;
         }
 
