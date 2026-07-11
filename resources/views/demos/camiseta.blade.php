@@ -1455,14 +1455,111 @@
     });
 
     // GENERATE AND DOWNLOAD COMPOSITED IMAGE PNG
-    function getSvgImage(svgId) {
+    function getSvgImage(svgId, view) {
         const svgEl = document.getElementById(svgId);
         const svgClone = svgEl.cloneNode(true);
         svgClone.setAttribute('width', '500');
         svgClone.setAttribute('height', '500');
-        
+
+        // Remove hidden groups and only keep the one matching current view+sleeve+style
+        const suffix = `${view}-${garmentSleeve === 'manga-larga' ? 'long' : 'short'}-${garmentStyle}`;
+        svgClone.querySelectorAll('.base-group, .overlay-group').forEach(g => {
+            if (g.id && g.id.includes(suffix)) {
+                g.classList.remove('hidden');
+            } else {
+                g.remove();
+            }
+        });
+
         const svgString = new XMLSerializer().serializeToString(svgClone);
         return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
+    }
+
+    async function renderOneSide(view, elementsList) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1000;
+        canvas.height = 1000;
+        const ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = 'rgba(0,0,0,0)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const loadImage = (src) => new Promise((resolve, reject) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => resolve(img);
+            img.onerror = (err) => reject(err);
+            img.src = src;
+        });
+
+        // 1. Get SVG for this specific view
+        const baseSvgSrc = getSvgImage('tshirt-base-svg', view);
+        const overlaySvgSrc = getSvgImage('tshirt-overlay-svg', view);
+
+        // 2. Load SVGs
+        const baseImg = await loadImage(baseSvgSrc);
+        const overlayImg = await loadImage(overlaySvgSrc);
+
+        // 3. Draw T-Shirt Base
+        ctx.drawImage(baseImg, 0, 0, 1000, 1000);
+
+        // 4. Draw Custom Design Elements (clipped to printable zone)
+        const pLeft = 290;
+        const pTop = 220;
+        const pWidth = 420;
+        const pHeight = 560;
+        const scaleFactor = 2.5;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(pLeft, pTop, pWidth, pHeight);
+        ctx.clip();
+
+        for (const el of elementsList) {
+            ctx.save();
+
+            let elW = 0;
+            let elH = 0;
+
+            if (el.type === 'image') {
+                elW = el.width;
+                elH = el.height;
+            } else {
+                ctx.font = `bold ${el.fontSize}px ${el.fontFamily}`;
+                const textMetric = ctx.measureText(el.text);
+                elW = textMetric.width;
+                elH = el.fontSize;
+            }
+
+            const cxCss = el.x + (elW / 2);
+            const cyCss = el.y + (elH / 2);
+
+            const canvasCx = pLeft + (cxCss * scaleFactor);
+            const canvasCy = pTop + (cyCss * scaleFactor);
+
+            ctx.translate(canvasCx, canvasCy);
+            ctx.rotate(el.rotation * Math.PI / 180);
+            ctx.scale(el.scale * scaleFactor, el.scale * scaleFactor);
+
+            if (el.type === 'image') {
+                const img = await loadImage(el.src);
+                ctx.drawImage(img, -el.width / 2, -el.height / 2, el.width, el.height);
+            } else if (el.type === 'text') {
+                ctx.font = `bold ${el.fontSize}px ${el.fontFamily}`;
+                ctx.fillStyle = el.color;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(el.text, 0, 0);
+            }
+
+            ctx.restore();
+        }
+        ctx.restore();
+
+        // 5. Draw Shading Overlay
+        ctx.drawImage(overlayImg, 0, 0, 1000, 1000);
+
+        return canvas;
     }
 
     async function exportDesign() {
@@ -1472,103 +1569,27 @@
         exportBtn.disabled = true;
 
         try {
-            const canvas = document.createElement('canvas');
-            canvas.width = 1000;
-            canvas.height = 1000;
-            const ctx = canvas.getContext('2d');
+            // Render front
+            const frontCanvas = await renderOneSide('front', frontElements);
+            // Render back
+            const backCanvas = await renderOneSide('back', backElements);
 
-            ctx.fillStyle = 'rgba(0,0,0,0)'; // transparent bg
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // Download front
+            const frontUrl = frontCanvas.toDataURL('image/png');
+            const frontLink = document.createElement('a');
+            frontLink.download = `camiseta-frente-${Date.now()}.png`;
+            frontLink.href = frontUrl;
+            frontLink.click();
 
-            const loadImage = (src) => new Promise((resolve, reject) => {
-                const img = new Image();
-                img.crossOrigin = 'anonymous';
-                img.onload = () => resolve(img);
-                img.onerror = (err) => reject(err);
-                img.src = src;
-            });
+            // Small delay so browser doesn't block second download
+            await new Promise(r => setTimeout(r, 500));
 
-            // 1. Get current base & overlay SVG sources
-            const baseSvgSrc = getSvgImage('tshirt-base-svg');
-            const overlaySvgSrc = getSvgImage('tshirt-overlay-svg');
-
-            // 2. Load SVGs
-            const baseImg = await loadImage(baseSvgSrc);
-            const overlayImg = await loadImage(overlaySvgSrc);
-
-            // 3. Draw T-Shirt Base (1000x1000)
-            ctx.drawImage(baseImg, 0, 0, 1000, 1000);
-
-            // 4. Draw Custom Design Elements (clipped to printable zone)
-            // Coordinates translated from the 400x500 layout to 1000x1000 canvas:
-            // CSS Left: 29% -> 290px
-            // CSS Top: 22% -> 220px
-            // CSS Width: 42% -> 420px
-            // CSS Height: 56% -> 560px
-            const pLeft = 290;
-            const pTop = 220;
-            const pWidth = 420;
-            const pHeight = 560;
-            const scaleFactor = 2.5; // scaling 168px printable width to 420px canvas width
-
-            ctx.save();
-            ctx.beginPath();
-            ctx.rect(pLeft, pTop, pWidth, pHeight);
-            ctx.clip();
-
-            const elementsList = getCurrentElements();
-            for (const el of elementsList) {
-                ctx.save();
-
-                let elW = 0;
-                let elH = 0;
-
-                if (el.type === 'image') {
-                    elW = el.width;
-                    elH = el.height;
-                } else {
-                    ctx.font = `bold ${el.fontSize}px ${el.fontFamily}`;
-                    const textMetric = ctx.measureText(el.text);
-                    elW = textMetric.width;
-                    elH = el.fontSize;
-                }
-
-                // Element center relative to printable zone
-                const cxCss = el.x + (elW / 2);
-                const cyCss = el.y + (elH / 2);
-
-                // Translate canvas origin to center of element
-                const canvasCx = pLeft + (cxCss * scaleFactor);
-                const canvasCy = pTop + (cyCss * scaleFactor);
-
-                ctx.translate(canvasCx, canvasCy);
-                ctx.rotate(el.rotation * Math.PI / 180);
-                ctx.scale(el.scale * scaleFactor, el.scale * scaleFactor);
-
-                if (el.type === 'image') {
-                    const img = await loadImage(el.src);
-                    ctx.drawImage(img, -el.width / 2, -el.height / 2, el.width, el.height);
-                } else if (el.type === 'text') {
-                    ctx.font = `bold ${el.fontSize}px ${el.fontFamily}`;
-                    ctx.fillStyle = el.color;
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(el.text, 0, 0);
-                }
-
-                ctx.restore();
-            }
-            ctx.restore(); // restore clipping
-
-            // 5. Draw Overlapping Shading Creases
-            ctx.drawImage(overlayImg, 0, 0, 1000, 1000);
-
-            // 6. Download
-            const dataUrl = canvas.toDataURL('image/png');
-            const link = document.createElement('a');
-            link.download = `camiseta-wilberth-diseño-${Date.now()}.png`;
-            link.href = dataUrl;
-            link.click();
+            // Download back
+            const backUrl = backCanvas.toDataURL('image/png');
+            const backLink = document.createElement('a');
+            backLink.download = `camiseta-espalda-${Date.now()}.png`;
+            backLink.href = backUrl;
+            backLink.click();
         } catch (err) {
             console.error("Error al exportar:", err);
             alert("No se pudo generar la imagen para exportar. Intente de nuevo.");
