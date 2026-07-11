@@ -87,42 +87,6 @@
     </div>
 </section>
 
-<section class="mb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="bg-white rounded-xl shadow-lg p-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Tecnologías que Utilizo</h2>
-        <p class="text-gray-600 text-lg text-center mb-8 max-w-2xl mx-auto">Desarrollo con herramientas modernas para garantizar rapidez, seguridad y escalabilidad</p>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="text-center p-4">
-                <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                    <span class="text-2xl font-bold text-indigo-600">PHP</span>
-                </div>
-                <h4 class="font-semibold text-gray-900">Laravel</h4>
-                <p class="text-xs text-gray-500">Tu web responde rápido siempre</p>
-            </div>
-            <div class="text-center p-4">
-                <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                    <span class="text-2xl font-bold text-indigo-600">Astro</span>
-                </div>
-                <h4 class="font-semibold text-gray-900">Astro</h4>
-                <p class="text-xs text-gray-500">Se ve bien en cualquier dispositivo</p>
-            </div>
-            <div class="text-center p-4">
-                <div class="w-16 h-16 bg-sky-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                    <span class="text-2xl font-bold text-sky-600">AWS</span>
-                </div>
-                <h4 class="font-semibold text-gray-900">AWS</h4>
-                <p class="text-xs text-gray-500">Tu sitio siempre disponible, sin caídas</p>
-            </div>
-            <div class="text-center p-4">
-                <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                    <span class="text-2xl font-bold text-emerald-600">SQL</span>
-                </div>
-                <h4 class="font-semibold text-gray-900">Base de Datos</h4>
-                <p class="text-xs text-gray-500">Tus datos protegidos y respaldados</p>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="mb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-10">
