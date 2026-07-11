@@ -468,7 +468,11 @@
                                  <span class="text-xs font-bold text-slate-700 text-center">Haz clic o arrastra tu archivo</span>
                                  <span class="text-[10px] text-slate-400 mt-0.5">PNG, JPG (Fondo transparente recomendado)</span>
                              </label>
-                        </div>
+                             <label class="flex items-center gap-2 mt-3 cursor-pointer group">
+                                 <input type="checkbox" id="remove-bg-toggle" class="w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
+                                 <span class="text-xs text-slate-600 group-hover:text-slate-800 font-medium">Quitar fondo blanco de la imagen</span>
+                             </label>
+                         </div>
 
                         <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 space-y-3">
                             <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Añadir Texto Personalizado</span>
@@ -802,42 +806,55 @@
         });
     }
 
-    // ADD IMAGE DESIGN ELEMENT
-    function addImageElement(src) {
-        // Compute coordinates to center image (100x100 pixels) in CSS printable zone
+    // ADD IMAGE DESIGN ELEMENT (preserves aspect ratio)
+    function addImageElement(src, removeBg) {
         const pWidth = printableZone.clientWidth || 168;
         const pHeight = printableZone.clientHeight || 280;
-        const elWidth = 100;
-        const elHeight = 100;
+        const maxSize = Math.min(pWidth, pHeight) * 0.7;
 
-        const newElement = {
-            id: 'el-' + Date.now(),
-            type: 'image',
-            src: src,
-            x: (pWidth - elWidth) / 2,
-            y: (pHeight - elHeight) / 2 - 20,
-            scale: 1.0,
-            rotation: 0,
-            width: elWidth,
-            height: elHeight
+        const tempImg = new Image();
+        tempImg.onload = function() {
+            let elW = tempImg.naturalWidth;
+            let elH = tempImg.naturalHeight;
+
+            // Scale to fit within maxSize while keeping aspect ratio
+            if (elW > maxSize || elH > maxSize) {
+                const ratio = Math.min(maxSize / elW, maxSize / elH);
+                elW = Math.round(elW * ratio);
+                elH = Math.round(elH * ratio);
+            }
+
+            const newElement = {
+                id: 'el-' + Date.now(),
+                type: 'image',
+                src: src,
+                x: (pWidth - elW) / 2,
+                y: (pHeight - elH) / 2 - 20,
+                scale: 1.0,
+                rotation: 0,
+                width: elW,
+                height: elH,
+                removeBg: removeBg || false
+            };
+
+            getCurrentElements().push(newElement);
+            selectedElementId = newElement.id;
+            render();
+            updatePrice();
         };
-
-        getCurrentElements().push(newElement);
-        selectedElementId = newElement.id;
-        render();
-        updatePrice();
+        tempImg.src = src;
     }
 
     // HANDLE UPLOADED IMAGE
     function handleImageUpload(e) {
         const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(ev) {
-                addImageElement(ev.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+            const removeBg = document.getElementById('remove-bg-toggle')?.checked || false;
+            addImageElement(ev.target.result, removeBg);
+        };
+        reader.readAsDataURL(file);
     }
 
     // ADD TEXT DESIGN ELEMENT
@@ -1124,6 +1141,10 @@
                 img.style.height = `${el.height}px`;
                 img.style.display = 'block';
                 img.draggable = false;
+                if (el.removeBg) {
+                    img.style.filter = 'drop-shadow(0 0 0 transparent) brightness(1.1) contrast(1.2)';
+                    img.style.mixBlendMode = 'multiply';
+                }
                 wrapper.appendChild(img);
             } else if (el.type === 'text') {
                 const span = document.createElement('div');
