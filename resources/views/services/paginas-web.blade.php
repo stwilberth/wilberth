@@ -3,13 +3,13 @@
 @section('title', $title)
 
 @section('content')
-<section class="bg-gradient-to-r from-orange-600 to-orange-800 text-white py-16 mb-12">
+<section class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white py-16 mb-12">
     <div class="max-w-4xl mx-auto text-center px-4">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Páginas Web, Apps Web y Tiendas en Línea</h1>
-        <p class="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
+        <p class="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
             Tu negocio merece un sitio web profesional. Creo páginas web, aplicaciones y tiendas en línea para emprendedores en Costa Rica — sin complicaciones, a un precio justo.
         </p>
-        <a href="https://wa.me/50685008393?text=Hola! Estoy interesado en crear una página web, app web o tienda en línea" target="_blank" rel="noopener noreferrer" class="bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-colors shadow-lg inline-block">
+        <a href="https://wa.me/50685008393?text=Hola! Estoy interesado en crear una página web, app web o tienda en línea" target="_blank" rel="noopener noreferrer" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors shadow-lg inline-block">
             Solicitar Cotización
         </a>
     </div>
@@ -100,8 +100,8 @@
                 <p class="text-xs text-gray-500">Tu web responde rápido siempre</p>
             </div>
             <div class="text-center p-4">
-                <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                    <span class="text-2xl font-bold text-orange-600">Astro</span>
+                <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                    <span class="text-2xl font-bold text-indigo-600">Astro</span>
                 </div>
                 <h4 class="font-semibold text-gray-900">Astro</h4>
                 <p class="text-xs text-gray-500">Se ve bien en cualquier dispositivo</p>
@@ -136,84 +136,20 @@
     </div>
 </section>
 
-<section id="hosting" class="mb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-gray-900 mb-3">Hospedaje de Sitios Web</h2>
-        <p class="text-gray-600 text-lg">Solo pagás por el hospedaje. Yo lo configuro y lo mantengo.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-2 duration-300 border-t-4 border-orange-500">
-            <div class="p-6">
-                <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-1 text-center">Hosting Estático</h3>
-                <p class="text-gray-500 text-xs text-center mb-3">Ideal para landing pages y portafolios</p>
-                <div class="text-center mb-3">
-                    <span class="text-2xl font-bold text-orange-600">₡5,000</span>
-                    <span class="text-gray-500 text-sm">/mes</span>
-                </div>
-                <ul class="space-y-1.5 text-sm text-gray-600">
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> CDN global</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> SSL / HTTPS incluido</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> 99.9% disponibilidad</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Sin límite de visitas</li>
-                </ul>
-            </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-2 duration-300 border-t-4 border-green-500">
-            <div class="p-6">
-                <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-1 text-center">Hosting CMS</h3>
-                <p class="text-gray-500 text-xs text-center mb-3">Ideal para sitios web con panel administrable</p>
-                <div class="text-center mb-3">
-                    <span class="text-2xl font-bold text-green-600">₡10,000</span>
-                    <span class="text-gray-500 text-sm">/mes</span>
-                </div>
-                <ul class="space-y-1.5 text-sm text-gray-600">
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Hosting para Web CMS</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> SSL / HTTPS incluido</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Backups automáticos</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Base de datos incluida</li>
-                </ul>
-            </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-2 duration-300 border-t-4 border-purple-500">
-            <div class="p-6">
-                <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-1 text-center">Hosting App</h3>
-                <p class="text-gray-500 text-xs text-center mb-3">Ideal para apps web y tiendas en línea</p>
-                <div class="text-center mb-3">
-                    <span class="text-2xl font-bold text-purple-600">₡15,000</span>
-                    <span class="text-gray-500 text-sm">/mes</span>
-                </div>
-                <ul class="space-y-1.5 text-sm text-gray-600">
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Hosting para App Web</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> SSL / HTTPS incluido</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Backups automáticos</li>
-                    <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Mayor capacidad y recursos</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="bg-gradient-to-r from-orange-600 to-orange-800 text-white rounded-2xl shadow-2xl p-8 md:p-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+
+<section class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white rounded-2xl shadow-2xl p-8 md:p-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
     <div class="text-center mb-8">
         <h2 class="text-3xl md:text-4xl font-bold mb-3">¿Listo para tener tu presencia digital?</h2>
-        <p class="text-orange-100 text-lg">Hablemos de tu proyecto y creemos juntos la solución web que necesitas</p>
+        <p class="text-indigo-100 text-lg">Hablemos de tu proyecto y creemos juntos la solución web que necesitas</p>
     </div>
     <div class="flex flex-col items-center space-y-6">
         <div class="text-center">
-            <div class="w-20 h-20 bg-white text-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <div class="w-20 h-20 bg-white text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
             </div>
             <h3 class="font-bold text-2xl mb-2">Contacto Directo</h3>
-            <a href="tel:+506 85008393" class="text-3xl font-bold hover:text-orange-200 transition-colors">{{ $seller->whatsapp }}</a>
+            <a href="tel:+506 85008393" class="text-3xl font-bold hover:text-indigo-200 transition-colors">{{ $seller->whatsapp }}</a>
         </div>
         <div class="flex flex-col sm:flex-row gap-4">
             <a href="https://wa.me/50685008393?text=Hola! Quiero crear una página web, app web o tienda en línea" target="_blank" rel="noopener noreferrer" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors shadow-lg flex items-center gap-2">

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/paginas-web', [ServiceController::class, 'paginasWeb'])->name('paginas-web');
 Route::get('/proceso', [ServiceController::class, 'proceso'])->name('proceso');
+Route::get('/hosting', [ServiceController::class, 'hosting'])->name('hosting');
 Route::get('/proyectos', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/portafolio/{slug}', [ProjectController::class, 'show'])->name('projects.show');
 Route::get('/cotizacion/{quote}', [App\Http\Controllers\Admin\QuoteController::class, 'publicView'])->name('quotes.public');

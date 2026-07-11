@@ -24,4 +24,14 @@ class ServiceController extends Controller
 
         return view('proceso', compact('seller'));
     }
+
+    public function hosting()
+    {
+        $seller = (object) [
+            'name' => 'Wilberth',
+            'whatsapp' => '+506 85008393',
+        ];
+
+        return view('hosting', compact('seller'));
+    }
 }

@@ -21,7 +21,7 @@
 
                 <nav class="hidden md:flex items-center gap-1">
                     <a href="/paginas-web" class="px-5 py-3 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">Páginas Web</a>
-                    <a href="/paginas-web#hosting" class="px-5 py-3 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">Hosting</a>
+                    <a href="/hosting" class="px-5 py-3 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">Hosting</a>
                     <a href="/proceso" class="px-5 py-3 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">Proceso</a>
                     <a href="/proyectos" class="px-5 py-3 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">Proyectos</a>
                     <a href="https://wa.me/50685008393" target="_blank" rel="noopener noreferrer" class="ml-3 inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3 rounded-xl text-sm font-bold transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 active:scale-95">
@@ -41,7 +41,7 @@
             <div id="mobile-menu" class="md:hidden hidden pb-4 border-t border-slate-100 pt-4">
                 <nav class="flex flex-col gap-2">
                     <a href="/paginas-web" class="px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">Páginas Web</a>
-                    <a href="/paginas-web#hosting" class="px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">Hosting</a>
+                    <a href="/hosting" class="px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">Hosting</a>
                     <a href="/proceso" class="px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">Proceso</a>
                     <a href="/proyectos" class="px-4 py-3.5 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">Proyectos</a>
                     <a href="https://wa.me/50685008393" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-3.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-emerald-500/25">
