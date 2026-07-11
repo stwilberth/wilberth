@@ -17,15 +17,18 @@
                 <svg id="tshirt-preview" viewBox="0 0 400 500" width="100%" style="max-width: 400px;" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <clipPath id="tshirt-clip">
-                            <path d="M200 30 C180 30 160 35 140 45 L100 25 L90 50 L120 70 C110 90 105 110 100 140 L80 150 L85 170 L110 160 L120 380 C125 420 140 440 160 450 L240 450 C260 440 275 420 280 380 L290 160 L315 170 L320 150 L300 140 C295 110 290 90 280 70 L310 50 L300 25 L260 45 C240 35 220 30 200 30Z" />
+                            <path d="M155 70 C170 50, 230 50, 245 70 L280 55 L320 70 L335 130 L290 140 L290 420 C290 445, 270 460, 250 460 L150 460 C130 460, 110 445, 110 420 L110 140 L65 130 L80 70 L120 55 Z" />
                         </clipPath>
                     </defs>
                     <g clip-path="url(#tshirt-clip)">
                         <rect id="tshirt-body" x="0" y="0" width="400" height="500" fill="#ffffff" />
                         <image id="design-image" href="" x="100" y="140" width="200" height="200" preserveAspectRatio="xMidYMid slice" style="display:none;" />
                     </g>
-                    <path d="M200 30 C180 30 160 35 140 45 L100 25 L90 50 L120 70 C110 90 105 110 100 140 L80 150 L85 170 L110 160 L120 380 C125 420 140 440 160 450 L240 450 C260 440 275 420 280 380 L290 160 L315 170 L320 150 L300 140 C295 110 290 90 280 70 L310 50 L300 25 L260 45 C240 35 220 30 200 30Z" fill="none" stroke="#ccc" stroke-width="2" />
-                    <path d="M200 30 L200 450" fill="none" stroke="#ddd" stroke-width="1" stroke-dasharray="4" />
+                    <path d="M155 70 C170 50, 230 50, 245 70 L280 55 L320 70 L335 130 L290 140 L290 420 C290 445, 270 460, 250 460 L150 460 C130 460, 110 445, 110 420 L110 140 L65 130 L80 70 L120 55 Z" fill="none" stroke="#999" stroke-width="2.5" />
+                    <path d="M155 70 C165 58, 235 58, 245 70" fill="none" stroke="#999" stroke-width="2" />
+                    <path d="M120 55 L155 70" fill="none" stroke="#999" stroke-width="1.5" />
+                    <path d="M245 70 L280 55" fill="none" stroke="#999" stroke-width="1.5" />
+                    <path d="M200 50 L200 460" fill="none" stroke="#ddd" stroke-width="1" stroke-dasharray="4" />
                 </svg>
             </div>
         </div>
