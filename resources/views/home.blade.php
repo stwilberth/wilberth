@@ -5,8 +5,8 @@
 @section('content')
 <section class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white py-16 mb-12">
     <div class="max-w-4xl mx-auto text-center px-4">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Páginas Web & Apps Web para Emprendedores</h1>
-        <p class="text-xl text-indigo-100 mb-4 max-w-2xl mx-auto">Creación de sitios web, aplicaciones web y tiendas en línea para emprendedores en Costa Rica. Llevá tu negocio al mundo digital.</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Páginas Web para Emprendedores</h1>
+        <p class="text-xl text-indigo-100 mb-4 max-w-2xl mx-auto">Llevá tu negocio al mundo digital. Sitios web para emprendedores en Costa Rica.</p>
         <p class="text-2xl font-bold text-white mb-8">Páginas web desde <span class="text-yellow-300">₡99,000</span> · Hosting desde <span class="text-yellow-300">₡5,000/mes</span></p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/paginas-web" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors shadow-lg inline-block">Explorar Servicios</a>
