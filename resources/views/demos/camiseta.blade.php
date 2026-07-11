@@ -46,6 +46,7 @@
                 </div>
                 
                 <!-- T-SHIRT CARD WITH 3D TILT EFFECT -->
+                <div id="zoom-wrapper" class="overflow-hidden flex items-center justify-center" style="transition: transform 0.15s ease-out;">
                 <div id="preview-container" class="relative w-[400px] h-[500px] select-none" style="transform-style: preserve-3d; perspective: 1000px; transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
                     
                     <!-- BASE LAYER SVG: T-shirt Shape & Fabric Weave (z-0) -->
@@ -325,18 +326,34 @@
 </svg>
                     </div>
                 </div>
+                </div> <!-- /zoom-wrapper -->
             </div>
-
-            <!-- TOOLBAR ABAJO DEL PREVIEW -->
             <div class="flex flex-wrap gap-3 items-center justify-between bg-slate-900/60 border border-slate-800 rounded-xl p-3.5 backdrop-blur-md">
-                <div class="flex gap-2">
+                <div class="flex gap-2 flex-wrap">
                     <button onclick="centerActiveElement()" class="text-xs font-semibold px-3.5 py-2 text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-all flex items-center gap-1.5 active:scale-95" title="Centrar elemento seleccionado">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                         Centrar
                     </button>
                     <button onclick="clearCanvas()" class="text-xs font-semibold px-3.5 py-2 text-red-400 hover:text-red-300 bg-red-950/40 hover:bg-red-900/40 border border-red-900/50 rounded-lg transition-all flex items-center gap-1.5 active:scale-95" title="Limpiar diseño de esta vista">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                        Limpiar Vista
+                        Limpiar
+                    </button>
+                    <!-- ZOOM CONTROLS -->
+                    <div class="flex items-center gap-1 bg-slate-800 rounded-lg px-1.5 py-0.5 border border-slate-700">
+                        <button onclick="setZoom(zoomLevel - 0.15)" class="text-slate-300 hover:text-white p-1 rounded transition-colors" title="Zoom menos">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"></path></svg>
+                        </button>
+                        <span id="zoom-label" class="text-[10px] font-bold text-slate-400 w-10 text-center">100%</span>
+                        <button onclick="setZoom(zoomLevel + 0.15)" class="text-slate-300 hover:text-white p-1 rounded transition-colors" title="Zoom más">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path></svg>
+                        </button>
+                        <button onclick="setZoom(1)" class="text-slate-500 hover:text-slate-300 px-1 rounded transition-colors" title="Reset zoom">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                        </button>
+                    </div>
+                    <button id="crop-btn" onclick="cropSelectedImage()" class="text-xs font-semibold px-3.5 py-2 text-amber-300 hover:text-amber-200 bg-amber-950/40 hover:bg-amber-900/40 border border-amber-900/50 rounded-lg transition-all flex items-center gap-1.5 active:scale-95 hidden" title="Recortar imagen seleccionada">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"></path></svg>
+                        Recortar
                     </button>
                 </div>
 
@@ -751,6 +768,150 @@
     
     let shadingIntensity = 0.45;
     let textureOpacity = 0.60;
+
+    // ZOOM STATE
+    let zoomLevel = 1;
+    const zoomWrapper = document.getElementById('zoom-wrapper');
+    const zoomLabel = document.getElementById('zoom-label');
+
+    function setZoom(level) {
+        zoomLevel = Math.max(0.5, Math.min(2.5, level));
+        zoomWrapper.style.transform = `scale(${zoomLevel})`;
+        zoomLabel.textContent = `${Math.round(zoomLevel * 100)}%`;
+    }
+
+    // Mouse wheel zoom on preview area
+    document.getElementById('studio-backdrop').addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.08 : 0.08;
+        setZoom(zoomLevel + delta);
+    }, { passive: false });
+
+    // CROP IMAGE FUNCTION
+    function cropSelectedImage() {
+        const elementsList = getCurrentElements();
+        const el = elementsList.find(e => e.id === selectedElementId);
+        if (!el || el.type !== 'image') return;
+
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = function() {
+            const origW = img.naturalWidth;
+            const origH = img.naturalHeight;
+
+            Swal.fire({
+                title: 'Recortar imagen',
+                html: `
+                    <div class="text-left space-y-3">
+                        <p class="text-xs text-slate-500">Definí el área de recorte (en píxeles de la imagen original).</p>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div><label class="text-[10px] font-bold text-slate-500 uppercase">X</label><input id="crop-x" type="number" value="0" min="0" max="${origW}" class="w-full border rounded-lg px-2 py-1.5 text-xs"></div>
+                            <div><label class="text-[10px] font-bold text-slate-500 uppercase">Y</label><input id="crop-y" type="number" value="0" min="0" max="${origH}" class="w-full border rounded-lg px-2 py-1.5 text-xs"></div>
+                            <div><label class="text-[10px] font-bold text-slate-500 uppercase">Ancho</label><input id="crop-w" type="number" value="${origW}" min="10" max="${origW}" class="w-full border rounded-lg px-2 py-1.5 text-xs"></div>
+                            <div><label class="text-[10px] font-bold text-slate-500 uppercase">Alto</label><input id="crop-h" type="number" value="${origH}" min="10" max="${origH}" class="w-full border rounded-lg px-2 py-1.5 text-xs"></div>
+                        </div>
+                        <div class="flex gap-2 mt-2">
+                            <button onclick="setCropPreset('center')" class="text-[10px] font-bold px-2 py-1 bg-slate-100 hover:bg-slate-200 rounded transition-colors">Centro 50%</button>
+                            <button onclick="setCropPreset('top')" class="text-[10px] font-bold px-2 py-1 bg-slate-100 hover:bg-slate-200 rounded transition-colors">Mitad Superior</button>
+                            <button onclick="setCropPreset('bottom')" class="text-[10px] font-bold px-2 py-1 bg-slate-100 hover:bg-slate-200 rounded transition-colors">Mitad Inferior</button>
+                            <button onclick="setCropPreset('square')" class="text-[10px] font-bold px-2 py-1 bg-slate-100 hover:bg-slate-200 rounded transition-colors">Cuadrado</button>
+                        </div>
+                        <div class="mt-2"><img id="crop-preview-img" src="${el.src}" class="max-h-40 mx-auto rounded border" /></div>
+                    </div>
+                `,
+                showCancelButton: true,
+                confirmButtonColor: '#6366f1',
+                cancelButtonColor: '#64748b',
+                confirmButtonText: 'Recortar',
+                cancelButtonText: 'Cancelar',
+                width: 500,
+                didOpen: () => {
+                    // Draw crop overlay on preview
+                    updateCropPreview(el.src, origW, origH);
+                    ['crop-x', 'crop-y', 'crop-w', 'crop-h'].forEach(id => {
+                        document.getElementById(id).addEventListener('input', () => updateCropPreview(el.src, origW, origH));
+                    });
+                }
+            }).then((result) => {
+                if (!result.isConfirmed) return;
+
+                const cx = parseInt(document.getElementById('crop-x').value) || 0;
+                const cy = parseInt(document.getElementById('crop-y').value) || 0;
+                const cw = parseInt(document.getElementById('crop-w').value) || origW;
+                const ch = parseInt(document.getElementById('crop-h').value) || origH;
+
+                const canvas = document.createElement('canvas');
+                canvas.width = cw;
+                canvas.height = ch;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, cx, cy, cw, ch, 0, 0, cw, ch);
+
+                el.src = canvas.toDataURL('image/png');
+
+                // Recalc display size keeping aspect ratio
+                const maxSize = 168 * 0.7;
+                let dw = cw, dh = ch;
+                if (dw > maxSize || dh > maxSize) {
+                    const r = Math.min(maxSize / dw, maxSize / dh);
+                    dw = Math.round(dw * r);
+                    dh = Math.round(dh * r);
+                }
+                el.width = dw;
+                el.height = dh;
+
+                render();
+            });
+        };
+        img.src = el.src;
+    }
+
+    function setCropPreset(preset) {
+        const img = document.getElementById('crop-preview-img');
+        if (!img) return;
+        const w = parseInt(document.getElementById('crop-w').max);
+        const h = parseInt(document.getElementById('crop-h').max);
+        if (preset === 'center') {
+            document.getElementById('crop-x').value = Math.round(w * 0.25);
+            document.getElementById('crop-y').value = Math.round(h * 0.25);
+            document.getElementById('crop-w').value = Math.round(w * 0.5);
+            document.getElementById('crop-h').value = Math.round(h * 0.5);
+        } else if (preset === 'top') {
+            document.getElementById('crop-x').value = 0;
+            document.getElementById('crop-y').value = 0;
+            document.getElementById('crop-w').value = w;
+            document.getElementById('crop-h').value = Math.round(h * 0.5);
+        } else if (preset === 'bottom') {
+            document.getElementById('crop-x').value = 0;
+            document.getElementById('crop-y').value = Math.round(h * 0.5);
+            document.getElementById('crop-w').value = w;
+            document.getElementById('crop-h').value = Math.round(h * 0.5);
+        } else if (preset === 'square') {
+            const s = Math.min(w, h);
+            document.getElementById('crop-x').value = Math.round((w - s) / 2);
+            document.getElementById('crop-y').value = Math.round((h - s) / 2);
+            document.getElementById('crop-w').value = s;
+            document.getElementById('crop-h').value = s;
+        }
+    }
+
+    function updateCropPreview(src, origW, origH) {
+        const cx = parseInt(document.getElementById('crop-x').value) || 0;
+        const cy = parseInt(document.getElementById('crop-y').value) || 0;
+        const cw = parseInt(document.getElementById('crop-w').value) || origW;
+        const ch = parseInt(document.getElementById('crop-h').value) || origH;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = cw;
+        canvas.height = ch;
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+        img.onload = () => {
+            ctx.drawImage(img, cx, cy, cw, ch, 0, 0, cw, ch);
+            const preview = document.getElementById('crop-preview-img');
+            if (preview) preview.src = canvas.toDataURL('image/png');
+        };
+        img.src = src;
+    }
 
     // References to DOM
     const printableZone = document.getElementById('printable-zone');
@@ -1342,10 +1503,18 @@
         const elementsList = getCurrentElements();
 
         const helpLabel = document.getElementById('selection-help');
+        const cropBtn = document.getElementById('crop-btn');
         if (selectedElementId && elementsList.some(e => e.id === selectedElementId)) {
             helpLabel.classList.remove('opacity-0');
+            const selEl = elementsList.find(e => e.id === selectedElementId);
+            if (selEl && selEl.type === 'image') {
+                cropBtn.classList.remove('hidden');
+            } else {
+                cropBtn.classList.add('hidden');
+            }
         } else {
             helpLabel.classList.add('opacity-0');
+            cropBtn.classList.add('hidden');
         }
 
         elementsList.forEach(el => {
