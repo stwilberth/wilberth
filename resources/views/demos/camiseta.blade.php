@@ -1115,59 +1115,77 @@
 
     // WORDART TEXT TEMPLATES
     function addTextTemplate(type) {
-        let svgString = '';
-        const userText = prompt('Escribí tu texto:', type === 'arch' ? 'ARCO' : type === 'wave' ? 'ONDA' : type === 'circle' ? 'DISEÑO' : type === 'outline' ? 'HOLA' : type === 'shadow3d' ? '3D' : type === 'gradient' ? 'FUEGO' : type === 'badge' ? 'PREMIUM' : 'CODE');
-        if (!userText) return;
+        const defaults = { arch: 'ARCO', wave: 'ONDA', circle: 'DISEÑO', outline: 'HOLA', shadow3d: '3D', gradient: 'FUEGO', badge: 'PREMIUM', glitch: 'CODE' };
 
-        const encoded = userText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        Swal.fire({
+            title: 'Escribí tu texto',
+            input: 'text',
+            inputPlaceholder: 'Tu texto aquí...',
+            inputValue: defaults[type] || '',
+            inputAttributes: { maxlength: 30 },
+            showCancelButton: true,
+            confirmButtonColor: '#6366f1',
+            cancelButtonColor: '#64748b',
+            confirmButtonText: 'Agregar',
+            cancelButtonText: 'Cancelar',
+            inputValidator: (value) => {
+                if (!value || !value.trim()) return 'Ingresá un texto';
+            }
+        }).then((result) => {
+            if (!result.isConfirmed) return;
+            const userText = result.value.trim();
+            const encoded = userText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-        if (type === 'arch') {
-            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180">
-                <defs><path id="arch-p" d="M 30 150 Q 150 10 270 150" fill="none"/></defs>
-                <text font-family="'Montserrat',sans-serif" font-size="48" font-weight="900" fill="%236d28d9" letter-spacing="4"><textPath href="#arch-p" startOffset="50%" text-anchor="middle">${encoded}</textPath></text>
-            </svg>`;
-        } else if (type === 'wave') {
-            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
-                <defs><path id="wave-p" d="M 10 70 C 60 10 100 110 150 50 C 200 -10 240 100 290 40" fill="none"/></defs>
-                <text font-family="'Pacifico',cursive" font-size="40" fill="%23e11d48" letter-spacing="2"><textPath href="#wave-p" startOffset="50%" text-anchor="middle">${encoded}</textPath></text>
-            </svg>`;
-        } else if (type === 'circle') {
-            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-                <defs><path id="circ-p" d="M 100 25 A 75 75 0 1 1 99.99 25" fill="none"/></defs>
-                <text font-family="'Bebas Neue',sans-serif" font-size="22" fill="%23facc15" letter-spacing="6"><textPath href="#circ-p" startOffset="0%">${encoded} • ${encoded} • </textPath></text>
-            </svg>`;
-        } else if (type === 'outline') {
-            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
-                <text x="150" y="72" font-family="'Montserrat',sans-serif" font-size="72" font-weight="900" fill="none" stroke="%231e40af" stroke-width="3" text-anchor="middle" letter-spacing="6">${encoded}</text>
-            </svg>`;
-        } else if (type === 'shadow3d') {
-            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
-                <text x="155" y="75" font-family="'Montserrat',sans-serif" font-size="72" font-weight="900" fill="%23d1d5db" text-anchor="middle" letter-spacing="4">${encoded}</text>
-                <text x="150" y="72" font-family="'Montserrat',sans-serif" font-size="72" font-weight="900" fill="%237c3aed" text-anchor="middle" letter-spacing="4">${encoded}</text>
-            </svg>`;
-        } else if (type === 'gradient') {
-            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
-                <defs><linearGradient id="gfill" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" stop-color="%23f97316"/><stop offset="100%25" stop-color="%23ec4899"/></linearGradient></defs>
-                <text x="150" y="72" font-family="'Outfit',sans-serif" font-size="72" font-weight="800" fill="url(%23gfill)" text-anchor="middle" letter-spacing="4">${encoded}</text>
-            </svg>`;
-        } else if (type === 'badge') {
-            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-                <circle cx="100" cy="100" r="85" fill="none" stroke="%2392400e" stroke-width="5"/>
-                <circle cx="100" cy="100" r="75" fill="none" stroke="%2392400e" stroke-width="2"/>
-                <text x="100" y="95" font-family="'Bebas Neue',sans-serif" font-size="36" fill="%2392400e" text-anchor="middle" letter-spacing="4">${encoded}</text>
-                <line x1="35" y1="100" x2="165" y2="100" stroke="%2392400e" stroke-width="1"/>
-                <text x="100" y="120" font-family="'Montserrat',sans-serif" font-size="12" fill="%2392400e" text-anchor="middle" letter-spacing="6">QUALITY</text>
-            </svg>`;
-        } else if (type === 'glitch') {
-            svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
-                <text x="153" y="65" font-family="monospace" font-size="52" font-weight="bold" fill="%2322d3ee" text-anchor="middle" opacity="0.7">${encoded}</text>
-                <text x="147" y="62" font-family="monospace" font-size="52" font-weight="bold" fill="%23f43f5e" text-anchor="middle" opacity="0.7">${encoded}</text>
-                <text x="150" y="63" font-family="monospace" font-size="52" font-weight="bold" fill="%23ffffff" text-anchor="middle">${encoded}</text>
-            </svg>`;
-        }
+            let svgString = '';
 
-        const dataUri = `data:image/svg+xml;utf8,${svgString}`;
-        addImageElement(dataUri);
+            if (type === 'arch') {
+                svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180">
+                    <defs><path id="arch-p" d="M 30 150 Q 150 10 270 150" fill="none"/></defs>
+                    <text font-family="'Montserrat',sans-serif" font-size="48" font-weight="900" fill="%236d28d9" letter-spacing="4"><textPath href="#arch-p" startOffset="50%" text-anchor="middle">${encoded}</textPath></text>
+                </svg>`;
+            } else if (type === 'wave') {
+                svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
+                    <defs><path id="wave-p" d="M 10 70 C 60 10 100 110 150 50 C 200 -10 240 100 290 40" fill="none"/></defs>
+                    <text font-family="'Pacifico',cursive" font-size="40" fill="%23e11d48" letter-spacing="2"><textPath href="#wave-p" startOffset="50%" text-anchor="middle">${encoded}</textPath></text>
+                </svg>`;
+            } else if (type === 'circle') {
+                svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+                    <defs><path id="circ-p" d="M 100 25 A 75 75 0 1 1 99.99 25" fill="none"/></defs>
+                    <text font-family="'Bebas Neue',sans-serif" font-size="22" fill="%23facc15" letter-spacing="6"><textPath href="#circ-p" startOffset="0%">${encoded} • ${encoded} • </textPath></text>
+                </svg>`;
+            } else if (type === 'outline') {
+                svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+                    <text x="150" y="72" font-family="'Montserrat',sans-serif" font-size="72" font-weight="900" fill="none" stroke="%231e40af" stroke-width="3" text-anchor="middle" letter-spacing="6">${encoded}</text>
+                </svg>`;
+            } else if (type === 'shadow3d') {
+                svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+                    <text x="155" y="75" font-family="'Montserrat',sans-serif" font-size="72" font-weight="900" fill="%23d1d5db" text-anchor="middle" letter-spacing="4">${encoded}</text>
+                    <text x="150" y="72" font-family="'Montserrat',sans-serif" font-size="72" font-weight="900" fill="%237c3aed" text-anchor="middle" letter-spacing="4">${encoded}</text>
+                </svg>`;
+            } else if (type === 'gradient') {
+                svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+                    <defs><linearGradient id="gfill" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" stop-color="%23f97316"/><stop offset="100%25" stop-color="%23ec4899"/></linearGradient></defs>
+                    <text x="150" y="72" font-family="'Outfit',sans-serif" font-size="72" font-weight="800" fill="url(%23gfill)" text-anchor="middle" letter-spacing="4">${encoded}</text>
+                </svg>`;
+            } else if (type === 'badge') {
+                svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+                    <circle cx="100" cy="100" r="85" fill="none" stroke="%2392400e" stroke-width="5"/>
+                    <circle cx="100" cy="100" r="75" fill="none" stroke="%2392400e" stroke-width="2"/>
+                    <text x="100" y="95" font-family="'Bebas Neue',sans-serif" font-size="36" fill="%2392400e" text-anchor="middle" letter-spacing="4">${encoded}</text>
+                    <line x1="35" y1="100" x2="165" y2="100" stroke="%2392400e" stroke-width="1"/>
+                    <text x="100" y="120" font-family="'Montserrat',sans-serif" font-size="12" fill="%2392400e" text-anchor="middle" letter-spacing="6">QUALITY</text>
+                </svg>`;
+            } else if (type === 'glitch') {
+                svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+                    <text x="153" y="65" font-family="monospace" font-size="52" font-weight="bold" fill="%2322d3ee" text-anchor="middle" opacity="0.7">${encoded}</text>
+                    <text x="147" y="62" font-family="monospace" font-size="52" font-weight="bold" fill="%23f43f5e" text-anchor="middle" opacity="0.7">${encoded}</text>
+                    <text x="150" y="63" font-family="monospace" font-size="52" font-weight="bold" fill="%23ffffff" text-anchor="middle">${encoded}</text>
+                </svg>`;
+            }
+
+            const dataUri = `data:image/svg+xml;utf8,${svgString}`;
+            addImageElement(dataUri);
+        });
     }
 
     // ALIGN ACTIVE ELEMENT (CENTER QUICK ALIGN)
