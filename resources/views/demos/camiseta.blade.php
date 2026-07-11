@@ -1221,16 +1221,27 @@
 
     // CLEAR ENTIRE VIEW CANVAS
     function clearCanvas() {
-        if (confirm("¿Seguro que querés limpiar todos los elementos de esta vista?")) {
-            if (currentView === 'front') {
-                frontElements = [];
-            } else {
-                backElements = [];
+        Swal.fire({
+            title: '¿Limpiar diseño?',
+            text: "Se borrarán todos los elementos de esta vista.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#6366f1',
+            confirmButtonText: 'Sí, limpiar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if (currentView === 'front') {
+                    frontElements = [];
+                } else {
+                    backElements = [];
+                }
+                selectedElementId = null;
+                render();
+                updatePrice();
             }
-            selectedElementId = null;
-            render();
-            updatePrice();
-        }
+        });
     }
 
     // DRAG LOGIC ON ELEMENT WRAPPER
@@ -1569,30 +1580,53 @@
         exportBtn.disabled = true;
 
         try {
-            // Render front
             const frontCanvas = await renderOneSide('front', frontElements);
-            // Render back
             const backCanvas = await renderOneSide('back', backElements);
 
-            // Download front
-            const frontUrl = frontCanvas.toDataURL('image/png');
-            const frontLink = document.createElement('a');
-            frontLink.download = `camiseta-frente-${Date.now()}.png`;
-            frontLink.href = frontUrl;
-            frontLink.click();
+            // Single image: front on left, back on right
+            const combined = document.createElement('canvas');
+            combined.width = 2100;
+            combined.height = 1100;
+            const ctx = combined.getContext('2d');
 
-            // Small delay so browser doesn't block second download
-            await new Promise(r => setTimeout(r, 500));
+            // Background
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, 2100, 1100);
 
-            // Download back
-            const backUrl = backCanvas.toDataURL('image/png');
-            const backLink = document.createElement('a');
-            backLink.download = `camiseta-espalda-${Date.now()}.png`;
-            backLink.href = backUrl;
-            backLink.click();
+            // Labels
+            ctx.fillStyle = '#475569';
+            ctx.font = 'bold 36px Montserrat, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('FRENTE', 525, 60);
+            ctx.fillText('ESPALDA', 1575, 60);
+
+            // Draw front centered
+            ctx.drawImage(frontCanvas, 300, 80, 900, 900);
+            // Draw back centered
+            ctx.drawImage(backCanvas, 1200, 80, 900, 900);
+
+            // Divider line
+            ctx.strokeStyle = '#cbd5e1';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([8, 4]);
+            ctx.beginPath();
+            ctx.moveTo(1050, 40);
+            ctx.lineTo(1050, 1060);
+            ctx.stroke();
+
+            const dataUrl = combined.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `camiseta-completa-${Date.now()}.png`;
+            link.href = dataUrl;
+            link.click();
         } catch (err) {
             console.error("Error al exportar:", err);
-            alert("No se pudo generar la imagen para exportar. Intente de nuevo.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo generar la imagen. Intentá de nuevo.',
+                confirmButtonColor: '#6366f1'
+            });
         } finally {
             exportBtn.innerHTML = originalText;
             exportBtn.disabled = false;
