@@ -589,7 +589,7 @@
                         </div>
                     </div>
                 </div>
-            </div>\n\n            <!-- RESUMEN DE COTIZACION Y PEDIDO WHATSAPP -->
+            </div>         <!-- RESUMEN DE COTIZACION Y PEDIDO WHATSAPP -->
             <div class="bg-gradient-to-br from-indigo-900 to-slate-950 text-white rounded-2xl shadow-xl border border-indigo-950 p-6 relative overflow-hidden">
                 <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl"></div>
                 
@@ -806,6 +806,39 @@
         });
     }
 
+    // REMOVE BACKGROUND: process image on canvas, make white/near-white pixels transparent
+    function removeBackground(src) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+                const threshold = 235;
+
+                for (let i = 0; i < data.length; i += 4) {
+                    const r = data[i];
+                    const g = data[i + 1];
+                    const b = data[i + 2];
+                    if (r > threshold && g > threshold && b > threshold) {
+                        const brightness = (r + g + b) / 3;
+                        data[i + 3] = Math.round(Math.max(0, (threshold - brightness + 20) / 40 * 255));
+                    }
+                }
+
+                ctx.putImageData(imageData, 0, 0);
+                resolve(canvas.toDataURL('image/png'));
+            };
+            img.src = src;
+        });
+    }
+
     // ADD IMAGE DESIGN ELEMENT (preserves aspect ratio)
     function addImageElement(src, removeBg) {
         const pWidth = printableZone.clientWidth || 168;
@@ -817,7 +850,6 @@
             let elW = tempImg.naturalWidth;
             let elH = tempImg.naturalHeight;
 
-            // Scale to fit within maxSize while keeping aspect ratio
             if (elW > maxSize || elH > maxSize) {
                 const ratio = Math.min(maxSize / elW, maxSize / elH);
                 elW = Math.round(elW * ratio);
@@ -834,7 +866,7 @@
                 rotation: 0,
                 width: elW,
                 height: elH,
-                removeBg: removeBg || false
+                removeBg: false
             };
 
             getCurrentElements().push(newElement);
@@ -846,13 +878,17 @@
     }
 
     // HANDLE UPLOADED IMAGE
-    function handleImageUpload(e) {
+    async function handleImageUpload(e) {
         const file = e.target.files[0];
         if (!file) return;
         const reader = new FileReader();
-        reader.onload = function(ev) {
+        reader.onload = async function(ev) {
             const removeBg = document.getElementById('remove-bg-toggle')?.checked || false;
-            addImageElement(ev.target.result, removeBg);
+            let src = ev.target.result;
+            if (removeBg) {
+                src = await removeBackground(src);
+            }
+            addImageElement(src, removeBg);
         };
         reader.readAsDataURL(file);
     }
@@ -1141,10 +1177,6 @@
                 img.style.height = `${el.height}px`;
                 img.style.display = 'block';
                 img.draggable = false;
-                if (el.removeBg) {
-                    img.style.filter = 'drop-shadow(0 0 0 transparent) brightness(1.1) contrast(1.2)';
-                    img.style.mixBlendMode = 'multiply';
-                }
                 wrapper.appendChild(img);
             } else if (el.type === 'text') {
                 const span = document.createElement('div');
