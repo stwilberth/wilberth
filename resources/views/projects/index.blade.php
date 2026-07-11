@@ -14,15 +14,14 @@
 @section('title', $title)
 
 @section('content')
+<section class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white py-16 mb-12">
+    <div class="max-w-4xl mx-auto text-center px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Proyectos Realizados</h1>
+        <p class="text-xl text-indigo-100 max-w-2xl mx-auto">Sitios web que he creado para emprendedores y negocios en Costa Rica.</p>
+    </div>
+</section>
+
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
-    <section class="pt-16 pb-12 px-4">
-        <div class="max-w-xl mx-auto text-center">
-            <span class="text-indigo-600 font-black uppercase tracking-[0.3em] text-sm mb-4 block">Portafolio</span>
-            <h1 class="text-5xl font-black text-slate-900 mb-4 tracking-tight">Proyectos Realizados</h1>
-            <p class="text-slate-500 text-lg">Sitios web que he creado para emprendedores y negocios en Costa Rica.</p>
-            <div class="w-20 h-2 bg-indigo-500 mx-auto rounded-full mt-8"></div>
-        </div>
-    </section>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-4">
         @foreach ($projects as $project)
