@@ -27,9 +27,13 @@
                 <p class="text-gray-600 leading-relaxed mb-3">
                     Tengo más de 7 años de experiencia en desarrollo web con PHP, trabajando con empresas y clientes para crear páginas y aplicaciones web. Me especializo en <strong>Laravel</strong> y <strong>Astro</strong>, tecnologías modernas que garantizan sitios rápidos, seguros y fáciles de mantener.
                 </p>
-                <p class="text-gray-600 leading-relaxed">
+                <p class="text-gray-600 leading-relaxed mb-4">
                     Soy desarrollador web autodidacta. Aprendí haciendo, resolviendo problemas reales y trabajando con clientes de verdad. Cada proyecto que tomo lo trato como si fuera propio, poniendo atención al detalle y buscando siempre la mejor solución para cada cliente.
                 </p>
+                <a href="{{ route('customizer.react') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                    <span>Diseñador de Camisetas (Customizer)</span>
+                </a>
             </div>
         </div>
     </div>
