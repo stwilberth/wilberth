@@ -1,50 +1,56 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 
+// Curated garment color palette — hex values only
+const COLOR_MAP = {
+    white:    '#F5F5F0',
+    black:    '#1A1A1A',
+    navy:     '#1B2A4A',
+    gray:     '#6B7280',
+    charcoal: '#374151',
+    slate:    '#475569',
+    red:      '#C0392B',
+    burgundy: '#7B2D3E',
+    coral:    '#E05A47',
+    blue:     '#2563EB',
+    skyblue:  '#38BDF8',
+    teal:     '#0D9488',
+    green:    '#16A34A',
+    olive:    '#6B7C1E',
+    yellow:   '#FBBF24',
+    orange:   '#EA580C',
+    purple:   '#7C3AED',
+    lilac:    '#A78BFA',
+    pink:     '#EC4899',
+    beige:    '#D4B896',
+    natural:  '#E8DDD0',
+    silver:   '#CBD5E1',
+    sand:     '#C5AA7A',
+};
+
+// SVG template for the front of a t-shirt (from cloth-t-shirt.svg, front half only)
+// viewBox crops to just the front t-shirt. Fill is replaced with the garment color.
+const TSHIRT_VIEWBOX = { x: -5, y: 48, w: 520, h: 395 };
+function buildTshirtSvg(fillColor) {
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${TSHIRT_VIEWBOX.x} ${TSHIRT_VIEWBOX.y} ${TSHIRT_VIEWBOX.w} ${TSHIRT_VIEWBOX.h}" version="1.1"><g transform="translate(0 -308.27)"><path fill="${fillColor}" stroke="#000000" stroke-width="1.835" d="m8.4716 378.45 187.44-46.53c37.633 19.839 77.716 16.809 119.28 0l190.06 47.842c-1.3669 36.539-11.178 70.733-23.593 104.2l-89.129-1.3107 1.3107 260.83c-91.532 8.5202-183.06 9.3486-274.6-0.65536l-2.63-258.2-87.167-2.63c-8.716-33.71-21.864-56.26-20.971-103.54z"/><path fill="none" stroke="#000000" stroke-width="1.835" d="m195.41 331.92c35.068 69.552 101.18 46.245 119.44 0.16387"/><path fill="none" stroke="#000000" stroke-width=".55051" d="m181 335.68c27.861 82.744 138.53 64.029 150.08 0.49152"/><path fill="none" stroke="#000000" stroke-width=".55051" d="m122.5 350.27c13.448 42.648 20.226 86.185-5.2429 134.02"/><path fill="none" stroke="#000000" stroke-width=".55051" d="m386.14 350.27c-13.448 42.648-20.226 86.185 5.2429 134.02"/></g></svg>`;
+}
+
+// Load an SVG string as an HTMLImageElement
+function loadSvgImage(svgString) {
+    return new Promise((resolve, reject) => {
+        const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const img = new Image();
+        img.onload = () => { resolve(img); URL.revokeObjectURL(url); };
+        img.onerror = (err) => { URL.revokeObjectURL(url); reject(err); };
+        img.src = url;
+    });
+}
+
 const PRODUCT_VARIANTS = {
     't-shirt': {
-        colors: ['white', 'black', 'navy', 'gray', 'red', 'blue', 'green'],
+        colors: ['white', 'black', 'navy', 'charcoal', 'gray', 'red', 'burgundy', 'blue', 'teal', 'olive'],
         sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
         materials: ['cotton', 'polyester', 'blend', 'organic'],
-    },
-    'polo': {
-        colors: ['white', 'black', 'navy', 'gray', 'red', 'blue'],
-        sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL'],
-        materials: ['cotton', 'polyester', 'pique'],
-    },
-    'long-sleeve': {
-        colors: ['white', 'black', 'navy', 'gray', 'red'],
-        sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
-        materials: ['cotton', 'polyester', 'blend'],
-    },
-    hoodie: {
-        colors: ['black', 'gray', 'navy', 'white', 'beige'],
-        sizes: ['S', 'M', 'L', 'XL', '2XL'],
-        materials: ['cotton', 'blend', 'fleece'],
-    },
-    'zip-hoodie': {
-        colors: ['black', 'gray', 'navy'],
-        sizes: ['S', 'M', 'L', 'XL', '2XL'],
-        materials: ['cotton', 'fleece'],
-    },
-    mug: {
-        colors: ['white', 'black', 'red', 'blue'],
-        sizes: ['11oz', '15oz'],
-        materials: ['ceramic'],
-    },
-    'travel-mug': {
-        colors: ['white', 'black', 'silver'],
-        sizes: ['12oz', '16oz'],
-        materials: ['stainless'],
-    },
-    tote: {
-        colors: ['white', 'black', 'natural', 'gray'],
-        sizes: ['M', 'L'],
-        materials: ['cotton', 'canvas', 'polyester'],
-    },
-    cap: {
-        colors: ['white', 'black', 'navy', 'red', 'gray'],
-        sizes: ['S/M', 'L/XL'],
-        materials: ['cotton', 'polyester', 'trucker'],
     },
 };
 
@@ -54,41 +60,6 @@ const VARIANT_PRICES = {
         polyester: { XS: 13, S: 14, M: 14, L: 15, XL: 16, '2XL': 18, '3XL': 20 },
         blend: { XS: 15, S: 16, M: 16, L: 17, XL: 18, '2XL': 20, '3XL': 22 },
         organic: { XS: 17, S: 18, M: 18, L: 19, XL: 20, '2XL': 22, '3XL': 24 },
-    },
-    polo: {
-        cotton: { S: 18, M: 18, L: 19, XL: 20, '2XL': 22, '3XL': 24 },
-        polyester: { S: 16, M: 16, L: 17, XL: 18, '2XL': 20, '3XL': 22 },
-        pique: { S: 20, M: 20, L: 21, XL: 22, '2XL': 24, '3XL': 26 },
-    },
-    'long-sleeve': {
-        cotton: { XS: 17, S: 18, M: 18, L: 19, XL: 20, '2XL': 22 },
-        polyester: { XS: 16, S: 17, M: 17, L: 18, XL: 19, '2XL': 21 },
-        blend: { XS: 19, S: 20, M: 20, L: 21, XL: 22, '2XL': 24 },
-    },
-    hoodie: {
-        cotton: { S: 35, M: 35, L: 37, XL: 39, '2XL': 42 },
-        blend: { S: 38, M: 38, L: 40, XL: 42, '2XL': 45 },
-        fleece: { S: 42, M: 42, L: 44, XL: 46, '2XL': 49 },
-    },
-    'zip-hoodie': {
-        cotton: { S: 40, M: 40, L: 42, XL: 44, '2XL': 47 },
-        fleece: { S: 45, M: 45, L: 47, XL: 49, '2XL': 52 },
-    },
-    mug: {
-        ceramic: { '11oz': 12, '15oz': 14 },
-    },
-    'travel-mug': {
-        stainless: { '12oz': 18, '16oz': 22 },
-    },
-    tote: {
-        cotton: { M: 12, L: 14 },
-        canvas: { M: 15, L: 17 },
-        polyester: { M: 10, L: 12 },
-    },
-    cap: {
-        cotton: { 'S/M': 14, 'L/XL': 14 },
-        polyester: { 'S/M': 12, 'L/XL': 12 },
-        trucker: { 'S/M': 16, 'L/XL': 16 },
     },
 };
 
@@ -491,7 +462,7 @@ export default function CustomizerApp() {
     const containerRef = useRef(null);
     const imageCache = useRef({});
 
-    const [canvas, setCanvas] = useState({ width: 800, height: 600, background: '#ffffff', grid: true, gridSize: 20 });
+    const [canvas, setCanvas] = useState({ width: 800, height: 600, background: '#0b0f19', grid: true, gridSize: 20 });
     const [layers, setLayers] = useState([]);
     const [selectedLayerId, setSelectedLayerId] = useState(null);
     const [productType, setProductType] = useState('t-shirt');
@@ -501,6 +472,7 @@ export default function CustomizerApp() {
     const [pan, setPan] = useState({ x: 0, y: 0 });
     const [isPanning, setIsPanning] = useState(false);
     const [panStart, setPanStart] = useState({ x: 0, y: 0 });
+    const [garmentImage, setGarmentImage] = useState(null);
 
     const [designId, setDesignId] = useState(null);
     const [designName, setDesignName] = useState('');
@@ -777,395 +749,36 @@ export default function CustomizerApp() {
     }
 
     function drawProductTemplate(ctx, w, h, type, color) {
+        if (!garmentImage) return { x: 0, y: 0, width: w, height: h };
+        // Fit the SVG t-shirt image into the canvas (preserve aspect ratio)
+        const imgAspect = TSHIRT_VIEWBOX.w / TSHIRT_VIEWBOX.h;
+        const canvasAspect = w / h;
+        let drawW, drawH;
+        if (imgAspect > canvasAspect) { drawW = w * 0.85; drawH = drawW / imgAspect; }
+        else { drawH = h * 0.85; drawW = drawH * imgAspect; }
+        const drawX = (w - drawW) / 2;
+        const drawY = (h - drawH) / 2;
+
         ctx.save();
-        if (type === 't-shirt') {
-            const cw = w * 0.6, ch = h * 0.75;
-            const ox = (w - cw) / 2, oy = (h - ch) / 2 - h * 0.02;
-            const sw = cw * 0.35;
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.28, oy);
-            ctx.lineTo(ox + cw * 0.72, oy);
-            ctx.quadraticCurveTo(ox + cw * 0.78, oy, ox + cw * 0.82, oy + ch * 0.1);
-            ctx.lineTo(ox + cw + sw * 0.7, oy + ch * 0.22);
-            ctx.quadraticCurveTo(ox + cw + sw * 0.8, oy + ch * 0.24, ox + cw + sw * 0.65, oy + ch * 0.42);
-            ctx.lineTo(ox + cw * 0.92, oy + ch * 0.36);
-            ctx.lineTo(ox + cw * 0.88, oy + ch);
-            ctx.lineTo(ox + cw * 0.12, oy + ch);
-            ctx.lineTo(ox + cw * 0.08, oy + ch * 0.36);
-            ctx.lineTo(ox - sw * 0.65 + cw * 0.08, oy + ch * 0.42);
-            ctx.quadraticCurveTo(ox - sw * 0.8 + cw * 0.08, oy + ch * 0.24, ox - sw * 0.7 + cw * 0.08, oy + ch * 0.22);
-            ctx.lineTo(ox + cw * 0.18, oy + ch * 0.1);
-            ctx.quadraticCurveTo(ox + cw * 0.22, oy, ox + cw * 0.28, oy);
-            ctx.closePath();
-            ctx.fillStyle = color || '#ffffff';
-            ctx.fill();
-            ctx.strokeStyle = '#d1d5db';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.28, oy);
-            ctx.quadraticCurveTo(ox + cw * 0.5, oy + ch * 0.08, ox + cw * 0.72, oy);
-            ctx.strokeStyle = '#d1d5db';
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            const pz = { x: ox + cw * 0.18, y: oy + ch * 0.28, width: cw * 0.64, height: ch * 0.45 };
-            ctx.setLineDash([4, 4]);
-            ctx.strokeStyle = '#e5e7eb';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(pz.x, pz.y, pz.width, pz.height);
-            ctx.setLineDash([]);
-            ctx.restore();
-            return pz;
-
-        } else if (type === 'polo') {
-            const cw = w * 0.6, ch = h * 0.75;
-            const ox = (w - cw) / 2, oy = (h - ch) / 2 - h * 0.02;
-            const sw = cw * 0.32;
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.28, oy);
-            ctx.lineTo(ox + cw * 0.72, oy);
-            ctx.quadraticCurveTo(ox + cw * 0.78, oy, ox + cw * 0.82, oy + ch * 0.1);
-            ctx.lineTo(ox + cw + sw * 0.65, oy + ch * 0.2);
-            ctx.quadraticCurveTo(ox + cw + sw * 0.75, oy + ch * 0.22, ox + cw + sw * 0.6, oy + ch * 0.4);
-            ctx.lineTo(ox + cw * 0.92, oy + ch * 0.34);
-            ctx.lineTo(ox + cw * 0.88, oy + ch);
-            ctx.lineTo(ox + cw * 0.12, oy + ch);
-            ctx.lineTo(ox + cw * 0.08, oy + ch * 0.34);
-            ctx.lineTo(ox - sw * 0.6 + cw * 0.08, oy + ch * 0.4);
-            ctx.quadraticCurveTo(ox - sw * 0.75 + cw * 0.08, oy + ch * 0.22, ox - sw * 0.65 + cw * 0.08, oy + ch * 0.2);
-            ctx.lineTo(ox + cw * 0.18, oy + ch * 0.1);
-            ctx.quadraticCurveTo(ox + cw * 0.22, oy, ox + cw * 0.28, oy);
-            ctx.closePath();
-            ctx.fillStyle = color || '#ffffff';
-            ctx.fill();
-            ctx.strokeStyle = '#d1d5db';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.38, oy + ch * 0.01);
-            ctx.lineTo(ox + cw * 0.38, oy + ch * 0.14);
-            ctx.strokeStyle = '#9ca3af';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.62, oy + ch * 0.01);
-            ctx.lineTo(ox + cw * 0.62, oy + ch * 0.14);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.38, oy + ch * 0.14);
-            ctx.lineTo(ox + cw * 0.62, oy + ch * 0.14);
-            ctx.stroke();
-            const pz = { x: ox + cw * 0.18, y: oy + ch * 0.25, width: cw * 0.64, height: ch * 0.48 };
-            ctx.setLineDash([4, 4]);
-            ctx.strokeStyle = '#e5e7eb';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(pz.x, pz.y, pz.width, pz.height);
-            ctx.setLineDash([]);
-            ctx.restore();
-            return pz;
-
-        } else if (type === 'long-sleeve') {
-            const cw = w * 0.55, ch = h * 0.7;
-            const ox = (w - cw) / 2, oy = (h - ch) / 2;
-            const sleeveLen = cw * 0.7;
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.3, oy);
-            ctx.lineTo(ox + cw * 0.7, oy);
-            ctx.quadraticCurveTo(ox + cw * 0.76, oy, ox + cw * 0.8, oy + ch * 0.08);
-            ctx.lineTo(ox + cw + sleeveLen, oy + ch * 0.55);
-            ctx.lineTo(ox + cw + sleeveLen - cw * 0.08, oy + ch * 0.58);
-            ctx.lineTo(ox + cw * 0.9, oy + ch * 0.22);
-            ctx.lineTo(ox + cw * 0.88, oy + ch);
-            ctx.lineTo(ox + cw * 0.12, oy + ch);
-            ctx.lineTo(ox + cw * 0.1, oy + ch * 0.22);
-            ctx.lineTo(ox - sleeveLen + cw * 0.1, oy + ch * 0.58);
-            ctx.lineTo(ox - sleeveLen + cw * 0.02, oy + ch * 0.55);
-            ctx.lineTo(ox + cw * 0.2, oy + ch * 0.08);
-            ctx.quadraticCurveTo(ox + cw * 0.24, oy, ox + cw * 0.3, oy);
-            ctx.closePath();
-            ctx.fillStyle = color || '#ffffff';
-            ctx.fill();
-            ctx.strokeStyle = '#d1d5db';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.3, oy);
-            ctx.quadraticCurveTo(ox + cw * 0.5, oy + ch * 0.07, ox + cw * 0.7, oy);
-            ctx.strokeStyle = '#d1d5db';
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            const pz = { x: ox + cw * 0.15, y: oy + ch * 0.22, width: cw * 0.7, height: ch * 0.5 };
-            ctx.setLineDash([4, 4]);
-            ctx.strokeStyle = '#e5e7eb';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(pz.x, pz.y, pz.width, pz.height);
-            ctx.setLineDash([]);
-            ctx.restore();
-            return pz;
-
-        } else if (type === 'hoodie') {
-            const cw = w * 0.65, ch = h * 0.8;
-            const ox = (w - cw) / 2, oy = (h - ch) / 2 - h * 0.02;
-            const sw = cw * 0.4;
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.3, oy + ch * 0.05);
-            ctx.lineTo(ox + cw * 0.42, oy);
-            ctx.lineTo(ox + cw * 0.58, oy);
-            ctx.lineTo(ox + cw * 0.7, oy + ch * 0.05);
-            ctx.quadraticCurveTo(ox + cw * 0.78, oy + ch * 0.06, ox + cw * 0.82, oy + ch * 0.14);
-            ctx.lineTo(ox + cw + sw * 0.65, oy + ch * 0.2);
-            ctx.quadraticCurveTo(ox + cw + sw * 0.75, oy + ch * 0.22, ox + cw + sw * 0.6, oy + ch * 0.38);
-            ctx.lineTo(ox + cw * 0.93, oy + ch * 0.34);
-            ctx.lineTo(ox + cw * 0.9, oy + ch);
-            ctx.lineTo(ox + cw * 0.1, oy + ch);
-            ctx.lineTo(ox + cw * 0.07, oy + ch * 0.34);
-            ctx.lineTo(ox - sw * 0.6 + cw * 0.07, oy + ch * 0.38);
-            ctx.quadraticCurveTo(ox - sw * 0.75 + cw * 0.07, oy + ch * 0.22, ox - sw * 0.65 + cw * 0.07, oy + ch * 0.2);
-            ctx.lineTo(ox + cw * 0.18, oy + ch * 0.14);
-            ctx.quadraticCurveTo(ox + cw * 0.22, oy + ch * 0.06, ox + cw * 0.3, oy + ch * 0.05);
-            ctx.closePath();
-            ctx.fillStyle = color || '#374151';
-            ctx.fill();
-            ctx.strokeStyle = '#6b7280';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.42, oy);
-            ctx.quadraticCurveTo(ox + cw * 0.5, oy + ch * 0.06, ox + cw * 0.58, oy);
-            ctx.strokeStyle = '#9ca3af';
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.44, oy + ch * 0.12);
-            ctx.lineTo(ox + cw * 0.5, oy + ch * 0.22);
-            ctx.strokeStyle = '#9ca3af';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.56, oy + ch * 0.12);
-            ctx.lineTo(ox + cw * 0.5, oy + ch * 0.22);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.ellipse(ox + cw * 0.5, oy + ch * 0.03, cw * 0.13, ch * 0.04, 0, 0, Math.PI * 2);
-            ctx.strokeStyle = '#9ca3af';
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            const pz = { x: ox + cw * 0.2, y: oy + ch * 0.3, width: cw * 0.6, height: ch * 0.4 };
-            ctx.setLineDash([4, 4]);
-            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(pz.x, pz.y, pz.width, pz.height);
-            ctx.setLineDash([]);
-            ctx.restore();
-            return pz;
-
-        } else if (type === 'zip-hoodie') {
-            const cw = w * 0.65, ch = h * 0.8;
-            const ox = (w - cw) / 2, oy = (h - ch) / 2 - h * 0.02;
-            const sw = cw * 0.4;
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.3, oy + ch * 0.05);
-            ctx.lineTo(ox + cw * 0.42, oy);
-            ctx.lineTo(ox + cw * 0.58, oy);
-            ctx.lineTo(ox + cw * 0.7, oy + ch * 0.05);
-            ctx.quadraticCurveTo(ox + cw * 0.78, oy + ch * 0.06, ox + cw * 0.82, oy + ch * 0.14);
-            ctx.lineTo(ox + cw + sw * 0.65, oy + ch * 0.2);
-            ctx.quadraticCurveTo(ox + cw + sw * 0.75, oy + ch * 0.22, ox + cw + sw * 0.6, oy + ch * 0.38);
-            ctx.lineTo(ox + cw * 0.93, oy + ch * 0.34);
-            ctx.lineTo(ox + cw * 0.9, oy + ch);
-            ctx.lineTo(ox + cw * 0.1, oy + ch);
-            ctx.lineTo(ox + cw * 0.07, oy + ch * 0.34);
-            ctx.lineTo(ox - sw * 0.6 + cw * 0.07, oy + ch * 0.38);
-            ctx.quadraticCurveTo(ox - sw * 0.75 + cw * 0.07, oy + ch * 0.22, ox - sw * 0.65 + cw * 0.07, oy + ch * 0.2);
-            ctx.lineTo(ox + cw * 0.18, oy + ch * 0.14);
-            ctx.quadraticCurveTo(ox + cw * 0.22, oy + ch * 0.06, ox + cw * 0.3, oy + ch * 0.05);
-            ctx.closePath();
-            ctx.fillStyle = color || '#374151';
-            ctx.fill();
-            ctx.strokeStyle = '#6b7280';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.5, oy + ch * 0.01);
-            ctx.lineTo(ox + cw * 0.5, oy + ch);
-            ctx.strokeStyle = '#9ca3af';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.48, oy + ch * 0.03);
-            ctx.lineTo(ox + cw * 0.52, oy + ch * 0.03);
-            ctx.lineTo(ox + cw * 0.52, oy + ch * 0.08);
-            ctx.lineTo(ox + cw * 0.48, oy + ch * 0.08);
-            ctx.closePath();
-            ctx.fillStyle = '#6b7280';
-            ctx.fill();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.35, oy + ch * 0.12);
-            ctx.lineTo(ox + cw * 0.5, oy + ch * 0.22);
-            ctx.strokeStyle = '#9ca3af';
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            const pz = { x: ox + cw * 0.2, y: oy + ch * 0.3, width: cw * 0.6, height: ch * 0.4 };
-            ctx.setLineDash([4, 4]);
-            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(pz.x, pz.y, pz.width, pz.height);
-            ctx.setLineDash([]);
-            ctx.restore();
-            return pz;
-
-        } else if (type === 'mug') {
-            const mw = w * 0.5, mh = h * 0.55;
-            const ox = (w - mw) / 2, oy = (h - mh) / 2;
-            ctx.beginPath();
-            ctx.moveTo(ox + mw * 0.05, oy);
-            ctx.lineTo(ox + mw * 0.95, oy);
-            ctx.quadraticCurveTo(ox + mw, oy, ox + mw, oy + mh * 0.08);
-            ctx.lineTo(ox + mw, oy + mh * 0.92);
-            ctx.quadraticCurveTo(ox + mw, oy + mh, ox + mw * 0.95, oy + mh);
-            ctx.lineTo(ox + mw * 0.05, oy + mh);
-            ctx.quadraticCurveTo(ox, oy + mh, ox, oy + mh * 0.92);
-            ctx.lineTo(ox, oy + mh * 0.08);
-            ctx.quadraticCurveTo(ox, oy, ox + mw * 0.05, oy);
-            ctx.closePath();
-            ctx.fillStyle = color || '#ffffff';
-            ctx.fill();
-            ctx.strokeStyle = '#d1d5db';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.ellipse(ox + mw * 0.5, oy + mh * 0.12, mw * 0.45, mh * 0.08, 0, 0, Math.PI * 2);
-            ctx.strokeStyle = '#d1d5db';
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + mw, oy + mh * 0.25);
-            ctx.quadraticCurveTo(ox + mw + mw * 0.35, oy + mh * 0.35, ox + mw + mw * 0.35, oy + mh * 0.5);
-            ctx.quadraticCurveTo(ox + mw + mw * 0.35, oy + mh * 0.65, ox + mw, oy + mh * 0.75);
-            ctx.strokeStyle = '#d1d5db';
-            ctx.lineWidth = 3;
-            ctx.stroke();
-            const pz = { x: ox + mw * 0.1, y: oy + mh * 0.2, width: mw * 0.8, height: mh * 0.55 };
-            ctx.setLineDash([4, 4]);
-            ctx.strokeStyle = '#e5e7eb';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(pz.x, pz.y, pz.width, pz.height);
-            ctx.setLineDash([]);
-            ctx.restore();
-            return pz;
-
-        } else if (type === 'travel-mug') {
-            const mw = w * 0.35, mh = h * 0.65;
-            const ox = (w - mw) / 2, oy = (h - mh) / 2;
-            ctx.beginPath();
-            ctx.moveTo(ox + mw * 0.1, oy);
-            ctx.lineTo(ox + mw * 0.9, oy);
-            ctx.quadraticCurveTo(ox + mw, oy, ox + mw, oy + mh * 0.05);
-            ctx.lineTo(ox + mw * 0.95, oy + mh * 0.85);
-            ctx.quadraticCurveTo(ox + mw * 0.93, oy + mh, ox + mw * 0.85, oy + mh);
-            ctx.lineTo(ox + mw * 0.15, oy + mh);
-            ctx.quadraticCurveTo(ox + mw * 0.07, oy + mh, ox + mw * 0.05, oy + mh * 0.85);
-            ctx.lineTo(ox, oy + mh * 0.05);
-            ctx.quadraticCurveTo(ox, oy, ox + mw * 0.1, oy);
-            ctx.closePath();
-            ctx.fillStyle = color || '#e5e7eb';
-            ctx.fill();
-            ctx.strokeStyle = '#9ca3af';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.ellipse(ox + mw * 0.5, oy + mh * 0.06, mw * 0.42, mh * 0.04, 0, 0, Math.PI * 2);
-            ctx.strokeStyle = '#9ca3af';
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + mw * 0.85, oy + mh * 0.25);
-            ctx.quadraticCurveTo(ox + mw * 1.2, oy + mh * 0.35, ox + mw * 1.2, oy + mh * 0.5);
-            ctx.quadraticCurveTo(ox + mw * 1.2, oy + mh * 0.65, ox + mw * 0.85, oy + mh * 0.75);
-            ctx.strokeStyle = '#9ca3af';
-            ctx.lineWidth = 3;
-            ctx.stroke();
-            const pz = { x: ox + mw * 0.08, y: oy + mh * 0.15, width: mw * 0.84, height: mh * 0.55 };
-            ctx.setLineDash([4, 4]);
-            ctx.strokeStyle = '#d1d5db';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(pz.x, pz.y, pz.width, pz.height);
-            ctx.setLineDash([]);
-            ctx.restore();
-            return pz;
-
-        } else if (type === 'tote') {
-            const tw = w * 0.55, th = h * 0.65;
-            const ox = (w - tw) / 2, oy = (h - th) / 2 - h * 0.05;
-            ctx.beginPath();
-            ctx.moveTo(ox + tw * 0.15, oy + th * 0.2);
-            ctx.lineTo(ox + tw * 0.05, oy + th);
-            ctx.lineTo(ox + tw * 0.95, oy + th);
-            ctx.lineTo(ox + tw * 0.85, oy + th * 0.2);
-            ctx.closePath();
-            ctx.fillStyle = color || '#f5f0e6';
-            ctx.fill();
-            ctx.strokeStyle = '#c4b8a0';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + tw * 0.3, oy + th * 0.2);
-            ctx.quadraticCurveTo(ox + tw * 0.3, oy, ox + tw * 0.5, oy);
-            ctx.quadraticCurveTo(ox + tw * 0.7, oy, ox + tw * 0.7, oy + th * 0.2);
-            ctx.strokeStyle = '#c4b8a0';
-            ctx.lineWidth = 3;
-            ctx.stroke();
-            const pz = { x: ox + tw * 0.1, y: oy + th * 0.28, width: tw * 0.8, height: th * 0.5 };
-            ctx.setLineDash([4, 4]);
-            ctx.strokeStyle = '#d1d5db';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(pz.x, pz.y, pz.width, pz.height);
-            ctx.setLineDash([]);
-            ctx.restore();
-            return pz;
-
-        } else if (type === 'cap') {
-            const cw = w * 0.55, ch = h * 0.45;
-            const ox = (w - cw) / 2, oy = (h - ch) / 2 - h * 0.05;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy + ch * 0.55);
-            ctx.quadraticCurveTo(ox, oy + ch * 0.1, ox + cw * 0.15, oy + ch * 0.05);
-            ctx.quadraticCurveTo(ox + cw * 0.5, oy - ch * 0.05, ox + cw * 0.85, oy + ch * 0.05);
-            ctx.quadraticCurveTo(ox + cw, oy + ch * 0.1, ox + cw, oy + ch * 0.55);
-            ctx.closePath();
-            ctx.fillStyle = color || '#374151';
-            ctx.fill();
-            ctx.strokeStyle = '#6b7280';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, oy + ch * 0.55);
-            ctx.quadraticCurveTo(ox + cw * 0.1, oy + ch * 0.75, ox + cw * 0.5, oy + ch * 0.82);
-            ctx.quadraticCurveTo(ox + cw * 0.9, oy + ch * 0.75, ox + cw, oy + ch * 0.55);
-            ctx.strokeStyle = '#6b7280';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.ellipse(ox + cw * 0.5, oy + ch * 0.12, cw * 0.12, ch * 0.06, 0, 0, Math.PI * 2);
-            ctx.fillStyle = '#ef4444';
-            ctx.fill();
-            ctx.beginPath();
-            ctx.moveTo(ox + cw * 0.5, oy + ch * 0.18);
-            ctx.lineTo(ox + cw * 0.5, oy + ch * 0.55);
-            ctx.strokeStyle = '#9ca3af';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-            const pz = { x: ox + cw * 0.12, y: oy + ch * 0.15, width: cw * 0.76, height: ch * 0.35 };
-            ctx.setLineDash([4, 4]);
-            ctx.strokeStyle = 'rgba(255,255,255,0.4)';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(pz.x, pz.y, pz.width, pz.height);
-            ctx.setLineDash([]);
-            ctx.restore();
-            return pz;
-        }
+        ctx.shadowColor = "rgba(0, 0, 0, 0.40)";
+        ctx.shadowBlur = 24;
+        ctx.shadowOffsetY = 8;
+        ctx.drawImage(garmentImage, drawX, drawY, drawW, drawH);
         ctx.restore();
-        return { x: 0, y: 0, width: w, height: h };
+
+        // Printable zone overlay (dashed rectangle)
+        const pz = {
+            x: drawX + drawW * 0.25,
+            y: drawY + drawH * 0.20,
+            width: drawW * 0.50,
+            height: drawH * 0.45,
+        };
+        ctx.setLineDash([6, 6]);
+        ctx.strokeStyle = "rgba(99, 102, 241, 0.35)";
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(pz.x, pz.y, pz.width, pz.height);
+        ctx.setLineDash([]);
+        return pz;
     }
 
     function drawImageOnCtx(ctx, layer, x, y) {
@@ -1191,20 +804,16 @@ export default function CustomizerApp() {
         ctx.fillStyle = canvas.background;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        const colorMap = {
-            white: '#ffffff', black: '#1a1a1a', navy: '#1e3a5f', gray: '#6b7280',
-            red: '#dc2626', blue: '#2563eb', green: '#16a34a', beige: '#d4c5a0',
-            natural: '#f5f0e6', silver: '#c0c0c0',
-        };
-        drawProductTemplate(ctx, canvas.width, canvas.height, productType, colorMap[selectedVariants.color] || selectedVariants.color);
-
+        // Draw grid in the background first
         if (canvas.grid) {
             const size = canvas.gridSize;
-            ctx.strokeStyle = '#e5e7eb';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.035)';
             ctx.lineWidth = 0.5;
             for (let x = 0; x <= canvas.width; x += size) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); }
             for (let y = 0; y <= canvas.height; y += size) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); }
         }
+
+        drawProductTemplate(ctx, canvas.width, canvas.height, productType, COLOR_MAP[selectedVariants.color] || selectedVariants.color);
 
         const sorted = [...layers].sort((a, b) => (a.zIndex || 0) - (b.zIndex || 0));
         for (const layer of sorted) {
@@ -1231,7 +840,7 @@ export default function CustomizerApp() {
                 ctx.setLineDash([]);
             }
         }
-    }, [canvas, layers, selectedLayerId, zoom, productType, selectedVariants.color]);
+    }, [canvas, layers, selectedLayerId, zoom, productType, selectedVariants.color, garmentImage]);
 
     const canvasMouseDown = useCallback((e) => {
         const rect = canvasRef.current.getBoundingClientRect();
@@ -1284,6 +893,16 @@ export default function CustomizerApp() {
 
     useEffect(() => { loadSavedDesigns(); }, [loadSavedDesigns]);
 
+    // Load the t-shirt SVG (recolor) whenever the selected color changes
+    useEffect(() => {
+        let cancelled = false;
+        const colorHex = COLOR_MAP[selectedVariants.color] || selectedVariants.color || '#F5F5F0';
+        loadSvgImage(buildTshirtSvg(colorHex))
+            .then(img => { if (!cancelled) setGarmentImage(img); })
+            .catch(() => {});
+        return () => { cancelled = true; };
+    }, [selectedVariants.color]);
+
     return (
         <div className="h-screen flex flex-col bg-slate-950 text-slate-100 font-sans">
             <Notification notification={notification} />
@@ -1302,31 +921,7 @@ export default function CustomizerApp() {
                         
                         <div className="h-4 w-[1px] bg-slate-800"></div>
                         
-                        {/* Select Product Type */}
-                        <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Prenda:</span>
-                            <select 
-                                value={productType} 
-                                onChange={e => setProductType(e.target.value)} 
-                                className="bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl px-3.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-bold transition-all"
-                            >
-                                <optgroup label="Prendas">
-                                    <option value="t-shirt">Camiseta Regular</option>
-                                    <option value="polo">Polo Premium</option>
-                                    <option value="long-sleeve">Manga Larga</option>
-                                </optgroup>
-                                <optgroup label="Abrigos">
-                                    <option value="hoodie">Sudadera</option>
-                                    <option value="zip-hoodie">Sudadera con Cremallera</option>
-                                </optgroup>
-                                <optgroup label="Accesorios">
-                                    <option value="mug">Taza de Cerámica</option>
-                                    <option value="travel-mug">Taza de Viaje</option>
-                                    <option value="tote">Bolsa Tote Canvas</option>
-                                    <option value="cap">Gorra Ajustable</option>
-                                </optgroup>
-                            </select>
-                        </div>
+                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hidden sm:inline">Camiseta</span>
                     </div>
 
                     <div className="flex items-center gap-3">
@@ -1375,23 +970,7 @@ export default function CustomizerApp() {
                 <main className="flex-1 flex flex-col overflow-hidden bg-slate-950 relative">
                     <div className="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
                     
-                    {/* Color Quick Picker Overlay */}
-                    <div className="absolute top-6 left-6 z-10 bg-slate-900/90 border border-slate-850 backdrop-blur-md rounded-2xl p-4 shadow-2xl flex flex-col gap-3">
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Color de Prenda</span>
-                        <div className="flex gap-2">
-                            {PRODUCT_VARIANTS[productType]?.colors.map(col => (
-                                <button 
-                                    key={col}
-                                    onClick={() => setSelectedVariants(prev => ({ ...prev, color: col }))}
-                                    className={`w-6 h-6 rounded-full border transition-all ${selectedVariants.color === col ? 'border-indigo-500 scale-110 ring-2 ring-indigo-500/20' : 'border-slate-850 hover:scale-105'}`}
-                                    style={{ 
-                                        backgroundColor: col === 'white' ? '#fff' : col === 'black' ? '#111' : col === 'navy' ? '#1e3b70' : col === 'gray' ? '#888' : col === 'red' ? '#c23' : col === 'blue' ? '#25f' : col === 'green' ? '#182' : col === 'beige' ? '#e2d4b7' : col === 'natural' ? '#ece5d3' : col === 'silver' ? '#c0c0c0' : '#888'
-                                    }}
-                                    title={col}
-                                />
-                            ))}
-                        </div>
-                    </div>
+
 
                     {/* Canvas Wrapper */}
                     <div className="flex-1 flex items-center justify-center relative overflow-hidden p-8" ref={containerRef}>
@@ -1449,6 +1028,28 @@ export default function CustomizerApp() {
                             </div>
                         </div>
 
+                        <div className="h-5 w-[1px] bg-slate-800"></div>
+
+                        {/* Color Picker — Color de Prenda */}
+                        <div className="flex items-center gap-2.5">
+                            <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap">Color</span>
+                            <div className="flex gap-1.5 flex-wrap">
+                                {PRODUCT_VARIANTS[productType]?.colors.map(col => (
+                                    <button
+                                        key={col}
+                                        onClick={() => setSelectedVariants(prev => ({ ...prev, color: col }))}
+                                        className={`w-6 h-6 rounded-full border-2 transition-all hover:scale-110 ${
+                                            selectedVariants.color === col
+                                                ? 'border-indigo-400 scale-110 ring-2 ring-indigo-500/30'
+                                                : 'border-slate-700 hover:border-slate-500'
+                                        }`}
+                                        style={{ backgroundColor: COLOR_MAP[col] || '#888888' }}
+                                        title={col}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
                         {/* Export Action */}
                         <div>
                             <button 
@@ -1460,6 +1061,7 @@ export default function CustomizerApp() {
                             </button>
                         </div>
                     </div>
+
                 </main>
 
                 <PropertiesPanel layer={selectedLayer} onUpdate={updateLayer} />

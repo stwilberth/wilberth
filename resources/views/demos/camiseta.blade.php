@@ -5,6 +5,7 @@
 @section('content')
 <!-- Google Fonts Import for customization fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Pacifico&family=Playfair+Display:ital,wght@0,600;1,400&family=Bebas+Neue&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <section class="bg-gradient-to-r from-indigo-700 via-indigo-800 to-slate-900 text-white py-16 mb-12 relative overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.15),transparent_40%)]"></div>
@@ -47,283 +48,28 @@
                 
                 <!-- T-SHIRT CARD WITH 3D TILT EFFECT -->
                 <div id="zoom-wrapper" class="overflow-hidden flex items-center justify-center" style="transition: transform 0.15s ease-out;">
-                <div id="preview-container" class="relative w-[400px] h-[500px] select-none" style="transform-style: preserve-3d; perspective: 1000px; transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
+                <div id="preview-container" class="relative select-none" style="width: 100%; max-width: 520px; aspect-ratio: 1052.4 / 744.09; transform-style: preserve-3d; perspective: 1000px; transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
                     
-                    <!-- BASE LAYER SVG: T-shirt Shape & Fabric Weave (z-0) -->
+                    <!-- T-SHIRT SVG: Inline (z-0) — fill configurable via setColor() -->
                     <div class="absolute inset-0 z-0">
-                        <svg id="tshirt-base-svg" viewBox="0 0 500 500" class="w-full h-full">
-                          <defs>
-                            <pattern id="pat-cotton" width="6" height="6" patternUnits="userSpaceOnUse">
-                              <path d="M 0 3 L 6 3 M 3 0 L 3 6" stroke="rgba(0,0,0,0.06)" stroke-width="0.8" />
-                            </pattern>
-                            <pattern id="pat-polyester" width="4" height="4" patternTransform="rotate(30)" patternUnits="userSpaceOnUse">
-                              <line x1="0" y1="0" x2="0" y2="4" stroke="rgba(0,0,0,0.08)" stroke-width="0.8" />
-                            </pattern>
-                            <filter id="filt-heather">
-                              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
-                              <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.12 0" />
-                              <feComposite operator="in" in2="SourceGraphic" />
-                            </filter>
-                          </defs>
-
-                          <!-- Front Short Sleeve Base -->
-                          
-  <!-- FRONT SHORT SLEEVE REGULAR BASE -->
-  <g id="base-front-short-regular" class="base-group">
-    <path class="tshirt-fill" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#ffffff" />
-    <path class="tshirt-texture cotton" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
-    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
-    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-    <!-- Inside collar area -->
-    <path d="M 180 60 C 215 85, 285 85, 320 60 C 285 52, 215 52, 180 60 Z" fill="rgba(0,0,0,0.18)" />
-  </g>
-
-  <!-- FRONT LONG SLEEVE REGULAR BASE -->
-  <g id="base-front-long-regular" class="base-group hidden">
-    <path class="tshirt-fill" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#ffffff" />
-    <path class="tshirt-texture cotton" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
-    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
-    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-    <!-- Inside collar area -->
-    <path d="M 180 60 C 215 85, 285 85, 320 60 C 285 52, 215 52, 180 60 Z" fill="rgba(0,0,0,0.18)" />
-  </g>
-
-  <!-- BACK SHORT SLEEVE REGULAR BASE -->
-  <g id="base-back-short-regular" class="base-group hidden">
-    <path class="tshirt-fill" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#ffffff" />
-    <path class="tshirt-texture cotton" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
-    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
-    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-  </g>
-
-  <!-- BACK LONG SLEEVE REGULAR BASE -->
-  <g id="base-back-long-regular" class="base-group hidden">
-    <path class="tshirt-fill" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#ffffff" />
-    <path class="tshirt-texture cotton" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
-    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
-    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-  </g>
-
-  <!-- FRONT SHORT SLEEVE MUJER BASE -->
-  <g id="base-front-short-mujer" class="base-group hidden">
-    <path class="tshirt-fill" d="M 175 65 C 210 90, 290 90, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="#ffffff" />
-    <path class="tshirt-texture cotton" d="M 175 65 C 210 90, 290 90, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="url(#pat-cotton)" />
-    <path class="tshirt-texture polyester hidden" d="M 175 65 C 210 90, 290 90, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="url(#pat-polyester)" />
-    <path class="tshirt-texture heather hidden" d="M 175 65 C 210 90, 290 90, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-    <!-- Inside collar area -->
-    <path d="M 175 65 C 210 90, 290 90, 325 65 C 290 55, 210 55, 175 65 Z" fill="rgba(0,0,0,0.18)" />
-  </g>
-
-  <!-- BACK SHORT SLEEVE MUJER BASE -->
-  <g id="base-back-short-mujer" class="base-group hidden">
-    <path class="tshirt-fill" d="M 175 65 C 210 55, 290 55, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="#ffffff" />
-    <path class="tshirt-texture cotton" d="M 175 65 C 210 55, 290 55, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="url(#pat-cotton)" />
-    <path class="tshirt-texture polyester hidden" d="M 175 65 C 210 55, 290 55, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="url(#pat-polyester)" />
-    <path class="tshirt-texture heather hidden" d="M 175 65 C 210 55, 290 55, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-  </g>
-
-  <!-- FRONT SHORT SLEEVE POLO BASE -->
-  <g id="base-front-short-polo" class="base-group hidden">
-    <!-- Body and sleeves (similar to regular short sleeve) -->
-    <path class="tshirt-fill" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#ffffff" />
-    <path class="tshirt-texture cotton" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
-    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
-    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-    
-    <!-- Placket backdrop -->
-    <path d="M 238 60 L 262 60 L 262 170 L 238 170 Z" fill="rgba(0,0,0,0.08)" />
-    <path class="tshirt-fill" d="M 240 60 L 260 60 L 260 168 L 240 168 Z" fill="#ffffff" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" />
-    
-    <!-- Collar Left Flap -->
-    <path class="tshirt-fill" d="M 180 60 C 200 68, 235 85, 248 85 L 230 135 L 195 105 Z" fill="#ffffff" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" />
-    <!-- Collar Right Flap -->
-    <path class="tshirt-fill" d="M 320 60 C 300 68, 265 85, 252 85 L 270 135 L 305 105 Z" fill="#ffffff" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" />
-    
-    <!-- Buttons -->
-    <circle cx="250" cy="100" r="3.5" fill="#f1f5f9" stroke="rgba(0,0,0,0.25)" stroke-width="1" />
-    <circle cx="250" cy="135" r="3.5" fill="#f1f5f9" stroke="rgba(0,0,0,0.25)" stroke-width="1" />
-  </g>
-
-  <!-- BACK SHORT SLEEVE POLO BASE -->
-  <g id="base-back-short-polo" class="base-group hidden">
-    <!-- Similar to normal back short sleeve -->
-    <path class="tshirt-fill" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#ffffff" />
-    <path class="tshirt-texture cotton" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-cotton)" />
-    <path class="tshirt-texture polyester hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="url(#pat-polyester)" />
-    <path class="tshirt-texture heather hidden" d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="#6b7280" filter="url(#filt-heather)" style="mix-blend-mode: overlay;" />
-    <!-- Back of the Collar -->
-    <path class="tshirt-fill" d="M 180 60 C 200 48, 300 48, 320 60 C 300 55, 200 55, 180 60 Z" fill="#ffffff" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" />
-  </g>
-
-</svg>
+                        <svg id="tshirt-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1052.4 744.09" version="1.1" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" class="block w-full h-full" style="pointer-events: none; user-select: none; display: block;" draggable="false">
+                            <g transform="translate(0 -308.27)">
+                                <path id="path82603" fill="#008080" stroke="#000000" stroke-width="1.835" d="m8.4716 378.45 187.44-46.53c37.633 19.839 77.716 16.809 119.28 0l190.06 47.842c-1.3669 36.539-11.178 70.733-23.593 104.2l-89.129-1.3107 1.3107 260.83c-91.532 8.5202-183.06 9.3486-274.6-0.65536l-2.63-258.2-87.167-2.63c-8.716-33.71-21.864-56.26-20.971-103.54z"/>
+                                <path fill="none" stroke="#000000" stroke-width="1.835" d="m195.41 331.92c35.068 69.552 101.18 46.245 119.44 0.16387"/>
+                                <path fill="none" stroke="#000000" stroke-width=".55051" d="m181 335.68c27.861 82.744 138.53 64.029 150.08 0.49152"/>
+                                <path fill="none" stroke="#000000" stroke-width=".55051" d="m122.5 350.27c13.448 42.648 20.226 86.185-5.2429 134.02"/>
+                                <path fill="none" stroke="#000000" stroke-width=".55051" d="m386.14 350.27c-13.448 42.648-20.226 86.185 5.2429 134.02"/>
+                                <path id="path82613" fill="#008080" stroke="#000000" stroke-width="1.835" d="m544.3 378.45 187.43-46.531c37.633 19.839 77.716 16.809 119.28 0l190.06 47.842c-1.3669 36.539-11.178 70.733-23.593 104.2l-89.129-1.3107 1.3107 260.83c-91.532 8.5202-183.06 9.3486-274.6-0.65536l-2.6214-258.21-87.163-2.6214c-8.7159-33.712-21.865-56.267-20.972-103.55z"/>
+                                <path fill="none" stroke="#000000" stroke-width=".55051" d="m658.33 350.27c13.448 42.648 20.226 86.185-5.2429 134.02"/>
+                                <path fill="none" stroke="#000000" stroke-width=".55051" d="m921.97 350.27c-13.448 42.648-20.226 86.185 5.2429 134.02"/>
+                                <path fill="none" stroke="#000000" stroke-width=".55051" d="m717.25 335.52c9.7283 36.654 135.03 38.062 144.18-1.3107"/>
+                            </g>
+                        </svg>
                     </div>
 
-                    <!-- DESIGN INTERACTIVE CANVAS (z-10) -->
-                    <!-- Absolute coordinates matching torso chest/back area -->
-                    <div id="printable-zone" class="absolute left-[29%] top-[22%] w-[42%] h-[56%] z-10 overflow-hidden rounded border border-dashed border-white/20 hover:border-indigo-500/50 transition-colors">
-                        <!-- Custom layers (image/text) will be dynamically loaded here by JS -->
-                    </div>
-
-                    <!-- SHADING & CREASES OVERLAY SVG: Renders realistic fold shadows on top of the design (z-20) -->
-                    <!-- Uses mix-blend-mode multiply to shade designs underneath -->
-                    <div class="absolute inset-0 z-20 pointer-events-none">
-                        <svg id="tshirt-overlay-svg" viewBox="0 0 500 500" class="w-full h-full">
-                          <defs>
-                            <filter id="blur-soft" x="-10%" y="-10%" width="120%" height="120%">
-                              <feGaussianBlur stdDeviation="3.5" />
-                            </filter>
-                            <filter id="blur-wide" x="-20%" y="-20%" width="140%" height="140%">
-                              <feGaussianBlur stdDeviation="7" />
-                            </filter>
-                          </defs>
-
-                          <!-- Front Short Sleeve Overlay -->
-                          
-  <!-- FRONT SHORT SLEEVE REGULAR OVERLAY -->
-  <g id="overlay-front-short-regular" class="overlay-group">
-      <path d="M 180 60 C 215 85, 285 85, 320 60" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="4.5" />
-      <path d="M 180 60 C 215 85, 285 85, 320 60" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="1.5,1" />
-      <path d="M 178 60 C 215 50, 285 50, 322 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 145 170 Q 185 190, 220 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
-          <path d="M 355 170 Q 315 190, 280 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
-          <path d="M 195 200 Q 170 300, 185 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 305 200 Q 330 300, 315 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 180 62 C 215 89, 285 89, 320 62" fill="none" stroke="rgba(0,0,0,0.32)" stroke-width="7" filter="url(#blur-soft)" />
-      </g>
-      <path d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-  </g>
-
-  <!-- FRONT LONG SLEEVE REGULAR OVERLAY -->
-  <g id="overlay-front-long-regular" class="overlay-group hidden">
-      <path d="M 180 60 C 215 85, 285 85, 320 60" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="4.5" />
-      <path d="M 178 60 C 215 50, 285 50, 322 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 145 170 Q 185 190, 220 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
-          <path d="M 355 170 Q 315 190, 280 180" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
-          <path d="M 110 90 Q 90 200 120 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 145 160 Q 130 250 145 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 390 90 Q 410 200 380 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 355 160 Q 370 250 355 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 180 62 C 215 89, 285 89, 320 62" fill="none" stroke="rgba(0,0,0,0.32)" stroke-width="7" filter="url(#blur-soft)" />
-      </g>
-      <path d="M 180 60 C 215 85, 285 85, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-  </g>
-
-  <!-- BACK SHORT SLEEVE REGULAR OVERLAY -->
-  <g id="overlay-back-short-regular" class="overlay-group hidden">
-      <path d="M 180 60 C 215 50, 285 50, 320 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="4.5" />
-      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 195 200 Q 170 300, 185 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 305 200 Q 330 300, 315 450" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 180 62 C 215 52, 285 52, 320 62" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="6" filter="url(#blur-soft)" />
-      </g>
-      <path d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-  </g>
-
-  <!-- BACK LONG SLEEVE REGULAR OVERLAY -->
-  <g id="overlay-back-long-regular" class="overlay-group hidden">
-      <path d="M 180 60 C 215 50, 285 50, 320 60" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="4.5" />
-      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 110 90 Q 90 200 120 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 145 160 Q 130 250 145 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 390 90 Q 410 200 380 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 355 160 Q 370 250 355 350" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="8" filter="url(#blur-soft)" />
-          <path d="M 180 62 C 215 52, 285 52, 320 62" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="6" filter="url(#blur-soft)" />
-      </g>
-      <path d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 385 360 L 350 360 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 150 360 L 115 360 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-  </g>
-
-  <!-- FRONT SHORT SLEEVE MUJER OVERLAY -->
-  <g id="overlay-front-short-mujer" class="overlay-group hidden">
-      <path d="M 175 65 C 210 90, 290 90, 325 65" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="3.5" />
-      <path d="M 175 65 C 210 90, 290 90, 325 65" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="1.5,1" />
-      <path d="M 173 65 C 210 55, 290 55, 327 65" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2" />
-      
-      <!-- Short sleeve seams -->
-      <path d="M 120 90 L 145 155" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" />
-      <path d="M 380 90 L 355 155" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" />
-      
-      <!-- Fitted side shading -->
-      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-          <path d="M 145 155 C 160 240, 160 340, 155 440" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 355 155 C 340 240, 340 340, 345 440" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="10" filter="url(#blur-soft)" />
-          <!-- Chest folds -->
-          <path d="M 145 165 Q 185 180, 220 175" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="5" filter="url(#blur-soft)" />
-          <path d="M 355 165 Q 315 180, 280 175" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="5" filter="url(#blur-soft)" />
-          <path d="M 175 67 C 210 92, 290 92, 325 67" fill="none" stroke="rgba(0,0,0,0.28)" stroke-width="6" filter="url(#blur-soft)" />
-      </g>
-      
-      <path d="M 175 65 C 210 90, 290 90, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2" />
-  </g>
-
-  <!-- BACK SHORT SLEEVE MUJER OVERLAY -->
-  <g id="overlay-back-short-mujer" class="overlay-group hidden">
-      <path d="M 175 65 C 210 55, 290 55, 325 65" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="3.5" />
-      <path d="M 120 90 L 145 155" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" />
-      <path d="M 380 90 L 355 155" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" />
-      
-      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-          <path d="M 145 155 C 160 240, 160 340, 155 440" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 355 155 C 340 240, 340 340, 345 440" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 175 67 C 210 57, 290 57, 325 67" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="6" filter="url(#blur-soft)" />
-      </g>
-      <path d="M 175 65 C 210 55, 290 55, 325 65 L 380 90 L 395 135 L 355 155 L 350 160 C 335 240, 335 340, 345 440 C 345 450, 335 460, 315 460 L 185 460 C 165 460, 155 450, 155 440 C 165 340, 165 240, 150 160 L 145 155 L 105 135 L 120 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2" />
-  </g>
-
-  <!-- FRONT SHORT SLEEVE POLO OVERLAY -->
-  <g id="overlay-front-short-polo" class="overlay-group hidden">
-      <!-- Seam lines -->
-      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <!-- Ribbing cuffs -->
-      <path d="M 85 155 L 135 175" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="3" />
-      <path d="M 365 175 L 415 155" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="3" />
-      
-      <!-- Folds & Shading -->
-      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <!-- Placket shadow -->
-          <path d="M 238 60 L 238 170" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="3" filter="url(#blur-soft)" />
-          <path d="M 262 60 L 262 170" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="3" filter="url(#blur-soft)" />
-          <path d="M 240 168 L 260 168" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="4" filter="url(#blur-soft)" />
-          <!-- Collar shadow on chest -->
-          <path d="M 180 62 C 200 70, 235 88, 250 88 C 265 88, 300 70, 320 62" fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="8" filter="url(#blur-soft)" />
-      </g>
-      <path d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-  </g>
-
-  <!-- BACK SHORT SLEEVE POLO OVERLAY -->
-  <g id="overlay-back-short-polo" class="overlay-group hidden">
-      <path d="M 110 90 L 145 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <path d="M 390 90 L 355 160" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.8" />
-      <g class="shading" opacity="0.45" style="mix-blend-mode: multiply;">
-          <path d="M 145 160 C 158 240, 160 380, 150 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <path d="M 355 160 C 342 240, 340 380, 350 450" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="10" filter="url(#blur-soft)" />
-          <!-- Under collar shadow -->
-          <path d="M 180 62 C 200 50, 300 50, 320 62" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="6" filter="url(#blur-soft)" />
-      </g>
-      <path d="M 180 60 C 215 50, 285 50, 320 60 L 390 90 L 415 155 L 365 175 L 355 160 L 355 450 C 355 465, 340 475, 320 475 L 180 475 C 160 475, 145 465, 145 450 L 145 160 L 135 175 L 85 155 L 110 90 Z" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2.5" />
-  </g>
-
-</svg>
+                    <!-- DESIGN PRINTABLE ZONE (z-10) — positioned by JS based on view -->
+                    <div id="printable-zone" class="absolute z-10 overflow-hidden rounded border border-dashed border-white/20 hover:border-indigo-500/50 transition-colors"
+                         style="left: 62%; top: 14%; width: 26%; height: 30%;">
                     </div>
                 </div>
                 </div> <!-- /zoom-wrapper -->
@@ -410,56 +156,10 @@
                     <!-- TAB 1: PRENDA -->
                     <div id="tab-prenda" class="tab-pane space-y-6">
                         <div>
-                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Corte / Tipo de Camiseta</span>
-                            <div class="grid grid-cols-3 gap-2">
-                                <label class="flex flex-col items-center justify-center gap-1 border-2 border-slate-100 rounded-xl p-2 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
-                                    <input type="radio" name="style" value="regular" checked class="hidden" onchange="updateStyle('regular')">
-                                    <span class="text-xs font-bold text-slate-700">Normal</span>
-                                </label>
-                                <label class="flex flex-col items-center justify-center gap-1 border-2 border-slate-100 rounded-xl p-2 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
-                                    <input type="radio" name="style" value="mujer" class="hidden" onchange="updateStyle('mujer')">
-                                    <span class="text-xs font-bold text-slate-700">Mujer Fit</span>
-                                </label>
-                                <label class="flex flex-col items-center justify-center gap-1 border-2 border-slate-100 rounded-xl p-2 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
-                                    <input type="radio" name="style" value="polo" class="hidden" onchange="updateStyle('polo')">
-                                    <span class="text-xs font-bold text-slate-700">Tipo Polo</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Estilo de Manga</span>
-                            <div class="grid grid-cols-2 gap-3">
-                                <label class="flex items-center justify-center gap-2 border-2 border-slate-100 rounded-xl p-3 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
-                                    <input type="radio" name="type" value="manga-corta" checked class="hidden" onchange="updateSleeve('manga-corta')">
-                                    <span class="text-xs font-bold text-slate-700">Manga Corta</span>
-                                </label>
-                                <label class="flex items-center justify-center gap-2 border-2 border-slate-100 rounded-xl p-3 cursor-pointer hover:bg-slate-50 transition-all has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/30">
-                                    <input type="radio" name="type" value="manga-larga" class="hidden" onchange="updateSleeve('manga-larga')">
-                                    <span class="text-xs font-bold text-slate-700">Manga Larga</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Material / Textura</span>
-                            <div class="grid grid-cols-3 gap-2.5">
-                                <button onclick="setMaterial('cotton')" id="mat-btn-cotton" class="px-3 py-2.5 rounded-xl text-xs font-bold border-2 border-indigo-600 bg-indigo-50/30 text-indigo-700 transition-all">
-                                    Algodón
-                                </button>
-                                <button onclick="setMaterial('polyester')" id="mat-btn-polyester" class="px-3 py-2.5 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all">
-                                    Poliéster
-                                </button>
-                                <button onclick="setMaterial('heather')" id="mat-btn-heather" class="px-3 py-2.5 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all">
-                                    Jaspeado
-                                </button>
-                            </div>
-                        </div>
-
-                        <div>
                             <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Color de la Prenda</span>
                             <div class="flex flex-wrap gap-2.5 items-center">
-                                <button onclick="setColor('#ffffff')" class="color-btn w-9 h-9 rounded-full border-2 border-slate-200 ring-2 ring-indigo-500 shadow-md transform hover:scale-105 transition-all" style="background:#ffffff" data-color="#ffffff" title="Blanco"></button>
+                                <button onclick="setColor('none')" class="color-btn w-9 h-9 rounded-full border-2 border-slate-200 ring-2 ring-indigo-500 shadow-md transform hover:scale-105 transition-all" style="background: #008080" data-color="none" title="Teal (Original)"></button>
+                                <button onclick="setColor('#ffffff')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#ffffff" data-color="#ffffff" title="Blanco"></button>
                                 <button onclick="setColor('#2F3E46')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#2F3E46" data-color="#2F3E46" title="Carbono"></button>
                                 <button onclick="setColor('#0e1111')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#0e1111" data-color="#0e1111" title="Negro"></button>
                                 <button onclick="setColor('#1D3557')" class="color-btn w-9 h-9 rounded-full border border-slate-300 shadow-md transform hover:scale-105 transition-all" style="background:#1D3557" data-color="#1D3557" title="Azul Marino"></button>
@@ -701,18 +401,10 @@
                     <div id="tab-ajustes" class="tab-pane hidden space-y-5">
                         <div>
                             <div class="flex justify-between text-xs mb-1.5">
-                                <span class="font-bold text-slate-700">Intensidad de Arrugas / Sombra</span>
-                                <span id="shadow-val" class="font-semibold text-slate-500">45%</span>
+                                <span class="font-bold text-slate-700">Opacidad de Diseños</span>
+                                <span id="design-opacity-val" class="font-semibold text-slate-500">100%</span>
                             </div>
-                            <input type="range" id="shading-intensity" min="10" max="90" value="45" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600" oninput="updateShadingIntensity(this.value)" />
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between text-xs mb-1.5">
-                                <span class="font-bold text-slate-700">Opacidad de la Textura (Tela)</span>
-                                <span id="texture-val" class="font-semibold text-slate-500">60%</span>
-                            </div>
-                            <input type="range" id="texture-opacity" min="10" max="100" value="60" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600" oninput="updateTextureOpacity(this.value)" />
+                            <input type="range" id="design-opacity" min="20" max="100" value="100" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600" oninput="updateDesignOpacity(this.value)" />
                         </div>
                     </div>
                 </div>
@@ -754,20 +446,27 @@
     }
 
     // PRESETS & STATE
-    
-    let garmentStyle = 'regular'; // 'regular' | 'mujer' | 'polo'
-    let frontElements = [];
+    // SVG is loaded inline in the markup above (id="tshirt-svg")
 
+    // Printable zone positions (% of container) — calculated from SVG viewBox coords
+    const ZONE_POSITIONS = {
+        front: { left: '62%', top: '14%', width: '26%', height: '30%' },
+        back:  { left: '9%',  top: '14%', width: '21%', height: '30%' }
+    };
+    // Canvas export scale factors (relative to SVG viewBox 1052.4 x 744.09)
+    const EXPORT_SVG_W = 1052.4;
+    const EXPORT_SVG_H = 744.09;
+    const EXPORT_ZONE = {
+        front: { x: 0.5515, y: 0.092, w: 0.379, h: 0.457 },
+        back:  { x: 0.042,  y: 0.092, w: 0.303, h: 0.457 }
+    };
+
+    let frontElements = [];
     let backElements = [];
-    let currentView = 'front'; // 'front' | 'back'
+    let currentView = 'front';
     let selectedElementId = null;
-    
-    let garmentColor = '#ffffff';
-    let garmentMaterial = 'cotton'; // 'cotton' | 'polyester' | 'heather'
-    let garmentSleeve = 'manga-corta'; // 'manga-corta' | 'manga-larga'
-    
-    let shadingIntensity = 0.45;
-    let textureOpacity = 0.60;
+    let garmentColor = 'none'; // 'none' = original teal, or hex color
+    let designOpacity = 1.0;
 
     // ZOOM STATE
     let zoomLevel = 1;
@@ -940,51 +639,13 @@
         return currentView === 'front' ? frontElements : backElements;
     }
 
-    // Toggle Active Group in SVG (front/back, short/long sleeve)
-    function updateActiveGroup() {
-        // Hide all base groups in base SVG
-        document.querySelectorAll('#tshirt-base-svg .base-group').forEach(el => el.classList.add('hidden'));
-        // Hide all overlay groups in overlay SVG
-        document.querySelectorAll('#tshirt-overlay-svg .overlay-group').forEach(el => el.classList.add('hidden'));
-
-        // Identify group ID suffix
-        let suffix = `${currentView}-${garmentSleeve === 'manga-larga' ? 'long' : 'short'}-${garmentStyle}`;
-        
-        // Show correct base and overlay groups
-        const activeBase = document.getElementById(`base-${suffix}`);
-        const activeOverlay = document.getElementById(`overlay-${suffix}`);
-        
-        if (activeBase) activeBase.classList.remove('hidden');
-        if (activeOverlay) activeOverlay.classList.remove('hidden');
-
-        // Apply color & shading to all elements
-        setColor(garmentColor);
-        updateShadingIntensity(shadingIntensity * 100);
-        updateTextureOpacity(textureOpacity * 100);
-        setMaterial(garmentMaterial);
-    }
-
-    
-    // UPDATE GARMENT STYLE (REGULAR, MUJER, POLO)
-    function updateStyle(style) {
-        garmentStyle = style;
-        
-        // Disable long sleeve for mujer and polo (only regular short sleeve is supported/realistic)
-        const longSleeveLabel = document.querySelector('input[value="manga-larga"]').closest('label');
-        if (style === 'mujer' || style === 'polo') {
-            longSleeveLabel.style.opacity = '0.35';
-            longSleeveLabel.style.pointerEvents = 'none';
-            if (garmentSleeve === 'manga-larga') {
-                document.querySelector('input[value="manga-corta"]').checked = true;
-                garmentSleeve = 'manga-corta';
-            }
-        } else {
-            longSleeveLabel.style.opacity = '1';
-            longSleeveLabel.style.pointerEvents = 'auto';
-        }
-        
-        updateActiveGroup();
-        updatePrice();
+    // POSITION PRINTABLE ZONE based on current view
+    function positionPrintableZone() {
+        const zone = ZONE_POSITIONS[currentView];
+        printableZone.style.left = zone.left;
+        printableZone.style.top = zone.top;
+        printableZone.style.width = zone.width;
+        printableZone.style.height = zone.height;
     }
 
     // TOGGLE FRONT/BACK VISTA
@@ -992,37 +653,29 @@
         selectedElementId = null;
         currentView = view;
         viewIndicator.innerText = `Vista: ${view === 'front' ? 'Frente' : 'Espalda'}`;
-        updateActiveGroup();
+        positionPrintableZone();
         render();
         updatePrice();
     }
 
-    // UPDATE SLEEVE TYPE (MANGA CORTA / LARGA)
-    function updateSleeve(type) {
-        garmentSleeve = type;
-        updateActiveGroup();
-        updatePrice();
-    }
-
-    // SET COLOR OF SHIRT
+    // SET COLOR OF SHIRT (modifica el fill del SVG inline — color exacto)
     function setColor(hex) {
         garmentColor = hex;
-        // Update all paths with class .tshirt-fill in the SVG
-        document.querySelectorAll('.tshirt-fill').forEach(el => {
-            el.setAttribute('fill', hex);
-        });
+        const fill = (hex === 'none') ? '#008080' : hex;
+        document.querySelectorAll('#path82603, #path82613')
+            .forEach(p => p.setAttribute('fill', fill));
 
-        // Ambient glow matches T-shirt color slightly for beautiful aesthetics
+        // Ambient glow matches T-shirt color
         const glow = document.getElementById('ambient-glow');
-        if (hex.toLowerCase() === '#ffffff' || hex.toLowerCase() === '#faf9f6') {
-            glow.style.backgroundColor = 'rgba(99, 102, 241, 0.12)';
+        if (hex === 'none') {
+            glow.style.backgroundColor = 'rgba(0, 128, 128, 0.12)';
         } else {
-            glow.style.backgroundColor = `${hex}26`; // 15% opacity hex
+            glow.style.backgroundColor = `${hex}26`;
         }
 
         // Highlight selected color button
         document.querySelectorAll('.color-btn').forEach(btn => {
-            if (btn.dataset.color.toLowerCase() === hex.toLowerCase()) {
+            if (btn.dataset.color === hex) {
                 btn.classList.add('ring-2', 'ring-indigo-500', 'ring-offset-2');
             } else {
                 btn.classList.remove('ring-2', 'ring-indigo-500', 'ring-offset-2');
@@ -1032,49 +685,11 @@
         updatePrice();
     }
 
-    // SET FABRIC TEXTURE (COTTON, POLYESTER, HEATHER)
-    function setMaterial(mat) {
-        garmentMaterial = mat;
-        
-        // Hide all texture paths
-        document.querySelectorAll('.tshirt-texture').forEach(el => el.classList.add('hidden'));
-
-        // Show active texture
-        if (mat === 'cotton') {
-            document.querySelectorAll('.tshirt-texture.cotton').forEach(el => el.classList.remove('hidden'));
-        } else if (mat === 'polyester') {
-            document.querySelectorAll('.tshirt-texture.polyester').forEach(el => el.classList.remove('hidden'));
-        } else if (mat === 'heather') {
-            document.querySelectorAll('.tshirt-texture.heather').forEach(el => el.classList.remove('hidden'));
-        }
-
-        // Highlight button
-        ['cotton', 'polyester', 'heather'].forEach(m => {
-            const btn = document.getElementById(`mat-btn-${m}`);
-            if (m === mat) {
-                btn.className = "px-3 py-2.5 rounded-xl text-xs font-bold border-2 border-indigo-600 bg-indigo-50/30 text-indigo-700 transition-all";
-            } else {
-                btn.className = "px-3 py-2.5 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all";
-            }
-        });
-    }
-
-    // UPDATE SHADING INTENSITY SLIDER
-    function updateShadingIntensity(val) {
-        shadingIntensity = val / 100;
-        document.getElementById('shadow-val').innerText = `${val}%`;
-        document.querySelectorAll('#tshirt-overlay-svg .shading').forEach(el => {
-            el.setAttribute('opacity', shadingIntensity);
-        });
-    }
-
-    // UPDATE TEXTURE OPACITY SLIDER
-    function updateTextureOpacity(val) {
-        textureOpacity = val / 100;
-        document.getElementById('texture-val').innerText = `${val}%`;
-        document.querySelectorAll('.tshirt-texture').forEach(el => {
-            el.setAttribute('opacity', textureOpacity);
-        });
+    // UPDATE DESIGN OPACITY
+    function updateDesignOpacity(val) {
+        designOpacity = val / 100;
+        document.getElementById('design-opacity-val').innerText = `${val}%`;
+        render();
     }
 
     // REMOVE BACKGROUND: process image on canvas, make white/near-white pixels transparent
@@ -1525,6 +1140,7 @@
             wrapper.style.top = '0px';
             wrapper.style.transform = `translate(${el.x}px, ${el.y}px) rotate(${el.rotation}deg) scale(${el.scale})`;
             wrapper.style.transformOrigin = 'center center';
+            wrapper.style.opacity = designOpacity;
 
             // Drag handle / Click selection
             wrapper.addEventListener('pointerdown', (e) => {
@@ -1597,16 +1213,6 @@
     // ESTIMATE & UPDATE PRICE
     function updatePrice() {
         let basePrice = 7500;
-        if (garmentStyle === 'polo') basePrice = 9000;
-        
-        if (garmentSleeve === 'manga-larga') {
-            basePrice += 2000;
-        }
-
-        // Texture or material fee
-        if (garmentMaterial === 'heather') {
-            basePrice += 1000; // heather material fee
-        }
 
         // Print counts
         let frontPrints = frontElements.length;
@@ -1614,8 +1220,8 @@
         
         // Print base cost
         let printCost = 0;
-        if (frontPrints > 0) printCost += 3000; // front print run
-        if (backPrints > 0) printCost += 3000; // back print run
+        if (frontPrints > 0) printCost += 3000;
+        if (backPrints > 0) printCost += 3000;
         
         // Additional elements cost
         if (frontPrints > 1) printCost += (frontPrints - 1) * 1000;
@@ -1653,30 +1259,10 @@
     });
 
     // GENERATE AND DOWNLOAD COMPOSITED IMAGE PNG
-    function getSvgImage(svgId, view) {
-        const svgEl = document.getElementById(svgId);
-        const svgClone = svgEl.cloneNode(true);
-        svgClone.setAttribute('width', '500');
-        svgClone.setAttribute('height', '500');
-
-        // Remove hidden groups and only keep the one matching current view+sleeve+style
-        const suffix = `${view}-${garmentSleeve === 'manga-larga' ? 'long' : 'short'}-${garmentStyle}`;
-        svgClone.querySelectorAll('.base-group, .overlay-group').forEach(g => {
-            if (g.id && g.id.includes(suffix)) {
-                g.classList.remove('hidden');
-            } else {
-                g.remove();
-            }
-        });
-
-        const svgString = new XMLSerializer().serializeToString(svgClone);
-        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
-    }
-
     async function renderOneSide(view, elementsList) {
         const canvas = document.createElement('canvas');
-        canvas.width = 1000;
-        canvas.height = 1000;
+        canvas.width = Math.round(EXPORT_SVG_W);
+        canvas.height = Math.round(EXPORT_SVG_H);
         const ctx = canvas.getContext('2d');
 
         ctx.fillStyle = 'rgba(0,0,0,0)';
@@ -1690,28 +1276,37 @@
             img.src = src;
         });
 
-        // 1. Get SVG for this specific view
-        const baseSvgSrc = getSvgImage('tshirt-base-svg', view);
-        const overlaySvgSrc = getSvgImage('tshirt-overlay-svg', view);
+        // 1. Draw the inline SVG t-shirt (serialize live SVG so garment color matches)
+        const liveSvg = document.getElementById('tshirt-svg').cloneNode(true);
+        if (!liveSvg.getAttribute('xmlns')) liveSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        const svgString = new XMLSerializer().serializeToString(liveSvg);
+        const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+        const svgUrl = URL.createObjectURL(svgBlob);
+        const tshirtImg = await loadImage(svgUrl);
+        try {
+            ctx.drawImage(tshirtImg, 0, 0, canvas.width, canvas.height);
+        } finally {
+            URL.revokeObjectURL(svgUrl);
+        }
 
-        // 2. Load SVGs
-        const baseImg = await loadImage(baseSvgSrc);
-        const overlayImg = await loadImage(overlaySvgSrc);
+        // 2. Draw Custom Design Elements (clipped to printable zone)
+        const zone = EXPORT_ZONE[view];
+        const pLeft = Math.round(zone.x * canvas.width);
+        const pTop = Math.round(zone.y * canvas.height);
+        const pWidth = Math.round(zone.w * canvas.width);
+        const pHeight = Math.round(zone.h * canvas.height);
 
-        // 3. Draw T-Shirt Base
-        ctx.drawImage(baseImg, 0, 0, 1000, 1000);
-
-        // 4. Draw Custom Design Elements (clipped to printable zone)
-        const pLeft = 290;
-        const pTop = 220;
-        const pWidth = 420;
-        const pHeight = 560;
-        const scaleFactor = 2.5;
+        // Scale factor: CSS pixels in the printable zone → export canvas pixels
+        const cssZone = ZONE_POSITIONS[view];
+        const cssZoneW = printableZone.parentElement.clientWidth * parseFloat(cssZone.width) / 100;
+        const scaleFactor = cssZoneW > 0 ? pWidth / cssZoneW : 2.5;
 
         ctx.save();
         ctx.beginPath();
         ctx.rect(pLeft, pTop, pWidth, pHeight);
         ctx.clip();
+
+        ctx.globalAlpha = designOpacity;
 
         for (const el of elementsList) {
             ctx.save();
@@ -1754,9 +1349,6 @@
         }
         ctx.restore();
 
-        // 5. Draw Shading Overlay
-        ctx.drawImage(overlayImg, 0, 0, 1000, 1000);
-
         return canvas;
     }
 
@@ -1776,23 +1368,18 @@
             combined.height = 1100;
             const ctx = combined.getContext('2d');
 
-            // Background
             ctx.fillStyle = '#f8fafc';
             ctx.fillRect(0, 0, 2100, 1100);
 
-            // Labels
             ctx.fillStyle = '#475569';
             ctx.font = 'bold 36px Montserrat, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText('FRENTE', 525, 60);
             ctx.fillText('ESPALDA', 1575, 60);
 
-            // Draw front centered
             ctx.drawImage(frontCanvas, 300, 80, 900, 900);
-            // Draw back centered
             ctx.drawImage(backCanvas, 1200, 80, 900, 900);
 
-            // Divider line
             ctx.strokeStyle = '#cbd5e1';
             ctx.lineWidth = 2;
             ctx.setLineDash([8, 4]);
@@ -1826,10 +1413,7 @@
 
         let detailString = `Hola Wilberth! Estuve diseñando una camiseta en tu demo.\n\n`;
         detailString += `*Detalles del pedido:*\n`;
-        detailString += `- Estilo / Corte: ${garmentStyle === 'regular' ? 'Normal' : garmentStyle === 'mujer' ? 'Mujer Fit' : 'Tipo Polo'}\n`;
-        detailString += `- Tipo de Manga: ${garmentSleeve === 'manga-corta' ? 'Manga Corta' : 'Manga Larga'}\n`;
-        detailString += `- Material/Textura: ${garmentMaterial.charAt(0).toUpperCase() + garmentMaterial.slice(1)}\n`;
-        detailString += `- Color de Camiseta: ${garmentColor}\n`;
+        detailString += `- Color de Camiseta: ${garmentColor === 'none' ? 'Teal (Original)' : garmentColor}\n`;
         
         let frontPrints = frontElements.length;
         let backPrints = backElements.length;
@@ -1845,7 +1429,7 @@
 
     // INITIALIZATION
     window.addEventListener('load', () => {
-        updateActiveGroup();
+        positionPrintableZone();
         render();
         updatePrice();
     });
