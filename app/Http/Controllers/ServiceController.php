@@ -44,14 +44,4 @@ class ServiceController extends Controller
 
         return view('demo', compact('seller'));
     }
-
-    public function demoCamiseta()
-    {
-        $seller = (object) [
-            'name' => 'Wilberth',
-            'whatsapp' => '+506 85008393',
-        ];
-
-        return view('demos.camiseta', compact('seller'));
-    }
 }

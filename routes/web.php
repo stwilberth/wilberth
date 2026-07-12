@@ -13,7 +13,6 @@ Route::get('/paginas-web', [ServiceController::class, 'paginasWeb'])->name('pagi
 Route::get('/proceso', [ServiceController::class, 'proceso'])->name('proceso');
 Route::get('/hosting', [ServiceController::class, 'hosting'])->name('hosting');
 Route::get('/demo', [ServiceController::class, 'demo'])->name('demo');
-Route::get('/demo/camiseta', [ServiceController::class, 'demoCamiseta'])->name('demo.camiseta');
 
 Route::view('/demo/customizer', 'customizer-react')->name('customizer.react');
 

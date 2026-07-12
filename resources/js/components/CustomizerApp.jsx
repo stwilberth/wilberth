@@ -177,6 +177,125 @@ function ImageUploadModal({ show, onUpload, onClose }) {
     );
 }
 
+function CropModal({ show, imageUrl, onApply, onClose }) {
+    const canvasRef = useRef(null);
+    const [ratio, setRatio] = useState('free');
+    const [sel, setSel] = useState({ x: 0.1, y: 0.1, w: 0.8, h: 0.8 });
+    const [dims, setDims] = useState({ w: 400, h: 400 });
+    const [drag, setDrag] = useState(null);
+
+    useEffect(() => {
+        if (!show || !imageUrl) return;
+        const img = new Image();
+        img.onload = () => {
+            const maxW = 500;
+            const ratio = img.naturalWidth / img.naturalHeight;
+            let w = maxW, h = maxW / ratio;
+            if (h > 380) { h = 380; w = h * ratio; }
+            setDims({ w, h });
+        };
+        img.src = imageUrl;
+    }, [show, imageUrl]);
+
+    if (!show || !imageUrl) return null;
+
+    const fixedRatios = { square: 1, '4:3': 4/3, '3:4': 3/4, '16:9': 16/9 };
+
+    const adjustForRatio = (next, r) => {
+        if (!r) return next;
+        const cx = next.x + next.w / 2, cy = next.y + next.h / 2;
+        const h = next.h, w = h * r;
+        return { x: cx - w / 2, y: cy - h / 2, w, h };
+    };
+
+    const onCanvasMouseDown = (e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        if (px >= sel.x && px <= sel.x + sel.w && py >= sel.y && py <= sel.y + sel.h) {
+            setDrag({ mode: 'move', startX: px, startY: py, orig: { ...sel } });
+        } else {
+            setDrag({ mode: 'create', startX: px, startY: py, orig: { x: px, y: py, w: 0, h: 0 } });
+        }
+    };
+    const onCanvasMouseMove = (e) => {
+        if (!drag) return;
+        const r = e.currentTarget.getBoundingClientRect();
+        const px = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+        const py = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+        if (drag.mode === 'move') {
+            let nx = drag.orig.x + (px - drag.startX);
+            let ny = drag.orig.y + (py - drag.startY);
+            nx = Math.max(0, Math.min(1 - drag.orig.w, nx));
+            ny = Math.max(0, Math.min(1 - drag.orig.h, ny));
+            setSel({ ...drag.orig, x: nx, y: ny });
+        } else if (drag.mode === 'create') {
+            let nx = Math.min(px, drag.startX);
+            let ny = Math.min(py, drag.startY);
+            let nw = Math.abs(px - drag.startX);
+            let nh = Math.abs(py - drag.startY);
+            let next = { x: nx, y: ny, w: nw, h: nh };
+            const r = fixedRatios[ratio] || null;
+            if (r) next = adjustForRatio(next, r);
+            setSel(next);
+        }
+    };
+    const onCanvasMouseUp = () => setDrag(null);
+
+    const applyCrop = () => {
+        onApply(sel);
+    };
+
+    return (
+        <div className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200" onClick={onClose}>
+            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-7 w-full max-w-lg shadow-2xl relative" onClick={e => e.stopPropagation()}>
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-amber-500 to-orange-500"></div>
+                <h3 className="text-xl font-bold text-slate-100 mb-1">Recortar Imagen</h3>
+                <p className="text-slate-400 text-xs mb-5">Arrastrá para crear un área de recorte o mové el rectángulo sobre la imagen.</p>
+                <div className="relative mx-auto mb-3" style={{ width: dims.w, height: dims.h }} onMouseDown={onCanvasMouseDown} onMouseMove={onCanvasMouseMove} onMouseUp={onCanvasMouseUp} onMouseLeave={onCanvasMouseUp}>
+                    <img src={imageUrl} alt="crop" style={{ width: dims.w, height: dims.h }} className="block rounded-xl select-none pointer-events-none" draggable={false} />
+                    <div className="absolute inset-0 bg-slate-950/60 pointer-events-none rounded-xl"></div>
+                    <div
+                        className="absolute border-2 border-amber-400 cursor-move"
+                        style={{ left: `${sel.x * 100}%`, top: `${sel.y * 100}%`, width: `${sel.w * 100}%`, height: `${sel.h * 100}%` }}
+                    >
+                        <div className="absolute inset-0 ring-1 ring-inset ring-amber-400/50"></div>
+                        {/* Grid lines */}
+                        <div className="absolute top-1/3 left-0 right-0 h-px bg-amber-400/30"></div>
+                        <div className="absolute top-2/3 left-0 right-0 h-px bg-amber-400/30"></div>
+                        <div className="absolute left-1/3 top-0 bottom-0 w-px bg-amber-400/30"></div>
+                        <div className="absolute left-2/3 top-0 bottom-0 w-px bg-amber-400/30"></div>
+                        {/* Corner handles */}
+                        {[[0,0],[100,0],[0,100],[100,100]].map(([x,y], i) => (
+                            <div key={i} className="absolute w-3 h-3 bg-white border-2 border-amber-400 rounded-sm"
+                                style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)' }}></div>
+                        ))}
+                    </div>
+                </div>
+                <div className="flex items-center justify-center gap-2 mb-5">
+                    {[
+                        ['free', 'Libre'],
+                        ['square', '1:1'],
+                        ['4:3', '4:3'],
+                        ['3:4', '3:4'],
+                        ['16:9', '16:9'],
+                    ].map(([key, label]) => (
+                        <button
+                            key={key}
+                            onClick={() => { setRatio(key); if (key !== 'free') setSel(s => adjustForRatio(s, fixedRatios[key])); }}
+                            className={`px-3 py-1.5 text-[10px] font-bold rounded-lg transition-all ${ratio === key ? 'bg-amber-600 text-white' : 'bg-slate-950 border border-slate-800 text-slate-400 hover:text-slate-200'}`}
+                        >{label}</button>
+                    ))}
+                </div>
+                <div className="flex justify-end gap-3">
+                    <button onClick={onClose} className="px-5 py-2.5 text-xs font-semibold text-slate-400 hover:text-slate-200 bg-slate-800/40 hover:bg-slate-800 rounded-xl transition-all">Cancelar</button>
+                    <button onClick={applyCrop} className="px-5 py-2.5 text-xs font-semibold text-white bg-amber-600 hover:bg-amber-500 rounded-xl shadow-lg shadow-amber-600/20 active:scale-95 transition-all">Aplicar Recorte</button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function LayerIcon({ type, layer }) {
     if (type === 'text') return <svg className="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h14M4 18h9"/></svg>;
     if (type === 'image') return <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>;
@@ -259,7 +378,7 @@ function LayersPanel({ layers, selectedLayerId, onSelect, onDelete, onToggleVisi
 
 
 
-function PropertiesPanel({ layer, onUpdate }) {
+function PropertiesPanel({ layer, onUpdate, onCropImage }) {
     if (!layer) {
         return (
             <aside className="w-80 bg-slate-900 border-l border-slate-800 flex flex-col overflow-hidden select-none">
@@ -382,75 +501,61 @@ function PropertiesPanel({ layer, onUpdate }) {
                     </div>
                 )}
 
-                <div className="h-[1px] bg-slate-850 my-2"></div>
+                {layer.type === 'image' && onCropImage && (
+                    <button
+                        onClick={() => onCropImage(layer.id)}
+                        className="w-full flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold text-amber-300 bg-amber-950/40 hover:bg-amber-900/40 border border-amber-900/50 rounded-xl transition-all active:scale-95 mb-2"
+                    >
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg>
+                        Recortar Imagen
+                    </button>
+                )}
 
-                <div className="grid grid-cols-2 gap-3">
-                    <div className="space-y-1.5">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Ancho (px)</span>
-                        <input 
-                            type="number" 
-                            value={layer.width} 
-                            onChange={e => update('width', Number(e.target.value))} 
-                            className="w-full px-3 py-2 bg-slate-950 border border-slate-850 rounded-xl text-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        />
-                    </div>
-                    <div className="space-y-1.5">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Alto (px)</span>
-                        <input 
-                            type="number" 
-                            value={layer.height} 
-                            onChange={e => update('height', Number(e.target.value))} 
-                            className="w-full px-3 py-2 bg-slate-950 border border-slate-850 rounded-xl text-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        />
-                    </div>
+                <div className="bg-slate-950/60 border border-slate-850 rounded-xl p-3 space-y-1.5">
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Manipulación Directa</p>
+                    <p className="text-[10px] text-slate-500 leading-relaxed">
+                        Arrastrá el cuerpo para mover.
+                    </p>
+                    <p className="text-[10px] text-slate-500 leading-relaxed">
+                        Usá las <span className="text-slate-300 font-bold">esquinas</span> para escalar.
+                    </p>
+                    <p className="text-[10px] text-slate-500 leading-relaxed">
+                        Usá el <span className="text-slate-300 font-bold">punto superior</span> para rotar.
+                    </p>
                 </div>
-                
-                <div className="grid grid-cols-2 gap-3">
-                    <div className="space-y-1.5">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Posición X</span>
-                        <input 
-                            type="number" 
-                            value={Math.round(layer.x)} 
-                            onChange={e => update('x', Number(e.target.value))} 
-                            className="w-full px-3 py-2 bg-slate-950 border border-slate-850 rounded-xl text-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        />
-                    </div>
-                    <div className="space-y-1.5">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Posición Y</span>
-                        <input 
-                            type="number" 
-                            value={Math.round(layer.y)} 
-                            onChange={e => update('y', Number(e.target.value))} 
-                            className="w-full px-3 py-2 bg-slate-950 border border-slate-850 rounded-xl text-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        />
-                    </div>
+
+                <div className="grid grid-cols-3 gap-2">
+                    <button
+                        onClick={() => onUpdate(layer.id, { style: { ...layer.style, scale: 1 }, rotation: 0 })}
+                        className="text-[10px] font-bold text-slate-300 hover:text-white bg-slate-950 border border-slate-850 hover:bg-slate-850 rounded-xl py-2 transition-all active:scale-95"
+                        title="Restablecer tamaño y rotación"
+                    >Reset</button>
+                    <button
+                        onClick={() => onUpdate(layer.id, { style: { ...layer.style, scale: (layer.style?.scale ?? 1) * 1.2 } })}
+                        className="text-[10px] font-bold text-slate-300 hover:text-white bg-slate-950 border border-slate-850 hover:bg-slate-850 rounded-xl py-2 transition-all active:scale-95"
+                        title="Más grande"
+                    >+20%</button>
+                    <button
+                        onClick={() => onUpdate(layer.id, { style: { ...layer.style, scale: Math.max(0.1, (layer.style?.scale ?? 1) * 0.8) } })}
+                        className="text-[10px] font-bold text-slate-300 hover:text-white bg-slate-950 border border-slate-850 hover:bg-slate-850 rounded-xl py-2 transition-all active:scale-95"
+                        title="Más chico"
+                    >−20%</button>
                 </div>
-                
-                <div className="grid grid-cols-2 gap-3">
-                    <div className="space-y-1.5">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Rotación</span>
-                        <input 
-                            type="number" 
-                            value={layer.rotation || 0} 
-                            onChange={e => update('rotation', Number(e.target.value))} 
-                            className="w-full px-3 py-2 bg-slate-950 border border-slate-850 rounded-xl text-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        />
+
+                <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Opacidad</span>
+                        <span className="text-[10px] font-mono font-bold text-slate-400">{Math.round((layer.opacity ?? 1) * 100)}%</span>
                     </div>
-                    <div className="space-y-1.5 flex flex-col justify-end">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Opacidad</span>
-                        <div className="flex items-center gap-2">
-                            <input 
-                                type="range" 
-                                min="0" 
-                                max="1" 
-                                step="0.1" 
-                                value={layer.opacity ?? 1} 
-                                onChange={e => update('opacity', Number(e.target.value))} 
-                                className="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-indigo-500"
-                            />
-                            <span className="text-xs font-mono font-bold text-slate-400 w-8 text-right">{Math.round((layer.opacity ?? 1) * 100)}%</span>
-                        </div>
-                    </div>
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.05"
+                        value={layer.opacity ?? 1}
+                        onChange={e => update('opacity', Number(e.target.value))}
+                        className="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                    />
                 </div>
             </div>
         </aside>
@@ -479,6 +584,7 @@ export default function CustomizerApp() {
     const [showSaveModal, setShowSaveModal] = useState(false);
     const [showLoadModal, setShowLoadModal] = useState(false);
     const [showImageUpload, setShowImageUpload] = useState(false);
+    const [cropTarget, setCropTarget] = useState(null); // layer id or { id, url }
     const [savedDesigns, setSavedDesigns] = useState([]);
     const [notification, setNotification] = useState({ visible: false, type: 'info', message: '' });
 
@@ -781,6 +887,52 @@ export default function CustomizerApp() {
         return pz;
     }
 
+    // Draw bounding box + handles for the selected layer
+    // Handles: 4 corners (resize), top center pivot (rotate)
+    function drawSelectionHandles(ctx, layer, effW, effH) {
+        ctx.save();
+        ctx.translate(layer.x, layer.y);
+        ctx.rotate((layer.rotation || 0) * Math.PI / 180);
+
+        const halfW = effW / 2;
+        const halfH = effH / 2;
+
+        // Bounding box (dashed)
+        ctx.strokeStyle = '#3B82F6';
+        ctx.lineWidth = 1.5 / zoom;
+        ctx.setLineDash([5 / zoom, 5 / zoom]);
+        ctx.strokeRect(-halfW - 2 / zoom, -halfH - 2 / zoom, effW + 4 / zoom, effH + 4 / zoom);
+        ctx.setLineDash([]);
+
+        // Corner handles
+        const hSize = 9 / zoom;
+        const corners = [
+            [-halfW, -halfH], [halfW, -halfH], [-halfW, halfH], [halfW, halfH],
+        ];
+        ctx.fillStyle = '#fff';
+        ctx.strokeStyle = '#3B82F6';
+        ctx.lineWidth = 2 / zoom;
+        corners.forEach(([cx, cy]) => {
+            ctx.fillRect(cx - hSize / 2, cy - hSize / 2, hSize, hSize);
+            ctx.strokeRect(cx - hSize / 2, cy - hSize / 2, hSize, hSize);
+        });
+
+        // Rotate handle (line + circle) above top edge
+        const rhpY = -halfH - 22 / zoom; // rotate handle point
+        ctx.beginPath();
+        ctx.moveTo(0, -halfH);
+        ctx.lineTo(0, rhpY);
+        ctx.strokeStyle = '#3B82F6';
+        ctx.lineWidth = 1.5 / zoom;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(0, rhpY, hSize / 2 + 1 / zoom, 0, Math.PI * 2);
+        ctx.fillStyle = '#3B82F6';
+        ctx.fill();
+
+        ctx.restore();
+    }
+
     function drawImageOnCtx(ctx, layer, x, y) {
         const cached = imageCache.current[layer.content];
         if (cached && cached.complete) {
@@ -818,12 +970,16 @@ export default function CustomizerApp() {
         const sorted = [...layers].sort((a, b) => (a.zIndex || 0) - (b.zIndex || 0));
         for (const layer of sorted) {
             if (!layer.visible) continue;
+            const scl = layer?.style?.scale ?? 1;
+            const effW = (layer.width || 0) * scl;
+            const effH = (layer.height || 0) * scl;
+            const x = layer.x - effW / 2;
+            const y = layer.y - effH / 2;
             ctx.save();
             ctx.globalAlpha = layer.opacity ?? 1;
-            const x = layer.x - (layer.width || 0) / 2;
-            const y = layer.y - (layer.height || 0) / 2;
             ctx.translate(layer.x, layer.y);
             ctx.rotate((layer.rotation || 0) * Math.PI / 180);
+            ctx.scale(scl, scl);
             ctx.translate(-layer.x, -layer.y);
 
             if (layer.type === 'text') drawTextOnCtx(ctx, layer, x, y);
@@ -833,40 +989,136 @@ export default function CustomizerApp() {
             ctx.restore();
 
             if (layer.id === selectedLayerId) {
-                ctx.strokeStyle = '#3B82F6';
-                ctx.lineWidth = 2 / zoom;
-                ctx.setLineDash([6 / zoom, 6 / zoom]);
-                ctx.strokeRect(x - 2 / zoom, y - 2 / zoom, (layer.width || 0) + 4 / zoom, (layer.height || 0) + 4 / zoom);
-                ctx.setLineDash([]);
+                drawSelectionHandles(ctx, layer, effW, effH);
             }
         }
     }, [canvas, layers, selectedLayerId, zoom, productType, selectedVariants.color, garmentImage]);
+
+    // Hit-test helper: returns 5 handle points in canvas space (TL, TR, BL, BR, rotate)
+    const getHandlePoints = (layer) => {
+        const scl = layer?.style?.scale ?? 1;
+        const w = (layer.width || 0) * scl;
+        const h = (layer.height || 0) * scl;
+        const angle = (layer.rotation || 0) * Math.PI / 180;
+        const cos = Math.cos(angle), sin = Math.sin(angle);
+        const local = [
+            [-w / 2, -h / 2], [w / 2, -h / 2], [-w / 2, h / 2], [w / 2, h / 2],
+            [0, -h / 2 - 22 / zoom],
+        ];
+        return local.map(([lx, ly]) => ({
+            x: layer.x + lx * cos - ly * sin,
+            y: layer.y + lx * sin + ly * cos,
+        }));
+    };
 
     const canvasMouseDown = useCallback((e) => {
         const rect = canvasRef.current.getBoundingClientRect();
         const x = (e.clientX - rect.left) / zoom;
         const y = (e.clientY - rect.top) / zoom;
 
+        const hitRadius = 12 / zoom;
+
+        // First, check handles of the currently selected layer
+        const sel = layers.find(l => l.id === selectedLayerId);
+        if (sel && sel.visible) {
+            const pts = getHandlePoints(sel);
+            // Rotate handle (index 4) — test first since it's on top
+            const dr = Math.hypot(x - pts[4].x, y - pts[4].y);
+            if (dr <= hitRadius) {
+                setDragging({ mode: 'rotate', id: sel.id, cx: sel.x, cy: sel.y, origRot: sel.rotation || 0,
+                    startAngle: Math.atan2(y - sel.y, x - sel.x) });
+                return;
+            }
+            // Corner handles (0..3)
+            for (let i = 0; i < 4; i++) {
+                const d = Math.hypot(x - pts[i].x, y - pts[i].y);
+                if (d <= hitRadius) {
+                    const scl = sel?.style?.scale ?? 1;
+                    setDragging({
+                        mode: 'resize', id: sel.id,
+                        origScale: scl,
+                        cx: sel.x, cy: sel.y,
+                        startDist: Math.hypot(x - sel.x, y - sel.y),
+                        aspect: (sel.width || 1) / (sel.height || 1),
+                    });
+                    return;
+                }
+            }
+        }
+
+        // Otherwise hit-test layer bodies (topmost first)
         for (let i = layers.length - 1; i >= 0; i--) {
             const l = layers[i];
             if (!l.visible) continue;
-            const lx = l.x - (l.width || 0) / 2;
-            const ly = l.y - (l.height || 0) / 2;
-            if (x >= lx && x <= lx + (l.width || 0) && y >= ly && y <= ly + (l.height || 0)) {
+            const scl = l?.style?.scale ?? 1;
+            const w = (l.width || 0) * scl, h = (l.height || 0) * scl;
+            const angle = (l.rotation || 0) * Math.PI / 180;
+            const cos = Math.cos(-angle), sin = Math.sin(-angle);
+            const dx = x - l.x, dy = y - l.y;
+            const lx = dx * cos - dy * sin;
+            const ly = dx * sin + dy * cos;
+            if (Math.abs(lx) <= w / 2 && Math.abs(ly) <= h / 2) {
                 setSelectedLayerId(l.id);
-                setDragging({ id: l.id, startX: e.clientX, startY: e.clientY, origX: l.x, origY: l.y });
+                setDragging({ mode: 'move', id: l.id, startX: e.clientX, startY: e.clientY, origX: l.x, origY: l.y });
                 return;
             }
         }
         setIsPanning(true);
         setPanStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
-    }, [layers, zoom, pan]);
+    }, [layers, selectedLayerId, zoom, pan]);
 
     const canvasMouseMove = useCallback((e) => {
+        if (!dragging) {
+            // Update cursor based on what handle/body is under the mouse
+            const rect = canvasRef.current.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / zoom;
+            const y = (e.clientY - rect.top) / zoom;
+            const hitRadius = 12 / zoom;
+            const sel = layers.find(l => l.id === selectedLayerId);
+            let cur = 'default';
+            if (sel && sel.visible) {
+                const pts = getHandlePoints(sel);
+                if (Math.hypot(x - pts[4].x, y - pts[4].y) <= hitRadius) cur = 'grab';
+                else for (let i = 0; i < 4; i++) if (Math.hypot(x - pts[i].x, y - pts[i].y) <= hitRadius) cur = 'nwse-resize';
+                if (cur === 'default') {
+                    const ang = (sel.rotation || 0) * Math.PI / 180;
+                    const cos = Math.cos(-ang), sin = Math.sin(-ang);
+                    const dx = x - sel.x, dy = y - sel.y;
+                    const w = (sel.width || 0) * (sel?.style?.scale ?? 1);
+                    const h = (sel.height || 0) * (sel?.style?.scale ?? 1);
+                    const lx = dx * cos - dy * sin, ly = dx * sin + dy * cos;
+                    if (Math.abs(lx) <= w / 2 && Math.abs(ly) <= h / 2) cur = 'move';
+                }
+            }
+            if (cur === 'default' && isPanning) cur = 'grabbing';
+            if (canvasRef.current) canvasRef.current.style.cursor = cur;
+            if (isPanning) setPan({ x: e.clientX - panStart.x, y: e.clientY - panStart.y });
+            return;
+        }
         if (dragging) {
-            const dx = (e.clientX - dragging.startX) / zoom;
-            const dy = (e.clientY - dragging.startY) / zoom;
-            updateLayer(dragging.id, { x: Math.round(dragging.origX + dx), y: Math.round(dragging.origY + dy) });
+            if (canvasRef.current) canvasRef.current.style.cursor = dragging.mode === 'rotate' ? 'grabbing' : dragging.mode === 'resize' ? 'nwse-resize' : 'grabbing';
+            const rect = canvasRef.current.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / zoom;
+            const y = (e.clientY - rect.top) / zoom;
+
+            if (dragging.mode === 'move') {
+                const dx = (e.clientX - dragging.startX) / zoom;
+                const dy = (e.clientY - dragging.startY) / zoom;
+                updateLayer(dragging.id, { x: Math.round(dragging.origX + dx), y: Math.round(dragging.origY + dy) });
+            } else if (dragging.mode === 'resize') {
+                const curDist = Math.hypot(x - dragging.cx, y - dragging.cy);
+                let ratio = dragging.startDist > 0 ? curDist / dragging.startDist : 1;
+                const next = Math.max(0.1, Math.min(8, dragging.origScale * ratio));
+                updateLayer(dragging.id, { style: { scale: next } });
+            } else if (dragging.mode === 'rotate') {
+                const curAngle = Math.atan2(y - dragging.cy, x - dragging.cx);
+                let delta = (curAngle - dragging.startAngle) * 180 / Math.PI;
+                let next = (dragging.origRot + delta) % 360;
+                if (next < 0) next += 360;
+                // Snap to 0/90/180/270 when near (every 5° within ±3°)
+                if (Math.abs(((next + 3) % 90) - 3) < 5) next = Math.round(next / 90) * 90 % 360;
+                updateLayer(dragging.id, { rotation: next });
+            }
         } else if (isPanning) {
             setPan({ x: e.clientX - panStart.x, y: e.clientY - panStart.y });
         }
@@ -909,6 +1161,38 @@ export default function CustomizerApp() {
             <SaveModal show={showSaveModal} designName={designName} setDesignName={setDesignName} onSave={saveDesign} onClose={() => setShowSaveModal(false)} />
             <LoadModal show={showLoadModal} savedDesigns={savedDesigns} onLoad={loadDesign} onDelete={deleteDesign} onClose={() => setShowLoadModal(false)} />
             <ImageUploadModal show={showImageUpload} onUpload={handleImageUpload} onClose={() => setShowImageUpload(false)} />
+            <CropModal
+                show={!!cropTarget}
+                imageUrl={cropTarget?.url}
+                onApply={(rect) => {
+                    const l = layers.find(x => x.id === cropTarget?.id);
+                    if (!l) { setCropTarget(null); return; }
+                    const img = imageCache.current[l.content];
+                    if (img) {
+                        const sw = img.naturalWidth * rect.w;
+                        const sh = img.naturalHeight * rect.h;
+                        const sx = img.naturalWidth * rect.x;
+                        const sy = img.naturalHeight * rect.y;
+                        const oc = document.createElement('canvas');
+                        oc.width = sw; oc.height = sh;
+                        oc.getContext('2d').drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+                        const url = oc.toDataURL('image/png');
+                        const newImg = new Image();
+                        newImg.onload = () => {
+                            imageCache.current[url] = newImg;
+                            const scl = l?.style?.scale ?? 1;
+                            const maxDim = 300;
+                            const r = Math.min(maxDim / sw, maxDim / sh, 1);
+                            const nw = Math.max(10, sw * r);
+                            const nh = Math.max(10, sh * r);
+                            updateLayer(l.id, { content: url, width: nw, height: nh });
+                        };
+                        newImg.src = url;
+                    }
+                    setCropTarget(null);
+                }}
+                onClose={() => setCropTarget(null)}
+            />
 
             {/* Header / Top Navbar */}
             <header className="bg-slate-900/80 backdrop-blur-md border-b border-slate-800/80 px-6 py-4 sticky top-0 z-40">
@@ -1064,7 +1348,10 @@ export default function CustomizerApp() {
 
                 </main>
 
-                <PropertiesPanel layer={selectedLayer} onUpdate={updateLayer} />
+                <PropertiesPanel layer={selectedLayer} onUpdate={updateLayer} onCropImage={(id) => {
+                const l = layers.find(x => x.id === id);
+                if (l && l.type === 'image') setCropTarget({ id, url: l.content });
+            }} />
             </div>
         </div>
     );
