@@ -3,9 +3,11 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\BriefController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\QuoteController;
+use App\Http\Controllers\Admin\BriefLinkController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -15,6 +17,9 @@ Route::get('/hosting', [ServiceController::class, 'hosting'])->name('hosting');
 Route::get('/demo', [ServiceController::class, 'demo'])->name('demo');
 
 Route::view('/demo/customizer', 'customizer-react')->name('customizer.react');
+
+Route::get('/brief/{token?}', [BriefController::class, 'show'])->name('brief.show');
+Route::post('/brief', [BriefController::class, 'store'])->name('brief.store');
 
 Route::get('/proyectos', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/portafolio/{slug}', [ProjectController::class, 'show'])->name('projects.show');
@@ -42,5 +47,12 @@ Route::prefix('admin')->group(function () {
         Route::put('/quotes/{quote}', [QuoteController::class, 'update'])->name('admin.quotes.update');
         Route::post('/quotes/{quote}/status', [QuoteController::class, 'updateStatus'])->name('admin.quotes.status');
         Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('admin.quotes.destroy');
+        Route::get('/brief-links', [BriefLinkController::class, 'index'])->name('admin.brief-links.index');
+        Route::get('/brief-links/create', [BriefLinkController::class, 'create'])->name('admin.brief-links.create');
+        Route::post('/brief-links', [BriefLinkController::class, 'store'])->name('admin.brief-links.store');
+        Route::get('/brief-links/{briefLink}', [BriefLinkController::class, 'show'])->name('admin.brief-links.show');
+        Route::post('/brief-links/{briefLink}/toggle', [BriefLinkController::class, 'toggle'])->name('admin.brief-links.toggle');
+        Route::delete('/brief-links/{briefLink}', [BriefLinkController::class, 'destroy'])->name('admin.brief-links.destroy');
+        Route::get('/brief/{brief}/download', [BriefLinkController::class, 'download'])->name('admin.brief.download');
     });
 });

@@ -33,7 +33,7 @@
     <div class="header">
         <div class="header-left">
             <h1>Cotización {{ $quote->quote_number }}</h1>
-            <p>{{ $quote->created_at->format('d/m/Y') }}</p>
+            <p>{{ $quote->updated_at->format('d/m/Y') }}</p>
         </div>
         <div class="header-right">
             <p><strong>Wilberth Loría</strong></p>

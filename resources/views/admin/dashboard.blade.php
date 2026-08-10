@@ -15,6 +15,7 @@
                     <a href="/admin/dashboard" class="px-4 py-2 text-sm font-medium bg-indigo-50 text-indigo-700 rounded-lg">Cotizaciones</a>
                     <a href="/admin/quotes/create" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Nueva Cotización</a>
                     <a href="/admin/invoices" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Facturas</a>
+                    <a href="/admin/brief-links" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Brief Links</a>
                 </nav>
             </div>
             <div class="flex items-center gap-3">

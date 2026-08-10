@@ -147,7 +147,7 @@ class QuoteController extends Controller
     {
         $quote->load('items');
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('quotes.pdf', compact('quote'));
-        return $pdf->download("cotizacion-{$quote->id}.pdf");
+        return $pdf->download("cotizacion-{$quote->quote_number}.pdf");
     }
 
     public function destroy(Quote $quote)
