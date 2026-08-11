@@ -83,6 +83,7 @@
                                         'pendiente' => 'bg-amber-100 text-amber-800',
                                         'aprobada' => 'bg-emerald-100 text-emerald-800',
                                         'rechazada' => 'bg-red-100 text-red-800',
+                                        'facturada' => 'bg-indigo-100 text-indigo-800',
                                         default => 'bg-slate-100 text-slate-800',
                                     };
                                 @endphp

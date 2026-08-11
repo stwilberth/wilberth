@@ -44,6 +44,74 @@
                 </div>
             </div>
 
+            @if ($invoice->haciendaDocument)
+                @php $emisor = $invoice->haciendaDocument->emisor_data; @endphp
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 p-4 bg-slate-50 rounded-xl">
+                    <div class="space-y-2">
+                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Emisor (del XML)</p>
+                        <p class="font-bold text-slate-900">{{ $emisor['name'] ?? $invoice->haciendaDocument->emisor }}</p>
+                        @if (! empty($emisor['name_comercial']))
+                            <p class="text-sm text-slate-600">Nombre comercial: {{ $emisor['name_comercial'] }}</p>
+                        @endif
+                        @if (! empty($emisor['id_number']))
+                            <p class="text-sm text-slate-600">{{ strtoupper($emisor['id_type'] ?? '') }}: {{ $emisor['id_number'] }}</p>
+                        @endif
+                        @if (! empty($emisor['email']))
+                            <p class="text-sm text-slate-600">{{ $emisor['email'] }}</p>
+                        @endif
+                        @if (! empty($emisor['phone']))
+                            <p class="text-sm text-slate-600">Tel: {{ $emisor['phone'] }}</p>
+                        @endif
+                        @php
+                            $pro = $emisor['province'] ?? null;
+                            $can = $emisor['canton'] ?? null;
+                            $dis = $emisor['district'] ?? null;
+                            $ubicacion = collect([
+                                $pro && $can && $dis ? \App\Services\CostaRicaLocations::districtName($pro, $can, $dis) : null,
+                                $pro && $can ? \App\Services\CostaRicaLocations::cantonName($pro, $can) : null,
+                                $pro ? \App\Services\CostaRicaLocations::provinceName($pro) : null,
+                                $emisor['address'] ?? null,
+                            ])->filter()->implode(', ');
+                        @endphp
+                        @if ($ubicacion)
+                            <p class="text-sm text-slate-600">{{ $ubicacion }}</p>
+                        @endif
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Hacienda</p>
+                        @php
+                            $respEstado = $invoice->haciendaDocument->respuesta_estado;
+                            $respBadge = match ($respEstado) {
+                                'Aceptado' => 'bg-emerald-100 text-emerald-800',
+                                'Rechazado' => 'bg-red-100 text-red-800',
+                                'Parcialmente aceptado' => 'bg-amber-100 text-amber-800',
+                                default => null,
+                            };
+                        @endphp
+                        @if ($respEstado)
+                            <div>
+                                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Estado Hacienda</p>
+                                <span class="inline-block px-3 py-1 rounded-full text-xs font-bold {{ $respBadge ?? 'bg-slate-100 text-slate-700' }}">{{ $respEstado }}</span>
+                                @if ($invoice->haciendaDocument->respuesta_fecha)
+                                    <p class="text-xs text-slate-500 mt-1">{{ $invoice->haciendaDocument->respuesta_fecha }}</p>
+                                @endif
+                                @foreach ($invoice->haciendaDocument->respuesta_mensajes ?? [] as $msg)
+                                    <p class="text-xs text-slate-600 mt-1">{{ $msg['mensaje'] ?? '' }}</p>
+                                @endforeach
+                            </div>
+                        @endif
+                        <div>
+                            <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Consecutivo</p>
+                            <p class="font-mono text-sm text-slate-900">{{ $invoice->haciendaDocument->numero_consecutivo }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Clave</p>
+                            <p class="font-mono text-xs text-slate-900 break-all">{{ $invoice->haciendaDocument->clave }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 p-6 bg-slate-50 rounded-xl">
                 <div>
                     <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Cliente</p>
@@ -120,12 +188,12 @@
                         XML Hacienda
                     </a>
                 @endif
-                <a href="/factura/{{ $invoice->id }}" target="_blank"
+                <a href="/factura/{{ $invoice->slug }}" target="_blank"
                     class="bg-white border border-indigo-300 text-indigo-600 hover:bg-indigo-50 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
                     Compartir
                 </a>
-                <a href="/factura/{{ $invoice->id }}/pdf"
+                <a href="/factura/{{ $invoice->slug }}/pdf"
                     class="bg-white border border-emerald-300 text-emerald-600 hover:bg-emerald-50 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     PDF

@@ -90,7 +90,7 @@ class QuoteController extends Controller
             'client_email' => 'required|email|max:255',
             'client_phone' => 'required|string|max:50',
             'notes' => 'nullable|string',
-            'status' => 'required|in:pendiente,aprobada,rechazada',
+            'status' => 'required|in:pendiente,aprobada,rechazada,facturada',
             'items' => 'required|array|min:1',
             'items.*.description' => 'required|string',
             'items.*.quantity' => 'required|integer|min:1',
@@ -132,7 +132,7 @@ class QuoteController extends Controller
 
     public function updateStatus(Request $request, Quote $quote)
     {
-        $request->validate(['status' => 'required|in:pendiente,aprobada,rechazada']);
+        $request->validate(['status' => 'required|in:pendiente,aprobada,rechazada,facturada']);
         $quote->update(['status' => $request->status]);
         return back()->with('success', 'Estado actualizado');
     }

@@ -72,7 +72,7 @@
                                     <td class="px-6 py-4 text-slate-500 text-xs">{{ $inv->created_at->format('d/m/Y') }}</td>
                                     <td class="px-6 py-4 text-center space-x-2">
                                         <a href="/admin/invoices/{{ $inv->id }}" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Ver</a>
-                                        <a href="/factura/{{ $inv->id }}/pdf" class="text-emerald-600 hover:text-emerald-800 text-sm font-medium">PDF</a>
+                                        <a href="/factura/{{ $inv->slug }}/pdf" class="text-emerald-600 hover:text-emerald-800 text-sm font-medium">PDF</a>
                                     </td>
                                 </tr>
                             @endforeach

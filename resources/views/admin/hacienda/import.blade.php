@@ -62,6 +62,16 @@
                         </ul>
                     </div>
                 @endif
+                @if ($summary['responses'])
+                    <div class="bg-violet-50 border border-violet-200 text-violet-700 px-4 py-3 rounded-xl text-sm">
+                        <strong>{{ count($summary['responses']) }} respuesta(s) de Hacienda registrada(s):</strong>
+                        <ul class="list-disc ml-5 mt-1">
+                            @foreach ($summary['responses'] as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 @if ($summary['errors'])
                     <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
                         <strong>{{ count($summary['errors']) }} error(es):</strong>
@@ -77,7 +87,7 @@
 
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-6">
             <h2 class="text-lg font-bold text-slate-900 mb-1">Importar XML de Hacienda</h2>
-            <p class="text-sm text-slate-500 mb-5">Subí los comprobantes electrónicos (factura, tiquete, exportación). Se registrarán como facturas y se vincularán automáticamente a la cotización del cliente si coincide el email o la cédula.</p>
+            <p class="text-sm text-slate-500 mb-5">Subí los comprobantes electrónicos (factura, tiquete, exportación). Se registrarán como facturas y se vincularán automáticamente a la cotización del cliente si coincide el email o la cédula. También podés subir el XML de <strong>Respuesta de Hacienda</strong> (Aceptado/Rechazado) y se asociará a la factura por su clave.</p>
 
             <form method="POST" action="/admin/hacienda/import" enctype="multipart/form-data">
                 @csrf

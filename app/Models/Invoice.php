@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Invoice extends Model
 {
@@ -10,8 +11,19 @@ class Invoice extends Model
         'invoice_number', 'quote_id', 'hacienda_document_id',
         'client_name', 'client_id_type', 'client_id_number', 'client_address',
         'client_email', 'client_phone', 'notes',
-        'subtotal', 'tax_rate', 'tax_amount', 'total', 'status',
+        'subtotal', 'tax_rate', 'tax_amount', 'total', 'status', 'slug',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($invoice) {
+            if (empty($invoice->slug)) {
+                $invoice->slug = Str::random(16);
+            }
+        });
+    }
 
     public function items()
     {

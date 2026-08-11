@@ -15,7 +15,7 @@
 <body class="bg-slate-100">
     <div class="no-print bg-indigo-600 text-white text-center py-3 text-sm font-medium">
         Cotización compartida
-        <a href="/cotizacion/{{ $quote->id }}/pdf" class="ml-3 underline">Descargar PDF</a>
+        <a href="/cotizacion/{{ $quote->slug }}/pdf" class="ml-3 underline">Descargar PDF</a>
         <button onclick="window.print()" class="ml-3 underline">Imprimir</button>
     </div>
 

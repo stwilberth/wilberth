@@ -135,6 +135,7 @@
                     <option value="pendiente" {{ $quote->status === 'pendiente' ? 'selected' : '' }}>Pendiente</option>
                     <option value="aprobada" {{ $quote->status === 'aprobada' ? 'selected' : '' }}>Aprobada</option>
                     <option value="rechazada" {{ $quote->status === 'rechazada' ? 'selected' : '' }}>Rechazada</option>
+                    <option value="facturada" {{ $quote->status === 'facturada' ? 'selected' : '' }}>Facturada</option>
                 </select>
             </div>
 

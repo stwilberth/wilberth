@@ -5,11 +5,7 @@
     <title>Factura {{ $invoice->invoice_number }} - Wilberth</title>
     <style>
         body { font-family: 'DejaVu Sans', sans-serif; font-size: 12px; color: #1e293b; padding: 40px; }
-        .header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 40px; }
-        .header-left h1 { font-size: 24px; font-weight: 900; margin: 0 0 4px; color: #0f172a; }
-        .header-left p { color: #64748b; font-size: 12px; margin: 0; }
-        .header-right { text-align: right; font-size: 12px; color: #0f172a; }
-        .header-right p { margin: 2px 0; }
+        table { border-collapse: collapse; }
         .client-info { border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 16px 0; margin-bottom: 32px; display: flex; justify-content: space-between; }
         .client-info strong { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; }
         .client-info p { margin: 4px 0; }
@@ -27,18 +23,60 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-left">
-            <h1>Factura</h1>
-            <p>{{ $invoice->invoice_number }}</p>
-            <p>{{ $invoice->created_at->format('d/m/Y') }}</p>
-        </div>
-        <div class="header-right">
-            <p><strong>Wilberth</strong></p>
-            <p>Desarrollo Web</p>
-            <p>+506 85008393</p>
-        </div>
-    </div>
+    <table style="width:100%; margin-bottom:24px;">
+        <tr>
+            <td style="text-align:left; vertical-align:middle;">
+                <img src="{{ public_path('assets/images/logo_wilberth.png') }}" alt="Wilberth" style="height:48px; width:auto;" />
+            </td>
+            <td style="text-align:left; vertical-align:middle; padding-left:16px;">
+                <p style="margin:0; font-size:16px; font-weight:900; color:#0f172a;">wilberth.com</p>
+                <p style="margin:2px 0 0; font-size:12px; color:#64748b;">Desarrollo Web</p>
+                <p style="margin:2px 0 0; font-size:12px; color:#64748b;">+506 85008393</p>
+            </td>
+            <td style="text-align:right; vertical-align:middle;">
+                <h1 style="font-size:24px; font-weight:900; margin:0 0 4px; color:#0f172a;">Factura</h1>
+                <p style="color:#64748b; font-size:12px; margin:0;">{{ $invoice->invoice_number }}</p>
+                <p style="color:#64748b; font-size:12px; margin:0;">{{ $invoice->created_at->format('d/m/Y') }}</p>
+            </td>
+        </tr>
+    </table>
+
+    @if ($invoice->haciendaDocument)
+        @php
+            $emisor = $invoice->haciendaDocument->emisor_data;
+            $respEstado = $invoice->haciendaDocument->respuesta_estado;
+        @endphp
+        <table style="width:100%; background:#f8fafc; border-radius:8px; margin-bottom:24px;">
+            <tr>
+                <td style="padding:16px;">
+                    @if ($respEstado)
+                        <p style="margin:0 0 4px; font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:#64748b;"><strong>Estado Hacienda:</strong> <span style="font-weight:900; color:{{ $respEstado === 'Aceptado' ? '#047857' : ($respEstado === 'Rechazado' ? '#b91c1c' : '#b45309') }};">{{ $respEstado }}</span></p>
+                    @endif
+                    <p style="margin:0 0 4px; font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:#64748b;"><strong>Emisor</strong></p>
+                    <p style="margin:0; font-size:12px; font-weight:700; color:#1e293b;">{{ $emisor['name'] ?? $invoice->haciendaDocument->emisor }}</p>
+                    @if (! empty($emisor['id_number']))
+                        <p style="margin:2px 0 0; font-size:10px; color:#64748b;">{{ strtoupper($emisor['id_type'] ?? '') }}: {{ $emisor['id_number'] }}</p>
+                    @endif
+                    @php
+                        $pro = $emisor['province'] ?? null;
+                        $can = $emisor['canton'] ?? null;
+                        $dis = $emisor['district'] ?? null;
+                        $emisorUbi = collect([
+                            $pro && $can && $dis ? \App\Services\CostaRicaLocations::districtName($pro, $can, $dis) : null,
+                            $pro && $can ? \App\Services\CostaRicaLocations::cantonName($pro, $can) : null,
+                            $pro ? \App\Services\CostaRicaLocations::provinceName($pro) : null,
+                            $emisor['address'] ?? null,
+                        ])->filter()->implode(', ');
+                    @endphp
+                    @if ($emisorUbi)
+                        <p style="margin:2px 0 0; font-size:10px; color:#64748b;">{{ $emisorUbi }}</p>
+                    @endif
+                    <p style="margin:6px 0 0; font-family:'DejaVu Sans Mono',monospace; font-size:11px;">Consecutivo: {{ $invoice->haciendaDocument->numero_consecutivo }}</p>
+                    <p style="margin:2px 0 0; font-family:'DejaVu Sans Mono',monospace; font-size:9px; word-break:break-all;">Clave: {{ $invoice->haciendaDocument->clave }}</p>
+                </td>
+            </tr>
+        </table>
+    @endif
 
     <div class="client-info">
         <div>

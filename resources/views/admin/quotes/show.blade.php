@@ -3,6 +3,7 @@
         'pendiente' => 'bg-amber-100 text-amber-800',
         'aprobada' => 'bg-emerald-100 text-emerald-800',
         'rechazada' => 'bg-red-100 text-red-800',
+        'facturada' => 'bg-indigo-100 text-indigo-800',
         default => 'bg-slate-100 text-slate-800',
     };
 @endphp
@@ -40,11 +41,17 @@
         @if (session('success'))
             <div class="bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-xl text-sm mb-6">{{ session('success') }}</div>
         @endif
+        @if (session('error'))
+            <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm mb-6">{{ session('error') }}</div>
+        @endif
 
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-6">
             <div class="flex justify-between items-start mb-8">
                 <div>
-                    <h2 class="text-2xl font-black text-slate-900 mb-1">Cotización {{ $quote->quote_number }}</h2>
+                    <h2 class="text-2xl font-black text-slate-900 mb-1 flex items-center gap-3">
+                        Cotización {{ $quote->quote_number }}
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold {{ $badge }}">{{ $quote->status }}</span>
+                    </h2>
                     <p class="text-sm text-slate-500">Creada el {{ $quote->created_at->format('d/m/Y H:i') }}</p>
                 </div>
             </div>
@@ -116,6 +123,41 @@
             @endif
         </div>
 
+        @php $invoice = $quote->invoice; @endphp
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-6">
+            @if ($invoice)
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-1">Factura emitida</h3>
+                        <p class="text-sm text-slate-500">Esta cotización ya se convirtió en la factura <strong>{{ $invoice->invoice_number }}</strong>.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="/admin/invoices/{{ $invoice->id }}" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">Ver factura</a>
+                        @if ($invoice->haciendaDocument)
+                            <a href="/admin/hacienda/{{ $invoice->haciendaDocument->id }}/xml" class="bg-white border border-amber-300 text-amber-600 hover:bg-amber-50 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">XML Hacienda</a>
+                        @endif
+                    </div>
+                </div>
+            @else
+                <h3 class="text-lg font-bold text-slate-900 mb-1">Convertir en Factura</h3>
+                <p class="text-sm text-slate-500 mb-5">Subí el XML de Hacienda de este comprobante. Se validará que el receptor coincida con el cliente de la cotización y se creará la factura vinculada.</p>
+
+                <form method="POST" action="/admin/quotes/{{ $quote->id }}/hacienda" enctype="multipart/form-data" class="flex flex-wrap items-center gap-4">
+                    @csrf
+                    <div class="flex-1">
+                        <label class="hidden">Archivo XML</label>
+                        <input type="file" name="xml" accept=".xml" required
+                            class="w-full px-4 py-2 rounded-md border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />
+                        @error('xml')
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-6 py-2.5 rounded-lg transition-colors">Convertir a Factura</button>
+                </form>
+            @endif
+        </div>
+
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
             <h3 class="text-lg font-bold text-slate-900 mb-4">Acciones</h3>
             <div class="flex flex-wrap gap-3 mb-6 pb-6 border-b border-slate-200">
@@ -124,12 +166,12 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     Crear Factura
                 </a>
-                <a href="/cotizacion/{{ $quote->id }}" target="_blank"
+                <a href="/cotizacion/{{ $quote->slug }}" target="_blank"
                     class="bg-white border border-indigo-300 text-indigo-600 hover:bg-indigo-50 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
                     Compartir
                 </a>
-                <a href="/cotizacion/{{ $quote->id }}/pdf"
+                <a href="/cotizacion/{{ $quote->slug }}/pdf"
                     class="bg-white border border-emerald-300 text-emerald-600 hover:bg-emerald-50 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     PDF
@@ -142,21 +184,27 @@
             </div>
             <h3 class="text-lg font-bold text-slate-900 mb-4">Cambiar Estado</h3>
             <div class="flex flex-wrap gap-3">
-                <form method="POST" action="/admin/quotes/{{ $quote->id }}/status" class="inline">
-                    @csrf
-                    <input type="hidden" name="status" value="aprobada" />
-                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">Aprobar</button>
-                </form>
-                <form method="POST" action="/admin/quotes/{{ $quote->id }}/status" class="inline">
-                    @csrf
-                    <input type="hidden" name="status" value="rechazada" />
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">Rechazar</button>
-                </form>
-                <form method="POST" action="/admin/quotes/{{ $quote->id }}/status" class="inline">
-                    @csrf
-                    <input type="hidden" name="status" value="pendiente" />
-                    <button type="submit" class="bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">Marcar Pendiente</button>
-                </form>
+                @if ($quote->status !== 'aprobada')
+                    <form method="POST" action="/admin/quotes/{{ $quote->id }}/status" class="inline">
+                        @csrf
+                        <input type="hidden" name="status" value="aprobada" />
+                        <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">Aprobar</button>
+                    </form>
+                @endif
+                @if ($quote->status !== 'rechazada')
+                    <form method="POST" action="/admin/quotes/{{ $quote->id }}/status" class="inline">
+                        @csrf
+                        <input type="hidden" name="status" value="rechazada" />
+                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">Rechazar</button>
+                    </form>
+                @endif
+                @if ($quote->status !== 'pendiente')
+                    <form method="POST" action="/admin/quotes/{{ $quote->id }}/status" class="inline">
+                        @csrf
+                        <input type="hidden" name="status" value="pendiente" />
+                        <button type="submit" class="bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">Marcar Pendiente</button>
+                    </form>
+                @endif
                 <form method="POST" action="/admin/quotes/{{ $quote->id }}" class="inline" onsubmit="return confirm('¿Eliminar esta cotización?')">
                     @csrf
                     @method('DELETE')

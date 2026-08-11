@@ -23,6 +23,61 @@ class HaciendaXmlParser
         '05' => 'nite',
     ];
 
+    public static function rootName(string $xml): string
+    {
+        $previous = libxml_use_internal_errors(true);
+
+        try {
+            $root = new SimpleXMLElement($xml, LIBXML_NONET | LIBXML_COMPACT | LIBXML_PARSEHUGE);
+        } catch (\Throwable $e) {
+            libxml_clear_errors();
+            libxml_use_internal_errors($previous);
+            throw new InvalidArgumentException('El archivo no es un XML válido.');
+        }
+
+        libxml_clear_errors();
+        libxml_use_internal_errors($previous);
+
+        return $root->getName();
+    }
+
+    public static function parseResponse(string $xml): array
+    {
+        $previous = libxml_use_internal_errors(true);
+
+        try {
+            $root = new SimpleXMLElement($xml, LIBXML_NONET | LIBXML_COMPACT | LIBXML_PARSEHUGE);
+        } catch (\Throwable $e) {
+            libxml_clear_errors();
+            libxml_use_internal_errors($previous);
+            throw new InvalidArgumentException('El archivo no es un XML válido.');
+        }
+
+        libxml_clear_errors();
+        libxml_use_internal_errors($previous);
+
+        $clave = trim((string) ($root->Clave ?? ''));
+        if (! strlen($clave)) {
+            throw new InvalidArgumentException('El XML de Respuesta no contiene una clave válida.');
+        }
+
+        $mensajes = [];
+        foreach ($root->Mensaje ?? [] as $msg) {
+            $mensajes[] = [
+                'codigo' => trim((string) ($msg->Codigo ?? '')),
+                'mensaje' => trim((string) ($msg->Mensaje ?? '')),
+            ];
+        }
+
+        return [
+            'clave' => $clave,
+            'estado' => trim((string) ($root->Estado ?? '')),
+            'fecha' => trim((string) ($root->Fecha ?? '')),
+            'codigo' => trim((string) ($root->Codigo ?? '')),
+            'mensajes' => $mensajes,
+        ];
+    }
+
     public static function parse(string $xml): array
     {
         $previous = libxml_use_internal_errors(true);
@@ -59,6 +114,23 @@ class HaciendaXmlParser
         $email = trim((string) ($receptor->CorreoElectronico ?? ''));
         $phone = trim((string) ($receptor->Telefono->NumTelefono ?? ''));
         $address = trim((string) ($receptor->Ubicacion->OtrasSenas ?? ''));
+
+        $emisor = $root->Emisor ?? null;
+        $emisorIdentificacion = $emisor->Identificacion ?? null;
+        $emisorUbicacion = $emisor->Ubicacion ?? null;
+
+        $emisorData = [
+            'name' => trim((string) ($emisor->Nombre ?? '')),
+            'name_comercial' => trim((string) ($emisor->NombreComercial ?? '')),
+            'id_type' => self::$idTypeMap[trim((string) ($emisorIdentificacion->Tipo ?? ''))] ?? 'fisica',
+            'id_number' => trim((string) ($emisorIdentificacion->Numero ?? '')),
+            'email' => trim((string) ($emisor->CorreoElectronico ?? '')),
+            'phone' => trim((string) ($emisor->Telefono->NumTelefono ?? '')),
+            'address' => trim((string) ($emisorUbicacion->OtrasSenas ?? '')),
+            'province' => trim((string) ($emisorUbicacion->Provincia ?? '')),
+            'canton' => trim((string) ($emisorUbicacion->Canton ?? '')),
+            'district' => trim((string) ($emisorUbicacion->Distrito ?? '')),
+        ];
 
         $items = [];
         foreach ($root->DetalleServicio->LineaDetalle ?? [] as $line) {
@@ -114,6 +186,7 @@ class HaciendaXmlParser
             'numero_consecutivo' => $text('NumeroConsecutivo') ?? '',
             'fecha_emision' => $text('FechaEmision'),
             'emisor' => trim((string) ($root->Emisor->Nombre ?? '')),
+            'emisor_data' => $emisorData,
             'receptor' => [
                 'name' => $clientName,
                 'id_type' => self::$idTypeMap[$idTypeCode] ?? 'fisica',

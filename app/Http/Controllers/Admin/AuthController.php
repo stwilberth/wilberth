@@ -14,7 +14,7 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        $password = env('ADMIN_PASSWORD', 'admin123');
+        $password = config('admin.password');
         $valid = $request->password === $password;
 
         if (!$valid) {

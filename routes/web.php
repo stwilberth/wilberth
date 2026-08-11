@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\QuoteController;
 use App\Http\Controllers\Admin\BriefLinkController;
+use App\Http\Controllers\Admin\HaciendaImportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -24,10 +25,10 @@ Route::post('/brief', [BriefController::class, 'store'])->name('brief.store');
 
 Route::get('/proyectos', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/portafolio/{slug}', [ProjectController::class, 'show'])->name('projects.show');
-Route::get('/cotizacion/{quote}', [App\Http\Controllers\Admin\QuoteController::class, 'publicView'])->name('quotes.public');
-Route::get('/cotizacion/{quote}/pdf', [App\Http\Controllers\Admin\QuoteController::class, 'downloadPdf'])->name('quotes.pdf');
-Route::get('/factura/{invoice}', [App\Http\Controllers\Admin\InvoiceController::class, 'publicView'])->name('invoices.public');
-Route::get('/factura/{invoice}/pdf', [App\Http\Controllers\Admin\InvoiceController::class, 'pdf'])->name('invoices.pdf');
+Route::get('/cotizacion/{quote:slug}', [App\Http\Controllers\Admin\QuoteController::class, 'publicView'])->name('quotes.public');
+Route::get('/cotizacion/{quote:slug}/pdf', [App\Http\Controllers\Admin\QuoteController::class, 'downloadPdf'])->name('quotes.pdf');
+Route::get('/factura/{invoice:slug}', [App\Http\Controllers\Admin\InvoiceController::class, 'publicView'])->name('invoices.public');
+Route::get('/factura/{invoice:slug}/pdf', [App\Http\Controllers\Admin\InvoiceController::class, 'pdf'])->name('invoices.pdf');
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
@@ -50,6 +51,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/quotes/{quote}/edit', [QuoteController::class, 'edit'])->name('admin.quotes.edit');
         Route::put('/quotes/{quote}', [QuoteController::class, 'update'])->name('admin.quotes.update');
         Route::post('/quotes/{quote}/status', [QuoteController::class, 'updateStatus'])->name('admin.quotes.status');
+        Route::post('/quotes/{quote}/hacienda', [HaciendaImportController::class, 'storeFromQuote'])->name('admin.quotes.hacienda');
         Route::delete('/quotes/{quote}', [QuoteController::class, 'destroy'])->name('admin.quotes.destroy');
         Route::get('/brief-links', [BriefLinkController::class, 'index'])->name('admin.brief-links.index');
         Route::get('/brief-links/create', [BriefLinkController::class, 'create'])->name('admin.brief-links.create');

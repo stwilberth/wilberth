@@ -12,25 +12,71 @@
 <body class="bg-slate-100">
     <div class="no-print bg-indigo-600 text-white text-center py-3 text-sm font-medium">
         Factura electrónica
-        <a href="/factura/{{ $invoice->id }}/pdf" class="ml-3 underline">Descargar PDF</a>
+        <a href="/factura/{{ $invoice->slug }}/pdf" class="ml-3 underline">Descargar PDF</a>
         <button onclick="window.print()" class="ml-3 underline">Imprimir</button>
     </div>
 
     <div class="max-w-4xl mx-auto px-4 py-12">
         <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-            <div class="flex justify-between items-start mb-10">
-                <div>
-                    <img src="/assets/images/logo_wilberth.png" alt="Wilberth" class="h-14 w-auto mb-4" />
+            <div class="flex flex-wrap justify-between items-start gap-6 mb-8">
+                <div class="flex items-center gap-4">
+                    <img src="/assets/images/logo_wilberth.png" alt="Wilberth" class="h-16 w-auto" />
+                    <div>
+                        <a href="https://wilberth.com" class="text-xl font-black text-slate-900">wilberth.com</a>
+                        <p class="text-sm text-slate-500">Desarrollo Web</p>
+                        <p class="text-sm text-slate-500">+506 85008393</p>
+                    </div>
+                </div>
+                <div class="text-right">
                     <h1 class="text-3xl font-black text-slate-900">Factura</h1>
                     <p class="text-slate-500 text-sm mt-1">{{ $invoice->invoice_number }}</p>
                     <p class="text-slate-500 text-sm">{{ $invoice->created_at->format('d/m/Y') }}</p>
                 </div>
-                <div class="text-right">
-                    <p class="font-bold text-slate-900">Wilberth</p>
-                    <p class="text-sm text-slate-500">Desarrollo Web</p>
-                    <p class="text-sm text-slate-500">+506 85008393</p>
-                </div>
             </div>
+
+            @if ($invoice->haciendaDocument)
+                @php
+                    $emisor = $invoice->haciendaDocument->emisor_data;
+                    $respEstado = $invoice->haciendaDocument->respuesta_estado;
+                    $respBadge = match ($respEstado) {
+                        'Aceptado' => 'bg-emerald-100 text-emerald-800',
+                        'Rechazado' => 'bg-red-100 text-red-800',
+                        'Parcialmente aceptado' => 'bg-amber-100 text-amber-800',
+                        default => 'bg-slate-100 text-slate-700',
+                    };
+                @endphp
+                <div class="mb-8 p-4 bg-slate-50 rounded-xl">
+                    <div class="space-y-2">
+                        @if ($respEstado)
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Estado Hacienda</span>
+                                <span class="inline-block px-3 py-1 rounded-full text-xs font-bold {{ $respBadge }}">{{ $respEstado }}</span>
+                            </div>
+                        @endif
+                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Emisor</p>
+                        <p class="text-sm text-slate-600 font-medium">{{ $emisor['name'] ?? $invoice->haciendaDocument->emisor }}</p>
+                        @if (! empty($emisor['id_number']))
+                            <p class="text-xs text-slate-500">{{ strtoupper($emisor['id_type'] ?? '') }}: {{ $emisor['id_number'] }}</p>
+                        @endif
+                        @php
+                            $pro = $emisor['province'] ?? null;
+                            $can = $emisor['canton'] ?? null;
+                            $dis = $emisor['district'] ?? null;
+                            $emisorUbi = collect([
+                                $pro && $can && $dis ? \App\Services\CostaRicaLocations::districtName($pro, $can, $dis) : null,
+                                $pro && $can ? \App\Services\CostaRicaLocations::cantonName($pro, $can) : null,
+                                $pro ? \App\Services\CostaRicaLocations::provinceName($pro) : null,
+                                $emisor['address'] ?? null,
+                            ])->filter()->implode(', ');
+                        @endphp
+                        @if ($emisorUbi)
+                            <p class="text-xs text-slate-500 mt-1">{{ $emisorUbi }}</p>
+                        @endif
+                        <p class="text-slate-500 text-sm mt-1">Consecutivo: <span class="font-mono">{{ $invoice->haciendaDocument->numero_consecutivo }}</span></p>
+                        <p class="text-slate-500 text-xs break-all">Clave: <span class="font-mono">{{ $invoice->haciendaDocument->clave }}</span></p>
+                    </div>
+                </div>
+            @endif
 
             <div class="border-t border-b border-slate-200 py-6 mb-8 grid grid-cols-2 gap-4">
                 <div>

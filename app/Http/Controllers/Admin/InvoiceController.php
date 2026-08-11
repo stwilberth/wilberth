@@ -94,7 +94,10 @@ class InvoiceController extends Controller
     {
         $invoice->load('items');
         $pdf = Pdf::loadView('invoices.pdf', compact('invoice'));
-        return $pdf->download("factura-{$invoice->invoice_number}.pdf");
+        return $pdf->download("factura-{$invoice->invoice_number}.pdf")->withHeaders([
+            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+            'Pragma' => 'no-cache',
+        ]);
     }
 
     public function publicView(Invoice $invoice)
