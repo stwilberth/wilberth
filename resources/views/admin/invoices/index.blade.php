@@ -36,6 +36,7 @@
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
             <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
                 <h2 class="text-lg font-bold text-slate-900">Facturas</h2>
+                <a href="/admin/hacienda/import" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">Importar XML Hacienda</a>
             </div>
 
             @if ($invoices->isEmpty())

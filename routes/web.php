@@ -41,6 +41,9 @@ Route::prefix('admin')->group(function () {
         Route::post('/invoices', [App\Http\Controllers\Admin\InvoiceController::class, 'store'])->name('admin.invoices.store');
         Route::get('/invoices/{invoice}', [App\Http\Controllers\Admin\InvoiceController::class, 'show'])->name('admin.invoices.show');
         Route::delete('/invoices/{invoice}', [App\Http\Controllers\Admin\InvoiceController::class, 'destroy'])->name('admin.invoices.destroy');
+        Route::get('/hacienda/import', [App\Http\Controllers\Admin\HaciendaImportController::class, 'create'])->name('admin.hacienda.import');
+        Route::post('/hacienda/import', [App\Http\Controllers\Admin\HaciendaImportController::class, 'store'])->name('admin.hacienda.store');
+        Route::get('/hacienda/{haciendaDocument}/xml', [App\Http\Controllers\Admin\HaciendaImportController::class, 'downloadXml'])->name('admin.hacienda.xml');
         Route::get('/quotes/create', [QuoteController::class, 'create'])->name('admin.quotes.create');
         Route::post('/quotes', [QuoteController::class, 'store'])->name('admin.quotes.store');
         Route::get('/quotes/{quote}', [QuoteController::class, 'show'])->name('admin.quotes.show');

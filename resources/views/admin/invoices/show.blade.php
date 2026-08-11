@@ -114,6 +114,12 @@
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
             <h3 class="text-lg font-bold text-slate-900 mb-4">Acciones</h3>
             <div class="flex flex-wrap gap-3">
+                @if ($invoice->haciendaDocument)
+                    <a href="/admin/hacienda/{{ $invoice->haciendaDocument->id }}/xml"
+                        class="bg-white border border-amber-300 text-amber-600 hover:bg-amber-50 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2">
+                        XML Hacienda
+                    </a>
+                @endif
                 <a href="/factura/{{ $invoice->id }}" target="_blank"
                     class="bg-white border border-indigo-300 text-indigo-600 hover:bg-indigo-50 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
