@@ -70,8 +70,12 @@ echo "<h2>3. PNPM install & build</h2>";
 $success = run("CI=true pnpm install 2>&1", $repo) && $success;
 $success = run("pnpm run build 2>&1", $repo) && $success;
 
-// 4. Laravel optimizations
-echo "<h2>4. Laravel optimize</h2>";
+// 4. Database migrations
+echo "<h2>4. Migraciones</h2>";
+$success = run("php artisan migrate --force 2>&1", $repo) && $success;
+
+// 5. Laravel optimizations
+echo "<h2>5. Laravel optimize</h2>";
 $success = run("php artisan optimize:clear 2>&1", $repo) && $success;
 
 $elapsed = round(microtime(true) - $start, 2);
