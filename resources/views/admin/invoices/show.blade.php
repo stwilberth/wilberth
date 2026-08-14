@@ -171,6 +171,28 @@
                 </div>
             </div>
 
+            <div class="mt-6 p-4 bg-slate-50 rounded-xl">
+                <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
+                    <div>
+                        <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">PDF original de Hacienda</p>
+                        @if ($invoice->original_pdf)
+                            <a href="/factura/{{ $invoice->slug }}/pdf-original" class="text-sm font-bold text-indigo-600 hover:text-indigo-800">Descargar PDF original</a>
+                        @else
+                            <p class="text-sm text-slate-500">No hay PDF original subido.</p>
+                        @endif
+                    </div>
+                    <form method="POST" action="/admin/invoices/{{ $invoice->id }}/pdf-original" enctype="multipart/form-data" class="flex items-center gap-2">
+                        @csrf
+                        <input type="file" name="pdf" accept=".pdf" required
+                            class="text-sm border border-slate-300 rounded-lg px-3 py-2 bg-white" />
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-4 py-2.5 rounded-lg">Subir PDF</button>
+                    </form>
+                </div>
+                @error('pdf')
+                    <p class="text-red-600 text-sm">{{ $message }}</p>
+                @enderror
+            </div>
+
             @if ($invoice->notes)
                 <div class="mt-6 p-4 bg-slate-50 rounded-xl">
                     <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">Notas</p>

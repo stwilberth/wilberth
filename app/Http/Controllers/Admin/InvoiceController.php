@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\Quote;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class InvoiceController extends Controller
 {
@@ -104,5 +105,44 @@ class InvoiceController extends Controller
     {
         $invoice->load('items');
         return view('invoices.public', compact('invoice'));
+    }
+
+    public function uploadOriginalPdf(Request $request, Invoice $invoice)
+    {
+        $data = $request->validate([
+            'pdf' => 'required|file|mimes:pdf|max:20480',
+        ]);
+
+        if ($invoice->original_pdf && Storage::disk('local')->exists($invoice->original_pdf)) {
+            Storage::disk('local')->delete($invoice->original_pdf);
+        }
+
+        $path = $data['pdf']->storeAs('invoices/'.$invoice->id, 'factura-original.pdf', 'local');
+        $this->fixStoragePermissions(dirname($path));
+        $invoice->update(['original_pdf' => $path]);
+
+        return back()->with('success', 'PDF original actualizado.');
+    }
+
+    protected function fixStoragePermissions(string $relativeDir): void
+    {
+        $root = rtrim(config('filesystems.disks.local.root'), '/');
+        $current = $root;
+        foreach (explode('/', $relativeDir) as $segment) {
+            $current .= '/'.$segment;
+            if (is_dir($current)) {
+                @chmod($current, 0775);
+            }
+        }
+    }
+
+    public function downloadOriginalPdf(Invoice $invoice)
+    {
+        abort_unless($invoice->original_pdf && Storage::disk('local')->exists($invoice->original_pdf), 404);
+
+        return Storage::disk('local')->download($invoice->original_pdf, "factura-{$invoice->invoice_number}-original.pdf", [
+            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+            'Pragma' => 'no-cache',
+        ]);
     }
 }

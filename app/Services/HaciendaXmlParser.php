@@ -61,19 +61,28 @@ class HaciendaXmlParser
             throw new InvalidArgumentException('El XML de Respuesta no contiene una clave válida.');
         }
 
+        $estado = trim((string) ($root->EstadoMensaje ?? $root->Estado ?? ''));
+        $fecha = trim((string) ($root->Fecha ?? ''));
+        $codigo = trim((string) ($root->Codigo ?? ''));
+        $detalle = trim((string) ($root->DetalleMensaje ?? ''));
+
         $mensajes = [];
+        if ($codigo !== '' || $detalle !== '') {
+            $mensajes[] = ['codigo' => $codigo, 'mensaje' => $detalle];
+        }
         foreach ($root->Mensaje ?? [] as $msg) {
+            $hasChildren = count($msg->children()) > 0;
             $mensajes[] = [
-                'codigo' => trim((string) ($msg->Codigo ?? '')),
-                'mensaje' => trim((string) ($msg->Mensaje ?? '')),
+                'codigo' => $hasChildren ? trim((string) ($msg->Codigo ?? '')) : '',
+                'mensaje' => $hasChildren ? trim((string) ($msg->Mensaje ?? '')) : trim((string) $msg),
             ];
         }
 
         return [
             'clave' => $clave,
-            'estado' => trim((string) ($root->Estado ?? '')),
-            'fecha' => trim((string) ($root->Fecha ?? '')),
-            'codigo' => trim((string) ($root->Codigo ?? '')),
+            'estado' => $estado,
+            'fecha' => $fecha,
+            'codigo' => $codigo,
             'mensajes' => $mensajes,
         ];
     }

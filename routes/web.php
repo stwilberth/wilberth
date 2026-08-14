@@ -29,6 +29,7 @@ Route::get('/cotizacion/{quote:slug}', [App\Http\Controllers\Admin\QuoteControll
 Route::get('/cotizacion/{quote:slug}/pdf', [App\Http\Controllers\Admin\QuoteController::class, 'downloadPdf'])->name('quotes.pdf');
 Route::get('/factura/{invoice:slug}', [App\Http\Controllers\Admin\InvoiceController::class, 'publicView'])->name('invoices.public');
 Route::get('/factura/{invoice:slug}/pdf', [App\Http\Controllers\Admin\InvoiceController::class, 'pdf'])->name('invoices.pdf');
+Route::get('/factura/{invoice:slug}/pdf-original', [App\Http\Controllers\Admin\InvoiceController::class, 'downloadOriginalPdf'])->name('invoices.original-pdf');
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
@@ -41,6 +42,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/invoices/create-from-quote/{quote}', [App\Http\Controllers\Admin\InvoiceController::class, 'createFromQuote'])->name('admin.invoices.create-from-quote');
         Route::post('/invoices', [App\Http\Controllers\Admin\InvoiceController::class, 'store'])->name('admin.invoices.store');
         Route::get('/invoices/{invoice}', [App\Http\Controllers\Admin\InvoiceController::class, 'show'])->name('admin.invoices.show');
+        Route::post('/invoices/{invoice}/pdf-original', [App\Http\Controllers\Admin\InvoiceController::class, 'uploadOriginalPdf'])->name('admin.invoices.upload-original-pdf');
         Route::delete('/invoices/{invoice}', [App\Http\Controllers\Admin\InvoiceController::class, 'destroy'])->name('admin.invoices.destroy');
         Route::get('/hacienda/import', [App\Http\Controllers\Admin\HaciendaImportController::class, 'create'])->name('admin.hacienda.import');
         Route::post('/hacienda/import', [App\Http\Controllers\Admin\HaciendaImportController::class, 'store'])->name('admin.hacienda.store');

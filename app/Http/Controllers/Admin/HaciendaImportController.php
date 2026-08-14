@@ -45,7 +45,7 @@ class HaciendaImportController extends Controller
                 continue;
             }
 
-            if ($rootName === 'Respuesta') {
+            if (in_array($rootName, ['Respuesta', 'MensajeHacienda'])) {
                 try {
                     $resp = HaciendaXmlParser::parseResponse($content);
                 } catch (\Throwable $e) {
@@ -153,6 +153,7 @@ class HaciendaImportController extends Controller
     {
         $data = $request->validate([
             'xml' => 'required|file',
+            'pdf' => 'nullable|file|mimes:pdf',
         ]);
 
         $file = $data['xml'];
@@ -165,7 +166,7 @@ class HaciendaImportController extends Controller
             return back()->with('error', "{$name}: {$e->getMessage()}");
         }
 
-        if ($rootName === 'Respuesta') {
+        if (in_array($rootName, ['Respuesta', 'MensajeHacienda'])) {
             try {
                 $resp = HaciendaXmlParser::parseResponse($content);
             } catch (\Throwable $e) {
@@ -247,7 +248,25 @@ class HaciendaImportController extends Controller
 
         $quote->update(['status' => 'facturada']);
 
+        if ($request->hasFile('pdf')) {
+            $path = $request->file('pdf')->storeAs('invoices/'.$invoice->id, 'factura-original.pdf', 'local');
+            $this->fixStoragePermissions(dirname($path));
+            $invoice->update(['original_pdf' => $path]);
+        }
+
         return redirect("/admin/quotes/{$quote->id}")->with('success', "Cotización convertida en factura {$invoice->invoice_number}.");
+    }
+
+    protected function fixStoragePermissions(string $relativeDir): void
+    {
+        $root = rtrim(config('filesystems.disks.local.root'), '/');
+        $current = $root;
+        foreach (explode('/', $relativeDir) as $segment) {
+            $current .= '/'.$segment;
+            if (is_dir($current)) {
+                @chmod($current, 0775);
+            }
+        }
     }
 
     protected function receptorMatchesQuote(array $receptor, Quote $quote): bool

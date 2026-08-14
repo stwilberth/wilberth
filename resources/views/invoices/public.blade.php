@@ -13,6 +13,9 @@
     <div class="no-print bg-indigo-600 text-white text-center py-3 text-sm font-medium">
         Factura electrónica
         <a href="/factura/{{ $invoice->slug }}/pdf" class="ml-3 underline">Descargar PDF</a>
+        @if ($invoice->original_pdf)
+            <a href="/factura/{{ $invoice->slug }}/pdf-original" class="ml-3 underline">PDF original</a>
+        @endif
         <button onclick="window.print()" class="ml-3 underline">Imprimir</button>
     </div>
 

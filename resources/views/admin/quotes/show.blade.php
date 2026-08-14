@@ -137,19 +137,30 @@
                         @if ($invoice->haciendaDocument)
                             <a href="/admin/hacienda/{{ $invoice->haciendaDocument->id }}/xml" class="bg-white border border-amber-300 text-amber-600 hover:bg-amber-50 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">XML Hacienda</a>
                         @endif
+                        @if ($invoice->original_pdf)
+                            <a href="/factura/{{ $invoice->slug }}/pdf-original" class="bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">PDF original</a>
+                        @endif
                     </div>
                 </div>
             @else
                 <h3 class="text-lg font-bold text-slate-900 mb-1">Convertir en Factura</h3>
-                <p class="text-sm text-slate-500 mb-5">Subí el XML de Hacienda de este comprobante. Se validará que el receptor coincida con el cliente de la cotización y se creará la factura vinculada.</p>
+                <p class="text-sm text-slate-500 mb-5">Subí el XML de Hacienda de este comprobante (y opcionalmente el PDF original). Se validará que el receptor coincida con el cliente de la cotización y se creará la factura vinculada.</p>
 
-                <form method="POST" action="/admin/quotes/{{ $quote->id }}/hacienda" enctype="multipart/form-data" class="flex flex-wrap items-center gap-4">
+                <form method="POST" action="/admin/quotes/{{ $quote->id }}/hacienda" enctype="multipart/form-data" class="space-y-4">
                     @csrf
-                    <div class="flex-1">
-                        <label class="hidden">Archivo XML</label>
+                    <div>
+                        <label class="text-sm font-medium text-slate-700 mb-1 block">XML de Hacienda</label>
                         <input type="file" name="xml" accept=".xml" required
                             class="w-full px-4 py-2 rounded-md border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />
                         @error('xml')
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <label class="text-sm font-medium text-slate-700 mb-1 block">PDF original de la factura (opcional)</label>
+                        <input type="file" name="pdf" accept=".pdf"
+                            class="w-full px-4 py-2 rounded-md border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" />
+                        @error('pdf')
                             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
