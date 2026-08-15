@@ -148,13 +148,13 @@ class OrderController extends Controller
         }
 
         $filename = "designs/{$design->id}/export_{$design->id}_" . time() . ".png";
-        Storage::disk('public')->put($filename, $imageData);
+        Storage::disk('r2')->put("wilberth/" . $filename, $imageData, 'public');
 
-        $design->update(['preview_image' => ['url' => asset('storage/' . $filename)]]);
+        $design->update(['preview_image' => ['url' => 'https://cdn.wilberth.com/wilberth/' . $filename]]);
 
         return response()->json([
             'success' => true,
-            'url' => asset('storage/' . $filename),
+            'url' => 'https://cdn.wilberth.com/wilberth/' . $filename,
         ]);
     }
 

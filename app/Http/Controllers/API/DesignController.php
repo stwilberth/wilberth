@@ -99,7 +99,7 @@ class DesignController extends Controller
         }
 
         foreach ($design->assets as $asset) {
-            Storage::disk('public')->delete($asset->path);
+            Storage::disk('r2')->delete($asset->path);
         }
 
         $design->delete();
@@ -126,13 +126,13 @@ class DesignController extends Controller
         }
 
         $filename = "designs/{$design->id}/export_" . Str::random(8) . '.png';
-        Storage::disk('public')->put($filename, $imageData);
+        Storage::disk('r2')->put("wilberth/" . $filename, $imageData, 'public');
 
-        $design->update(['preview_image' => ['url' => asset('storage/' . $filename)]]);
+        $design->update(['preview_image' => ['url' => 'https://cdn.wilberth.com/wilberth/' . $filename]]);
 
         return response()->json([
             'success' => true,
-            'url' => asset('storage/' . $filename),
+            'url' => 'https://cdn.wilberth.com/wilberth/' . $filename,
         ]);
     }
 
@@ -151,7 +151,7 @@ class DesignController extends Controller
         ]);
 
         $file = $request->file('file');
-        $path = $file->store("designs/{$design->id}/assets", 'public');
+        $path = $file->store("wilberth/designs/{$design->id}/assets", 'r2');
 
         $asset = DesignAsset::create([
             'design_id' => $design->id,
@@ -165,7 +165,7 @@ class DesignController extends Controller
         return response()->json([
             'success' => true,
             'asset' => $asset->load('design'),
-            'url' => asset('storage/' . $path),
+            'url' => 'https://cdn.wilberth.com/' . $path,
         ]);
     }
 
@@ -179,7 +179,7 @@ class DesignController extends Controller
             return response()->json(['success' => false, 'message' => 'Asset not found'], 404);
         }
 
-        Storage::disk('public')->delete($asset->path);
+        Storage::disk('r2')->delete($asset->path);
         $asset->delete();
 
         return response()->json(['success' => true]);

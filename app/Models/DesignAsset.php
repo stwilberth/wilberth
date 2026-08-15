@@ -31,6 +31,6 @@ class DesignAsset extends Model
 
     public function getUrlAttribute(): string
     {
-        return asset('storage/' . $this->path);
+        return 'https://cdn.wilberth.com/' . ltrim($this->path, '/');
     }
 }
