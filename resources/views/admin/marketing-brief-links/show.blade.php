@@ -16,7 +16,7 @@
                     <a href="/admin/quotes/create" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Nueva Cotización</a>
                     <a href="/admin/invoices" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Facturas</a>
                     <a href="/admin/brief-links" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Brief Links</a>
-                    <a href="/admin/marketing-brief-links" class="px-4 py-2 text-sm font-medium bg-pink-50 text-pink-700 rounded-lg">Marketing Briefs</a>
+                    <a href="/admin/marketing-brief-links" class="px-4 py-2 text-sm font-medium bg-indigo-50 text-indigo-700 rounded-lg">Marketing Briefs</a>
                 </nav>
             </div>
             <div class="flex items-center gap-3">
@@ -59,7 +59,7 @@
                             class="flex-1 text-sm font-mono bg-white border border-slate-200 rounded px-3 py-2 text-slate-700"
                             onclick="this.select()">
                         <button onclick="copyToClipboard(this)" data-url="{{ url('/marketing-brief/' . $marketingBriefLink->token) }}"
-                            class="bg-pink-600 hover:bg-pink-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors">
+                            class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors">
                             Copiar
                         </button>
                     </div>

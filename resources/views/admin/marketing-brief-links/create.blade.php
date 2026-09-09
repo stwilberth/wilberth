@@ -16,7 +16,7 @@
                     <a href="/admin/quotes/create" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Nueva Cotización</a>
                     <a href="/admin/invoices" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Facturas</a>
                     <a href="/admin/brief-links" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Brief Links</a>
-                    <a href="/admin/marketing-brief-links" class="px-4 py-2 text-sm font-medium bg-pink-50 text-pink-700 rounded-lg">Marketing Briefs</a>
+                    <a href="/admin/marketing-brief-links" class="px-4 py-2 text-sm font-medium bg-indigo-50 text-indigo-700 rounded-lg">Marketing Briefs</a>
                 </nav>
             </div>
             <div class="flex items-center gap-3">
@@ -39,7 +39,7 @@
                 <div>
                     <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Nombre del cliente (opcional)</label>
                     <input type="text" name="name" id="name"
-                        class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-pink-500 focus:ring-0 transition-colors text-gray-900"
+                        class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 transition-colors text-gray-900"
                         placeholder="Ejemplo: Pastelería Doña María">
                     <p class="text-xs text-slate-500 mt-1">Solo para identificar el enlace en el admin</p>
                 </div>
@@ -47,7 +47,7 @@
                 <div>
                     <label for="expires_at" class="block text-sm font-semibold text-slate-700 mb-2">Fecha de expiración (opcional)</label>
                     <input type="date" name="expires_at" id="expires_at"
-                        class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-pink-500 focus:ring-0 transition-colors text-gray-900"
+                        class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:ring-0 transition-colors text-gray-900"
                         min="{{ date('Y-m-d', strtotime('+1 day')) }}">
                     <p class="text-xs text-slate-500 mt-1">Dejar vacío para que no expire</p>
                 </div>
@@ -56,7 +56,7 @@
                     <a href="/admin/marketing-brief-links" class="flex-1 text-center bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-6 py-3 rounded-xl transition-colors">
                         Cancelar
                     </a>
-                    <button type="submit" class="flex-1 bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors">
+                    <button type="submit" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors">
                         Crear Enlace
                     </button>
                 </div>

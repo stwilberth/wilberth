@@ -16,7 +16,7 @@
                     <a href="/admin/quotes/create" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Nueva Cotización</a>
                     <a href="/admin/invoices" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Facturas</a>
                     <a href="/admin/brief-links" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">Brief Links</a>
-                    <a href="/admin/marketing-brief-links" class="px-4 py-2 text-sm font-medium bg-pink-50 text-pink-700 rounded-lg">Marketing Briefs</a>
+                    <a href="/admin/marketing-brief-links" class="px-4 py-2 text-sm font-medium bg-indigo-50 text-indigo-700 rounded-lg">Marketing Briefs</a>
                 </nav>
             </div>
             <div class="flex items-center gap-3">
@@ -37,13 +37,13 @@
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
             <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
                 <h2 class="text-lg font-bold text-slate-900">Enlaces de Marketing Brief</h2>
-                <a href="/admin/marketing-brief-links/create" class="bg-pink-600 hover:bg-pink-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">+ Crear Enlace</a>
+                <a href="/admin/marketing-brief-links/create" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">+ Crear Enlace</a>
             </div>
 
             @if ($links->isEmpty())
                 <div class="p-12 text-center text-slate-400">
                     <p class="text-lg">No hay enlaces creados aún</p>
-                    <a href="/admin/marketing-brief-links/create" class="text-pink-600 hover:text-pink-800 font-medium text-sm mt-2 inline-block">Crear el primero</a>
+                    <a href="/admin/marketing-brief-links/create" class="text-indigo-600 hover:text-indigo-800 font-medium text-sm mt-2 inline-block">Crear el primero</a>
                 </div>
             @else
                 <div class="overflow-x-auto">
@@ -99,7 +99,7 @@
                                         {{ $link->expires_at ? $link->expires_at->format('d/m/Y') : 'Nunca' }}
                                     </td>
                                     <td class="px-6 py-4 text-center space-x-2">
-                                        <a href="/admin/marketing-brief-links/{{ $link->id }}" class="text-pink-600 hover:text-pink-800 text-sm font-medium">Ver</a>
+                                        <a href="/admin/marketing-brief-links/{{ $link->id }}" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Ver</a>
                                         <form method="POST" action="/admin/marketing-brief-links/{{ $link->id }}" class="inline" onsubmit="return confirm('¿Eliminar este enlace?')">
                                             @csrf
                                             @method('DELETE')
