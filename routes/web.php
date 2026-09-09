@@ -4,10 +4,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BriefController;
+use App\Http\Controllers\MarketingBriefController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\QuoteController;
 use App\Http\Controllers\Admin\BriefLinkController;
+use App\Http\Controllers\Admin\MarketingBriefLinkController;
 use App\Http\Controllers\Admin\HaciendaImportController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +24,9 @@ Route::view('/demo/customizer', 'customizer-react')->name('customizer.react');
 
 Route::get('/brief/{token?}', [BriefController::class, 'show'])->name('brief.show');
 Route::post('/brief', [BriefController::class, 'store'])->name('brief.store');
+
+Route::get('/marketing-brief/{token?}', [MarketingBriefController::class, 'show'])->name('marketing-brief.show');
+Route::post('/marketing-brief', [MarketingBriefController::class, 'store'])->name('marketing-brief.store');
 
 Route::get('/proyectos', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/portafolio/{slug}', [ProjectController::class, 'show'])->name('projects.show');
@@ -62,5 +67,12 @@ Route::prefix('admin')->group(function () {
         Route::post('/brief-links/{briefLink}/toggle', [BriefLinkController::class, 'toggle'])->name('admin.brief-links.toggle');
         Route::delete('/brief-links/{briefLink}', [BriefLinkController::class, 'destroy'])->name('admin.brief-links.destroy');
         Route::get('/brief/{brief}/download', [BriefLinkController::class, 'download'])->name('admin.brief.download');
+        Route::get('/marketing-brief-links', [MarketingBriefLinkController::class, 'index'])->name('admin.marketing-brief-links.index');
+        Route::get('/marketing-brief-links/create', [MarketingBriefLinkController::class, 'create'])->name('admin.marketing-brief-links.create');
+        Route::post('/marketing-brief-links', [MarketingBriefLinkController::class, 'store'])->name('admin.marketing-brief-links.store');
+        Route::get('/marketing-brief-links/{marketingBriefLink}', [MarketingBriefLinkController::class, 'show'])->name('admin.marketing-brief-links.show');
+        Route::post('/marketing-brief-links/{marketingBriefLink}/toggle', [MarketingBriefLinkController::class, 'toggle'])->name('admin.marketing-brief-links.toggle');
+        Route::delete('/marketing-brief-links/{marketingBriefLink}', [MarketingBriefLinkController::class, 'destroy'])->name('admin.marketing-brief-links.destroy');
+        Route::get('/marketing-brief/{marketingBrief}/download', [MarketingBriefLinkController::class, 'download'])->name('admin.marketing-brief.download');
     });
 });
